@@ -353,13 +353,6 @@
             color: var(--color-green);
         }
 
-        .product-price {
-            color: var(--color-green);
-            font-size: 1.1em;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
         .product-description {
             color: var(--color-text);
             line-height: 1.6;
@@ -523,7 +516,7 @@
     <div class="container">
         <header>
             <h1>Digital Income Path Finder</h1>
-            <p class="tagline">Discover Your Perfect Match in 5 Questions</p>
+            <p class="tagline">Discover Your Perfect Income Stream in 5 Questions</p>
         </header>
 
         <div class="quiz-card">
@@ -534,19 +527,23 @@
             <!-- Question 1 -->
             <div class="question-container active" id="q1">
                 <span class="question-number">Question 1 of 5</span>
-                <h2>What's your current experience level with online business?</h2>
+                <h2>What type of income opportunity interests you most?</h2>
                 <div class="options">
-                    <div class="option" onclick="selectAnswer(1, 'beginner')">
-                        <span class="option-label">🌱 Just Starting Out</span>
-                        <p class="option-description">Exploring different opportunities, new to digital income</p>
+                    <div class="option" onclick="selectAnswer(1, 'creative')">
+                        <span class="option-label">🎨 Creative & Content</span>
+                        <p class="option-description">Video creation, design, and content production</p>
                     </div>
-                    <div class="option" onclick="selectAnswer(1, 'intermediate')">
-                        <span class="option-label">📊 Some Experience</span>
-                        <p class="option-description">Made a few sales but not consistent yet</p>
+                    <div class="option" onclick="selectAnswer(1, 'service')">
+                        <span class="option-label">💬 Service-Based Work</span>
+                        <p class="option-description">Remote jobs, social media management, customer support</p>
                     </div>
-                    <div class="option" onclick="selectAnswer(1, 'advanced')">
-                        <span class="option-label">🎯 Experienced</span>
-                        <p class="option-description">Ready to scale to the next level</p>
+                    <div class="option" onclick="selectAnswer(1, 'business')">
+                        <span class="option-label">🚀 Business & Marketing</span>
+                        <p class="option-description">Affiliate marketing, online business systems</p>
+                    </div>
+                    <div class="option" onclick="selectAnswer(1, 'investment')">
+                        <span class="option-label">💎 Investment & Assets</span>
+                        <p class="option-description">Domain investing, physical products, long-term wealth</p>
                     </div>
                 </div>
             </div>
@@ -554,19 +551,19 @@
             <!-- Question 2 -->
             <div class="question-container" id="q2">
                 <span class="question-number">Question 2 of 5</span>
-                <h2>How much time can you dedicate weekly?</h2>
+                <h2>What's your current skill level?</h2>
                 <div class="options">
-                    <div class="option" onclick="selectAnswer(2, 'parttime')">
-                        <span class="option-label">⏰ Part-Time Hustle</span>
-                        <p class="option-description">5-10 hours per week (side project)</p>
+                    <div class="option" onclick="selectAnswer(2, 'beginner')">
+                        <span class="option-label">🌱 Complete Beginner</span>
+                        <p class="option-description">Just starting, need simple step-by-step guidance</p>
                     </div>
-                    <div class="option" onclick="selectAnswer(2, 'fulltime')">
-                        <span class="option-label">💼 Full-Time Focus</span>
-                        <p class="option-description">20+ hours per week (main priority)</p>
+                    <div class="option" onclick="selectAnswer(2, 'intermediate')">
+                        <span class="option-label">📊 Some Experience</span>
+                        <p class="option-description">Have tried things, ready to level up</p>
                     </div>
-                    <div class="option" onclick="selectAnswer(2, 'automated')">
-                        <span class="option-label">🔄 Building Systems</span>
-                        <p class="option-description">Want passive income and automation</p>
+                    <div class="option" onclick="selectAnswer(2, 'advanced')">
+                        <span class="option-label">🎯 Ready to Scale</span>
+                        <p class="option-description">Have skills, want advanced training and systems</p>
                     </div>
                 </div>
             </div>
@@ -574,19 +571,19 @@
             <!-- Question 3 -->
             <div class="question-container" id="q3">
                 <span class="question-number">Question 3 of 5</span>
-                <h2>What's your primary goal?</h2>
+                <h2>How much startup capital can you invest?</h2>
                 <div class="options">
-                    <div class="option" onclick="selectAnswer(3, 'quickstart')">
-                        <span class="option-label">⚡ Get Started Fast</span>
-                        <p class="option-description">Learn proven strategies and take action</p>
+                    <div class="option" onclick="selectAnswer(3, 'minimal')">
+                        <span class="option-label">💰 Under $100</span>
+                        <p class="option-description">Looking for low-cost entry opportunities</p>
                     </div>
-                    <div class="option" onclick="selectAnswer(3, 'scaling')">
-                        <span class="option-label">📈 Scale My Business</span>
-                        <p class="option-description">Build systems to grow what's working</p>
+                    <div class="option" onclick="selectAnswer(3, 'moderate')">
+                        <span class="option-label">💵 $100-$500</span>
+                        <p class="option-description">Can invest in tools and training</p>
                     </div>
-                    <div class="option" onclick="selectAnswer(3, 'premium')">
-                        <span class="option-label">👑 Premium Training</span>
-                        <p class="option-description">Expert mentorship and coaching</p>
+                    <div class="option" onclick="selectAnswer(3, 'serious')">
+                        <span class="option-label">💎 $500+</span>
+                        <p class="option-description">Ready to invest for serious returns</p>
                     </div>
                 </div>
             </div>
@@ -594,19 +591,19 @@
             <!-- Question 4 -->
             <div class="question-container" id="q4">
                 <span class="question-number">Question 4 of 5</span>
-                <h2>What's your biggest current challenge?</h2>
+                <h2>What's your preferred work style?</h2>
                 <div class="options">
-                    <div class="option" onclick="selectAnswer(4, 'notraffic')">
-                        <span class="option-label">👥 Getting Visibility</span>
-                        <p class="option-description">Need more audience and traffic</p>
+                    <div class="option" onclick="selectAnswer(4, 'creative_work')">
+                        <span class="option-label">🎬 Creative Production</span>
+                        <p class="option-description">Making videos, content, or physical products</p>
                     </div>
-                    <div class="option" onclick="selectAnswer(4, 'noproducts')">
-                        <span class="option-label">📦 Creating Products</span>
-                        <p class="option-description">Don't have digital products to sell yet</p>
+                    <div class="option" onclick="selectAnswer(4, 'people_work')">
+                        <span class="option-label">👥 Working with People</span>
+                        <p class="option-description">Communication, support, social interaction</p>
                     </div>
-                    <div class="option" onclick="selectAnswer(4, 'mindset')">
-                        <span class="option-label">🧠 Mental Performance</span>
-                        <p class="option-description">Need better focus, clarity, or mindset</p>
+                    <div class="option" onclick="selectAnswer(4, 'strategic')">
+                        <span class="option-label">📈 Strategic Planning</span>
+                        <p class="option-description">Marketing, investing, business systems</p>
                     </div>
                 </div>
             </div>
@@ -614,19 +611,19 @@
             <!-- Question 5 -->
             <div class="question-container" id="q5">
                 <span class="question-number">Question 5 of 5</span>
-                <h2>What's your investment comfort level?</h2>
+                <h2>What's your income goal timeline?</h2>
                 <div class="options">
-                    <div class="option" onclick="selectAnswer(5, 'budget')">
-                        <span class="option-label">💰 Under $50</span>
-                        <p class="option-description">Looking for affordable high-impact tools</p>
+                    <div class="option" onclick="selectAnswer(5, 'immediate')">
+                        <span class="option-label">⚡ Start Earning ASAP</span>
+                        <p class="option-description">Need income within days or weeks</p>
                     </div>
-                    <div class="option" onclick="selectAnswer(5, 'mid')">
-                        <span class="option-label">💵 $50-$100</span>
-                        <p class="option-description">Willing to invest for proven results</p>
+                    <div class="option" onclick="selectAnswer(5, 'building')">
+                        <span class="option-label">🏗️ Build Over 1-3 Months</span>
+                        <p class="option-description">Willing to build for sustainable income</p>
                     </div>
-                    <div class="option" onclick="selectAnswer(5, 'premium')">
-                        <span class="option-label">💎 $200+</span>
-                        <p class="option-description">Ready for premium training and systems</p>
+                    <div class="option" onclick="selectAnswer(5, 'longterm')">
+                        <span class="option-label">🎯 Long-Term Wealth</span>
+                        <p class="option-description">Building assets and generational wealth</p>
                     </div>
                 </div>
             </div>
@@ -733,165 +730,123 @@
             document.getElementById('emailCapture').classList.remove('active');
 
             // Determine result based on answers
-            const experience = answers.q1; // beginner, intermediate, advanced
-            const time = answers.q2; // parttime, fulltime, automated
-            const goal = answers.q3; // quickstart, scaling, premium
-            const challenge = answers.q4; // notraffic, noproducts, mindset
-            const investment = answers.q5; // budget, mid, premium
+            const opportunity = answers.q1; // creative, service, business, investment
+            const skill = answers.q2; // beginner, intermediate, advanced
+            const capital = answers.q3; // minimal, moderate, serious
+            const workstyle = answers.q4; // creative_work, people_work, strategic
+            const timeline = answers.q5; // immediate, building, longterm
 
             let resultHTML = '';
 
             // Logic for determining primary + secondary products
-            if (investment === 'budget' || investment === 'mid') {
-                if (challenge === 'mindset') {
-                    // Mindset Focus - Budget
-                    resultHTML = `
-                        <div class="result-container active">
-                            <h2 class="result-title">🧠 The Peak Performer</h2>
-                            <p class="result-description">Optimize your cognitive performance and wealth mindset</p>
+            if (opportunity === 'creative' || workstyle === 'creative_work') {
+                // Creative Content Path
+                resultHTML = `
+                    <div class="result-container active">
+                        <h2 class="result-title">🎨 The Content Creator</h2>
+                        <p class="result-description">Turn your creative vision into stunning videos and visual content</p>
 
-                            <div class="product-card primary">
-                                <h3 class="product-name">The Genius Wave</h3>
-                                <p class="product-price">$49.94</p>
-                                <p class="product-description">Enhance focus, creativity, and mental clarity with 7-minute soundwave sessions. Science-backed cognitive performance optimization for peak productivity.</p>
-                                <a href="https://0413a809hxhonf86iknh7xxz83.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Unlock Your Focus</a>
-                            </div>
-
-                            <div class="product-card">
-                                <h3 class="product-name">The Money Wave</h3>
-                                <p class="product-price">$51.00</p>
-                                <p class="product-description">Reprogram limiting money beliefs with neuroplasticity-based training. Perfect complement to cognitive performance work.</p>
-                                <a href="https://d0ac5-vip5mjygda1cnt6-271c.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Transform Your Mindset</a>
-                            </div>
-
-                            <div class="bonus-section">
-                                <h1 class="bonus-heading">ALSO Click Here To Get Your Free Copy of the "Creative Momentum" eBook, A $9.99 Value!</h1>
-                                <a href="creative-momentum-download.html" class="ebook-button">
-                                    <img src="Thumbnail.png" alt="Creative Momentum eBook">
-                                </a>
-                            </div>
+                        <div class="product-card primary">
+                            <h3 class="product-name">InstaDoodle</h3>
+                            <p class="product-description">Create breathtaking whiteboard animation videos in just 3 clicks with the world's first AI doodle video creator. Perfect for marketing, education, and social media content.</p>
+                            <a href="https://10bc001ds5roppah1mw-jgv4vt.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Start Creating Videos</a>
                         </div>
-                    `;
-                } else if (challenge === 'noproducts' || goal === 'quickstart') {
-                    // Product Creation Focus - Budget
-                    resultHTML = `
-                        <div class="result-container active">
-                            <h2 class="result-title">📚 The Product Creator</h2>
-                            <p class="result-description">Build digital products fast with the right tools</p>
 
-                            <div class="product-card primary">
-                                <h3 class="product-name">Sqribble - 2024 | World's #1 eBook Creator</h3>
-                                <p class="product-price">$31 + Advanced Features</p>
-                                <p class="product-description">Create professional eBooks in 60 seconds with drag-and-drop templates. Perfect for lead magnets and digital products. No design skills needed.</p>
-                                <a href="https://257497vcjvdjrq3p-em7ohpt94.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Get Sqribble Now</a>
-                            </div>
-
-                            <div class="product-card">
-                                <h3 class="product-name">Recession Profit Secrets V3</h3>
-                                <p class="product-price">$49</p>
-                                <p class="product-description">Learn the complete system for digital product creation and online business fundamentals.</p>
-                                <a href="https://312fazq9p5fplhalj5zo0-vle1.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Start Learning</a>
-                            </div>
-
-                            <div class="bonus-section">
-                                <h1 class="bonus-heading">ALSO Click Here To Get Your Free Copy of the "Creative Momentum" eBook, A $9.99 Value!</h1>
-                                <a href="creative-momentum-download.html" class="ebook-button">
-                                    <img src="Thumbnail.png" alt="Creative Momentum eBook">
-                                </a>
-                            </div>
+                        <div class="product-card">
+                            <h3 class="product-name">Get Paid to Use Facebook, Twitter and YouTube</h3>
+                            <p class="product-description">Monetize your social media skills. Learn how to get paid for managing social accounts and creating content on platforms you already use daily.</p>
+                            <a href="https://f2e5b309l3ggrf9q07w-uad3lz.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Learn More</a>
                         </div>
-                    `;
-                } else {
-                    // Traffic/Systems Focus - Budget
-                    resultHTML = `
-                        <div class="result-container active">
-                            <h2 class="result-title">📈 The Growth Hacker</h2>
-                            <p class="result-description">Build systems for traffic and sustainable revenue</p>
 
-                            <div class="product-card primary">
-                                <h3 class="product-name">Recession Profit Secrets V3</h3>
-                                <p class="product-price">$49</p>
-                                <p class="product-description">Master affiliate marketing, funnel building, and traffic generation. Complete system for revenue in 30-90 days.</p>
-                                <a href="https://312fazq9p5fplhalj5zo0-vle1.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Build Your System</a>
-                            </div>
-
-                            <div class="product-card">
-                                <h3 class="product-name">The Genius Wave</h3>
-                                <p class="product-price">$49.94</p>
-                                <p class="product-description">Stay sharp and focused while building your business with 7-minute daily sessions.</p>
-                                <a href="https://0413a809hxhonf86iknh7xxz83.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Unlock Your Focus</a>
-                            </div>
-
-                            <div class="bonus-section">
-                                <h1 class="bonus-heading">ALSO Click Here To Get Your Free Copy of the "Creative Momentum" eBook, A $9.99 Value!</h1>
-                                <a href="creative-momentum-download.html" class="ebook-button">
-                                    <img src="Thumbnail.png" alt="Creative Momentum eBook">
-                                </a>
-                            </div>
+                        <div class="bonus-section">
+                            <h1 class="bonus-heading">ALSO Click Here To Get Your Free Copy of the "Creative Momentum" eBook, A $9.99 Value!</h1>
+                            <a href="creative-momentum-download.html" class="ebook-button">
+                                <img src="Thumbnail.png" alt="Creative Momentum eBook">
+                            </a>
                         </div>
-                    `;
-                }
+                    </div>
+                `;
+            } else if (opportunity === 'service' || workstyle === 'people_work' || timeline === 'immediate') {
+                // Service-Based Income Path
+                resultHTML = `
+                    <div class="result-container active">
+                        <h2 class="result-title">💬 The Remote Professional</h2>
+                        <p class="result-description">Start earning with online service jobs you can do from anywhere</p>
+
+                        <div class="product-card primary">
+                            <h3 class="product-name">Live Chat Jobs</h3>
+                            <p class="product-description">You have to try this one! Get paid to provide customer support and chat services from home. Perfect for starting immediately with no special skills required.</p>
+                            <a href="https://6c68f4n8pvqmwdcn0zvxvr5d-g.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Apply Now</a>
+                        </div>
+
+                        <div class="product-card">
+                            <h3 class="product-name">Get Paid to Use Facebook, Twitter and YouTube</h3>
+                            <p class="product-description">Turn your social media addiction into income. Get paid to manage accounts, post content, and engage with audiences.</p>
+                            <a href="https://f2e5b309l3ggrf9q07w-uad3lz.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Get Started</a>
+                        </div>
+
+                        <div class="bonus-section">
+                            <h1 class="bonus-heading">ALSO Click Here To Get Your Free Copy of the "Creative Momentum" eBook, A $9.99 Value!</h1>
+                            <a href="creative-momentum-download.html" class="ebook-button">
+                                <img src="Thumbnail.png" alt="Creative Momentum eBook">
+                            </a>
+                        </div>
+                    </div>
+                `;
+            } else if (opportunity === 'business' || workstyle === 'strategic' || skill === 'advanced') {
+                // Marketing & Business Path
+                resultHTML = `
+                    <div class="result-container active">
+                        <h2 class="result-title">🚀 The Digital Marketer</h2>
+                        <p class="result-description">Master affiliate marketing and scale online business systems</p>
+
+                        <div class="product-card primary">
+                            <h3 class="product-name">AI Marketer's Club by John Crestani</h3>
+                            <p class="product-description">Join John Crestani's flagship training program. Learn cutting-edge AI-powered affiliate marketing strategies from an 8× ClickBank Platinum seller.</p>
+                            <a href="https://958dcyzck6kfkk-c2cb04xfxbr.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Join the Club</a>
+                        </div>
+
+                        <div class="product-card">
+                            <h3 class="product-name">Wealth Activator Code</h3>
+                            <p class="product-description">Were you born with rich genes or poor genes? Discover how to activate your wealth DNA and attract abundance with proven neuroscience.</p>
+                            <a href="https://717561slp-llxd3ugy8477yaxr.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Unlock Your Code</a>
+                        </div>
+
+                        <div class="bonus-section">
+                            <h1 class="bonus-heading">ALSO Click Here To Get Your Free Copy of the "Creative Momentum" eBook, A $9.99 Value!</h1>
+                            <a href="creative-momentum-download.html" class="ebook-button">
+                                <img src="Thumbnail.png" alt="Creative Momentum eBook">
+                            </a>
+                        </div>
+                    </div>
+                `;
             } else {
-                // Premium Tier
-                if (goal === 'scaling' || time === 'automated') {
-                    // Scaling/Automation Focus - Premium
-                    resultHTML = `
-                        <div class="result-container active">
-                            <h2 class="result-title">⚡ The Automation Architect</h2>
-                            <p class="result-description">Premium systems for scaling your digital business</p>
+                // Investment & Long-Term Wealth Path
+                resultHTML = `
+                    <div class="result-container active">
+                        <h2 class="result-title">💎 The Wealth Builder</h2>
+                        <p class="result-description">Build lasting wealth through strategic investments and asset building</p>
 
-                            <div class="product-card primary">
-                                <h3 class="product-name">AI Marketers Club</h3>
-                                <p class="product-price">Premium Training System</p>
-                                <p class="product-description">John Crestani's flagship affiliate marketing system. Comprehensive AI-powered training for scaling profitable campaigns. From 8× ClickBank Platinum seller.</p>
-                                <a href="https://8739d2-ctyopue8hadd2al8r3n.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Join AI Marketers Club</a>
-                            </div>
-
-                            <div class="product-card">
-                                <h3 class="product-name">Sqribble - 2024 | World's #1 eBook Creator</h3>
-                                <p class="product-price">$31 + Advanced Features</p>
-                                <p class="product-description">Scale content creation with professional automation. Build unlimited lead magnets in seconds.</p>
-                                <a href="https://257497vcjvdjrq3p-em7ohpt94.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Get Sqribble Now</a>
-                            </div>
-
-                            <div class="bonus-section">
-                                <h1 class="bonus-heading">ALSO Click Here To Get Your Free Copy of the "Creative Momentum" eBook, A $9.99 Value!</h1>
-                                <a href="creative-momentum-download.html" class="ebook-button">
-                                    <img src="Thumbnail.png" alt="Creative Momentum eBook">
-                                </a>
-                            </div>
+                        <div class="product-card primary">
+                            <h3 class="product-name">Profit Vault</h3>
+                            <p class="product-description">Discover the systematic domain investment strategy that generates passive income. Learn how to identify, acquire, and profit from premium domain names.</p>
+                            <a href="https://124392x9jxnotm5ss8yg2c5hg3.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Access the Vault</a>
                         </div>
-                    `;
-                } else {
-                    // Premium Coaching Focus
-                    resultHTML = `
-                        <div class="result-container active">
-                            <h2 class="result-title">👑 The Elite Entrepreneur</h2>
-                            <p class="result-description">Premium coaching and expert-led systems</p>
 
-                            <div class="product-card primary">
-                                <h3 class="product-name">Online Success Coaching</h3>
-                                <p class="product-price">Premium Coaching Program</p>
-                                <p class="product-description">Elite coaching for creating, launching, and scaling profitable digital products using AI automation. From 8× ClickBank Platinum sellers John Thornhill & Randy Smith.</p>
-                                <a href="#" class="product-link" onclick="alert('This premium program requires vendor approval. Contact us to facilitate access.'); return false;">Request Approval</a>
-                            </div>
-
-                            <div class="product-card">
-                                <h3 class="product-name">AI Marketers Club</h3>
-                                <p class="product-price">Premium Training System</p>
-                                <p class="product-description">Complement your coaching with John Crestani's proven affiliate marketing framework.</p>
-                                <a href="https://8739d2-ctyopue8hadd2al8r3n.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Join AI Marketers Club</a>
-                            </div>
-
-                            <div class="bonus-section">
-                                <h1 class="bonus-heading">ALSO Click Here To Get Your Free Copy of the "Creative Momentum" eBook, A $9.99 Value!</h1>
-                                <a href="creative-momentum-download.html" class="ebook-button">
-                                    <img src="Thumbnail.png" alt="Creative Momentum eBook">
-                                </a>
-                            </div>
+                        <div class="product-card">
+                            <h3 class="product-name">WoodProfits</h3>
+                            <p class="product-description">Launch your own woodworking business for under $1,000. Turn your craftsmanship into a profitable physical product business.</p>
+                            <a href="https://42ef44y8j0ohrjzvugjhzfu76g.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Start Your Business</a>
                         </div>
-                    `;
-                }
+
+                        <div class="bonus-section">
+                            <h1 class="bonus-heading">ALSO Click Here To Get Your Free Copy of the "Creative Momentum" eBook, A $9.99 Value!</h1>
+                            <a href="creative-momentum-download.html" class="ebook-button">
+                                <img src="Thumbnail.png" alt="Creative Momentum eBook">
+                            </a>
+                        </div>
+                    </div>
+                `;
             }
 
             // Insert result HTML
