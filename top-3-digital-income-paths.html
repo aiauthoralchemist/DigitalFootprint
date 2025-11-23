@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Which Digital Income Path Fits You Best?</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Orbitron & Exo Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Exo:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
@@ -98,8 +97,81 @@
             box-shadow: 0 0 25px #14b8a6bb, 0 6px 18px #00000060;
             transform: translateY(-2px);
         }
+        .email-capture {
+            display: none;
+            padding: 2em 1.5em;
+            background: linear-gradient(95deg, #232439 0%, #181928 100%);
+            border-radius: 14px;
+            box-shadow: 0 2px 14px #14b8a62d;
+            border: 2px solid #14b8a6;
+            margin-top: 2em;
+        }
+        .email-capture.active {
+            display: block;
+            animation: fadeIn 0.55s ease;
+        }
+        .email-capture h2 {
+            font-family: 'Orbitron', Arial, sans-serif;
+            color: #14b8a6;
+            margin-bottom: 1em;
+            text-align: center;
+            font-size: 1.3em;
+        }
+        .form-group {
+            margin-bottom: 1em;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5em;
+            color: #c4c4c4;
+            font-size: 0.95em;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"] {
+            width: 100%;
+            padding: 0.8em;
+            background: #1a1d2e;
+            border: 2px solid #14b8a655;
+            border-radius: 8px;
+            color: #ececec;
+            font-family: 'Exo', Arial, sans-serif;
+            font-size: 1em;
+            transition: border-color 0.2s ease;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #14b8a6;
+        }
+        .form-group input:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        .opt-out-section {
+            margin: 1.5em 0;
+            padding: 1em;
+            background: rgba(26, 29, 46, 0.5);
+            border-radius: 8px;
+            border: 1px solid #14b8a633;
+        }
+        .opt-out-section label {
+            display: flex;
+            align-items: flex-start;
+            cursor: pointer;
+            color: #c4c4c4;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        .opt-out-section input[type="checkbox"] {
+            margin-right: 0.8em;
+            margin-top: 0.2em;
+            accent-color: #14b8a6;
+            cursor: pointer;
+        }
         .result-section {
             display: none;
+        }
+        .result-section.active {
+            display: block;
             animation: fadeIn 0.55s ease;
         }
         @keyframes fadeIn {
@@ -165,6 +237,61 @@
             box-shadow: 0 0 19px #7c3aedaa;
             transform: translateY(-2px);
         }
+        .bonus-section {
+            margin-top: 3em;
+            padding-top: 2em;
+            border-top: 2px solid #14b8a633;
+        }
+        .bonus-heading {
+            font-family: 'Orbitron', Arial, sans-serif;
+            font-size: 1.4em;
+            color: #22c55e;
+            text-align: center;
+            margin-bottom: 1.5em;
+            line-height: 1.4;
+            text-shadow: 0 0 15px #22c55e88;
+        }
+        .ebook-button {
+            display: block;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px #00000060, 0 0 25px #14b8a640;
+            transition: all 0.3s ease;
+            border: 3px solid #14b8a6;
+            position: relative;
+        }
+        .ebook-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(20, 184, 166, 0.2) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        .ebook-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px #00000080, 0 0 35px #14b8a670, inset 0 0 30px rgba(20, 184, 166, 0.15);
+            border-color: #22c55e;
+        }
+        .ebook-button:hover::before {
+            opacity: 1;
+        }
+        .ebook-button img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .ebook-button:hover img {
+            transform: scale(1.03);
+        }
         footer {
             text-align: center;
             margin-top: 2.5em;
@@ -183,13 +310,12 @@
     <div class="quiz-container">
         <h1 class="quiz-title">Which Digital Income Path Fits You Best?</h1>
 
-        <div class="quiz-intro">
+        <div class="quiz-intro" id="quizIntro">
             <p><strong>Discover Your Perfect Match</strong></p>
             <p>Answer 3 quick questions to find the digital income strategy that aligns with your goals, experience, and available time.</p>
         </div>
 
         <form id="quizForm">
-            <!-- Question 1 -->
             <div class="question">
                 <label class="question-label">1. What's your current experience level with online business?</label>
                 <label class="option">
@@ -206,7 +332,6 @@
                 </label>
             </div>
 
-            <!-- Question 2 -->
             <div class="question">
                 <label class="question-label">2. How much time can you dedicate weekly?</label>
                 <label class="option">
@@ -223,7 +348,6 @@
                 </label>
             </div>
 
-            <!-- Question 3 -->
             <div class="question">
                 <label class="question-label">3. What's your primary goal?</label>
                 <label class="option">
@@ -243,6 +367,30 @@
             <button type="submit" class="quiz-button">See My Perfect Match</button>
         </form>
 
+        <!-- Email Capture -->
+        <div class="email-capture" id="emailCapture">
+            <h2>📧 Unlock Your Personalized Results</h2>
+            <form id="emailForm">
+                <div class="form-group">
+                    <label for="userName">Your Name</label>
+                    <input type="text" id="userName" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="userEmail">Your Email</label>
+                    <input type="email" id="userEmail" name="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="opt-out-section">
+                    <label>
+                        <input type="checkbox" id="optOut" name="optOut">
+                        <span>I Prefer Not To Provide My Name and Email. I Understand That I Will Be Missing Out On Any Future Updates and Products That Match With My Personal Goals etc.</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="quiz-button">Show My Results</button>
+            </form>
+        </div>
+
         <!-- Result Sections -->
         <div id="result-beginner" class="result-section">
             <h2 class="result-title">🚀 The Strategic Starter</h2>
@@ -258,6 +406,13 @@
                 <h3 class="product-name">Sqribble - 2024 | World's #1 eBook Creator</h3>
                 <p class="product-description">Create professional eBooks in 60 seconds with drag-and-drop templates. Perfect for building lead magnets and digital products. No design skills needed.</p>
                 <a href="https://257497vcjvdjrq3p-em7ohpt94.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Get Sqribble Now</a>
+            </div>
+
+            <div class="bonus-section">
+                <h1 class="bonus-heading">ALSO Click Here To Get Your Free Copy of the "Creative Momentum" eBook, A $9.99 Value!</h1>
+                <a href="creative-momentum-download.html" class="ebook-button">
+                    <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/7f8234d5-bb4f-4476-b576-b5194512f882" alt="Creative Momentum eBook - Free Download">
+                </a>
             </div>
         </div>
 
@@ -276,6 +431,13 @@
                 <p class="product-description">Master affiliate marketing, funnel building, and traffic generation. Complete system for generating revenue in 30-90 days.</p>
                 <a href="https://312fazq9p5fplhalj5zo0-vle1.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Build Your System</a>
             </div>
+
+            <div class="bonus-section">
+                <h1 class="bonus-heading">ALSO Click Here To Get Your Free Copy of the "Creative Momentum" eBook, A $9.99 Value!</h1>
+                <a href="creative-momentum-download.html" class="ebook-button">
+                    <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/7f8234d5-bb4f-4476-b576-b5194512f882" alt="Creative Momentum eBook - Free Download">
+                </a>
+            </div>
         </div>
 
         <div id="result-advanced" class="result-section">
@@ -293,6 +455,13 @@
                 <p class="product-description">Elite coaching program for creating, launching, and scaling profitable digital products using AI automation and proven funnel systems.</p>
                 <a href="#" class="product-link" onclick="alert('This premium program requires vendor approval. Contact us to facilitate access.'); return false;">Request Approval</a>
             </div>
+
+            <div class="bonus-section">
+                <h1 class="bonus-heading">ALSO Click Here To Get Your Free Copy of the "Creative Momentum" eBook, A $9.99 Value!</h1>
+                <a href="creative-momentum-download.html" class="ebook-button">
+                    <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/7f8234d5-bb4f-4476-b576-b5194512f882" alt="Creative Momentum eBook - Free Download">
+                </a>
+            </div>
         </div>
     </div>
 
@@ -302,6 +471,8 @@
     </footer>
 
     <script>
+        let quizAnswers = {};
+
         document.getElementById('quizForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -309,27 +480,68 @@
             const q2 = document.querySelector('input[name="q2"]:checked').value;
             const q3 = document.querySelector('input[name="q3"]:checked').value;
 
-            let resultId;
+            quizAnswers = { q1, q2, q3 };
 
-            if (q1 === 'beginner' || q3 === 'quickstart') {
+            // Hide quiz form
+            document.getElementById('quizForm').style.display = 'none';
+            document.getElementById('quizIntro').style.display = 'none';
+
+            // Show email capture
+            document.getElementById('emailCapture').classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Handle opt-out checkbox
+        document.getElementById('optOut').addEventListener('change', function() {
+            const nameInput = document.getElementById('userName');
+            const emailInput = document.getElementById('userEmail');
+
+            if (this.checked) {
+                nameInput.disabled = true;
+                emailInput.disabled = true;
+                nameInput.required = false;
+                emailInput.required = false;
+                nameInput.style.opacity = '0.4';
+                emailInput.style.opacity = '0.4';
+            } else {
+                nameInput.disabled = false;
+                emailInput.disabled = false;
+                nameInput.required = true;
+                emailInput.required = true;
+                nameInput.style.opacity = '1';
+                emailInput.style.opacity = '1';
+            }
+        });
+
+        // Handle email form submission
+        document.getElementById('emailForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const optOut = document.getElementById('optOut').checked;
+
+            if (!optOut) {
+                const name = document.getElementById('userName').value;
+                const email = document.getElementById('userEmail').value;
+                console.log('User submitted:', { name, email });
+            } else {
+                console.log('User opted out');
+            }
+
+            // Hide email capture
+            document.getElementById('emailCapture').classList.remove('active');
+
+            // Determine result based on quiz answers
+            let resultId;
+            if (quizAnswers.q1 === 'beginner' || quizAnswers.q3 === 'quickstart') {
                 resultId = 'result-beginner';
-            } else if (q3 === 'premium' || q1 === 'advanced') {
+            } else if (quizAnswers.q3 === 'premium' || quizAnswers.q1 === 'advanced') {
                 resultId = 'result-advanced';
             } else {
                 resultId = 'result-intermediate';
             }
 
-            // Hide form
-            document.getElementById('quizForm').style.display = 'none';
-            document.querySelector('.quiz-intro').style.display = 'none';
-
             // Show result
-            document.getElementById(resultId).style.display = 'block';
-
-            // Open creative-momentum-download.html in new tab
-            window.open('creative-momentum-download.html', '_blank');
-
-            // Scroll to top
+            document.getElementById(resultId).classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     </script>
