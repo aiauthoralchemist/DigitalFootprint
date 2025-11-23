@@ -1,571 +1,423 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Which Digital Income & Self-Mastery Path Fits You Best?</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Exo:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background: #121212;
-            font-family: 'Exo', Arial, sans-serif;
-            color: #ececec;
-        }
-        .quiz-container {
-            max-width: 530px;
-            margin: 2.5em auto 4em;
-            padding: 2.5em 2em 2em;
-            background: linear-gradient(120deg, #121212 0%, #232439 65%, #1a2024 100%);
-            border-radius: 1.3em;
-            box-shadow: 0 0 22px 4px #14b8a670, 0 0 70px 7px #10b98133;
-            border: 2px solid #14b8a6;
-            position: relative;
-        }
-        .quiz-title {
-            font-family: 'Orbitron', Arial, sans-serif;
-            font-size: 1.65em;
-            color: #22c55e;
-            text-shadow: 0 0 19px #22c55e, 0 0 38px #14b8a6;
-            margin-bottom: 1.3em;
-            text-align: center;
-        }
-        .quiz-progress {
-            height: 12px;
-            background: #232323;
-            border-radius: 6px;
-            margin-bottom: 1.2em;
-            overflow: hidden;
-            box-shadow: 0 0 11px #14b8a6bb;
-        }
-        .quiz-progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, #14b8a6 0%, #10b981 100%);
-            width: 0%;
-            transition: width 0.35s ease;
-            box-shadow: 0 0 13px #14b8a6;
-        }
-        .question-screen {
-            display: none;
-        }
-        .question-screen.active {
-            display: block;
-            animation: slideIn 0.4s ease;
-        }
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        .question-number {
-            color: #14b8a6;
-            font-size: 0.88em;
-            margin-bottom: 0.65em;
-            display: block;
-            font-family: 'Orbitron', Arial, sans-serif;
-        }
-        .question-text {
-            font-family: 'Orbitron', Arial, sans-serif;
-            font-size: 1.3em;
-            margin-bottom: 1.1em;
-            color: #ececec;
-            line-height: 1.4;
-        }
-        .option-button {
-            display: block;
-            width: 100%;
-            padding: 1em 1.2em;
-            margin-bottom: 0.75em;
-            background: linear-gradient(100deg, #1a1d2e 0%, #222638 100%);
-            border: 2px solid transparent;
-            border-radius: 10px;
-            color: #ececec;
-            font-family: 'Exo', Arial, sans-serif;
-            font-size: 1em;
-            cursor: pointer;
-            text-align: left;
-            transition: all 0.24s ease;
-        }
-        .option-button:hover {
-            background: linear-gradient(100deg, #222638 0%, #2a2d42 100%);
-            border-color: #14b8a688;
-            box-shadow: 0 0 14px #14b8a650;
-            transform: translateX(5px);
-        }
-        .email-capture {
-            display: none;
-            padding: 2em 1.5em;
-            background: linear-gradient(95deg, #232439 0%, #181928 100%);
-            border-radius: 14px;
-            box-shadow: 0 2px 14px #14b8a62d;
-            border: 2px solid #14b8a6;
-            margin-top: 2em;
-        }
-        .email-capture.active {
-            display: block;
-            animation: fadeIn 0.55s ease;
-        }
-        .email-capture h2 {
-            font-family: 'Orbitron', Arial, sans-serif;
-            color: #14b8a6;
-            margin-bottom: 1em;
-            text-align: center;
-            font-size: 1.3em;
-        }
-        .form-group {
-            margin-bottom: 1em;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5em;
-            color: #c4c4c4;
-            font-size: 0.95em;
-        }
-        .form-group input[type="text"],
-        .form-group input[type="email"] {
-            width: 100%;
-            padding: 0.8em;
-            background: #1a1d2e;
-            border: 2px solid #14b8a655;
-            border-radius: 8px;
-            color: #ececec;
-            font-family: 'Exo', Arial, sans-serif;
-            font-size: 1em;
-            transition: border-color 0.2s ease;
-        }
-        .form-group input:focus {
-            outline: none;
-            border-color: #14b8a6;
-        }
-        .form-group input:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-        }
-        .opt-out-section {
-            margin: 1.5em 0;
-            padding: 1em;
-            background: rgba(26, 29, 46, 0.5);
-            border-radius: 8px;
-            border: 1px solid #14b8a633;
-        }
-        .opt-out-section label {
-            display: flex;
-            align-items: flex-start;
-            cursor: pointer;
-            color: #c4c4c4;
-            font-size: 0.9em;
-            line-height: 1.5;
-        }
-        .opt-out-section input[type="checkbox"] {
-            margin-right: 0.8em;
-            margin-top: 0.2em;
-            accent-color: #14b8a6;
-            cursor: pointer;
-        }
-        .quiz-button {
-            width: 100%;
-            padding: 0.95em;
-            font-family: 'Orbitron', Arial, sans-serif;
-            font-size: 1em;
-            color: #121212;
-            background: linear-gradient(135deg, #14b8a6 0%, #10b981 100%);
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.24s ease;
-            box-shadow: 0 0 17px #14b8a670, 0 4px 13px #00000050;
-            text-transform: uppercase;
-            letter-spacing: 1.3px;
-        }
-        .quiz-button:hover {
-            background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);
-            box-shadow: 0 0 25px #14b8a6bb, 0 6px 18px #00000060;
-            transform: translateY(-2px);
-        }
-        .result-screen {
-            display: none;
-        }
-        .result-screen.active {
-            display: block;
-            animation: fadeIn 0.6s ease;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        .result-title {
-            font-family: 'Orbitron', Arial, sans-serif;
-            font-size: 1.8em;
-            color: #22c55e;
-            text-align: center;
-            margin-bottom: 0.65em;
-            text-shadow: 0 0 18px #22c55e, 0 0 36px #14b8a6;
-        }
-        .result-subtitle {
-            text-align: center;
-            color: #c4c4c4;
-            margin-bottom: 1.7em;
-            line-height: 1.6;
-        }
-        .product-card {
-            background: linear-gradient(100deg, #1a1d2e 0%, #222638 100%);
-            border: 2px solid #14b8a655;
-            border-radius: 12px;
-            padding: 1.4em;
-            margin-bottom: 1.3em;
-            box-shadow: 0 3px 15px #00000040;
-            transition: all 0.26s ease;
-        }
-        .product-card:hover {
-            border-color: #14b8a6bb;
-            box-shadow: 0 5px 23px #14b8a633;
-            transform: translateY(-3px);
-        }
-        .product-name {
-            font-family: 'Orbitron', Arial, sans-serif;
-            font-size: 1.25em;
-            color: #14b8a6;
-            margin-bottom: 0.55em;
-        }
-        .product-description {
-            color: #c4c4c4;
-            margin-bottom: 1em;
-            line-height: 1.55;
-            font-size: 0.95em;
-        }
-        .product-link {
-            display: inline-block;
-            padding: 0.7em 1.6em;
-            background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 8px;
-            font-family: 'Orbitron', Arial, sans-serif;
-            font-size: 0.92em;
-            transition: all 0.23s ease;
-            box-shadow: 0 0 12px #7c3aed60;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-        }
-        .product-link:hover {
-            background: linear-gradient(135deg, #6d28d9 0%, #7c3aed 100%);
-            box-shadow: 0 0 19px #7c3aedaa;
-            transform: translateY(-2px);
-        }
-        .bonus-section {
-            margin-top: 3em;
-            padding-top: 2em;
-            border-top: 2px solid #14b8a633;
-        }
-        .bonus-heading {
-            font-family: 'Orbitron', Arial, sans-serif;
-            font-size: 1.4em;
-            color: #22c55e;
-            text-align: center;
-            margin-bottom: 1.5em;
-            line-height: 1.4;
-            text-shadow: 0 0 15px #22c55e88;
-        }
-        .ebook-button {
-            display: block;
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto;
-            overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px #00000060, 0 0 25px #14b8a640;
-            transition: all 0.3s ease;
-            border: 3px solid #14b8a6;
-            position: relative;
-        }
-        .ebook-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, transparent 0%, rgba(20, 184, 166, 0.2) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-        .ebook-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 30px #00000080, 0 0 35px #14b8a670, inset 0 0 30px rgba(20, 184, 166, 0.15);
-            border-color: #22c55e;
-        }
-        .ebook-button:hover::before {
-            opacity: 1;
-        }
-        .ebook-button img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-        .ebook-button:hover img {
-            transform: scale(1.03);
-        }
-        footer {
-            text-align: center;
-            margin-top: 2.5em;
-            color: #777;
-            font-size: 0.87em;
-        }
-        .brand-tagline {
-            color: #14b8a6;
-            font-family: 'Orbitron', Arial, sans-serif;
-            font-weight: 700;
-            margin-bottom: 0.4em;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Which Digital Income & Self-Mastery Path Fits You Best?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Exo:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #121212;
+      font-family: 'Exo', Arial, sans-serif;
+      color: #ececec;
+    }
+    .quiz-container {
+      max-width: 530px;
+      margin: 2.5em auto 4em;
+      padding: 2.5em 2em 2em;
+      background: linear-gradient(120deg, #121212 0%, #232439 65%, #1a2024 100%);
+      border-radius: 1.3em;
+      box-shadow: 0 0 22px 4px #14b8a670, 0 0 70px 7px #10b98133;
+      border: 2px solid #14b8a6;
+      position: relative;
+    }
+    .quiz-title {
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-size: 1.65em;
+      color: #22c55e;
+      text-shadow: 0 0 19px #22c55e, 0 0 38px #14b8a6;
+      margin-bottom: 1.3em;
+      text-align: center;
+    }
+    .quiz-progress {
+      height: 12px;
+      background: #232323;
+      border-radius: 6px;
+      margin-bottom: 1.2em;
+      overflow: hidden;
+      box-shadow: 0 0 11px #14b8a6bb;
+    }
+    .quiz-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #14b8a6 0%, #10b981 100%);
+      box-shadow: 0 0 20px #14b8a6, 0 0 15px #10b981;
+      width: 0%;
+      border-radius: 6px;
+      transition: width 0.4s cubic-bezier(0.66,0,0.31,1.12);
+    }
+    .quiz-question {
+      font-size: 1.3em;
+      font-weight: 600;
+      color: #22c55e;
+      font-family: 'Orbitron', Arial, sans-serif;
+      margin-bottom: 1.2em;
+      text-align: center;
+      text-shadow: 0 0 18px #22c55e66;
+    }
+    .quiz-options {
+      margin-bottom: 2em;
+    }
+    .quiz-option {
+      display: block;
+      background: #191c20;
+      color: #ececec;
+      border-radius: 0.7em;
+      border: 2px solid transparent;
+      padding: 0.95em 1em;
+      font-size: 1.07em;
+      margin: 0.6em 0;
+      cursor: pointer;
+      box-shadow: 0 0 11px #0007;
+      transition: background 0.18s, border-color 0.18s, box-shadow 0.22s;
+      font-family: 'Exo', Arial, sans-serif;
+      outline: none;
+      position: relative;
+    }
+    .quiz-option.selected,
+    .quiz-option:hover {
+      border-color: #14b8a6;
+      background: #232439;
+      box-shadow: 0 0 0 3px #14b8a670, 0 0 15px #10b98155;
+      color: #22c55e;
+    }
+    .quiz-option.selected {
+      border-color: #22c55e;
+      box-shadow: 0 0 9px 2px #22c55e, 0 0 22px 5px #14b8a6bb;
+      background: #232439 linear-gradient(90deg, #22c55e13, #14b8a615 90%);
+    }
+    .quiz-next, .quiz-submit {
+      display: block;
+      margin: 1.5em auto 0.5em;
+      padding: 0.9em 2.9em;
+      font-size: 1.18em;
+      font-family: 'Orbitron', Arial, sans-serif;
+      border-radius: 1.3em;
+      border: none;
+      background: #232439;
+      color: #14b8a6;
+      box-shadow: 0 0 8px #14b8a6;
+      transition: box-shadow 0.2s, background 0.2s, color 0.2s;
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+    .quiz-next.active, .quiz-next:enabled, .quiz-submit.active, .quiz-submit:enabled {
+      background: linear-gradient(90deg, #14b8a6 0%, #22c55e 100%);
+      color: #fff;
+      opacity: 1;
+      box-shadow: 0 0 18px 2px #22c55e, 0 0 32px 3px #14b8a6cc;
+      cursor: pointer;
+    }
+    .quiz-email-step {
+      background: #232439;
+      border-radius: 1em;
+      padding: 1.1em;
+      margin-top: 1em;
+      box-shadow: 0 0 30px #14b8a644;
+      text-align: center;
+      color: #ececec;
+    }
+    .quiz-email-step input[type="email"] {
+      width: 80%;
+      padding: 0.65em;
+      border-radius: 8px;
+      border: 2px solid #14b8a6;
+      margin-bottom: 0.7em;
+      font-size: 1em;
+      font-family: 'Exo', Arial, sans-serif;
+    }
+    .quiz-privacy-note {
+      font-size: 0.97em;
+      color: #22c55e;
+      font-style: italic;
+      margin-bottom: 0.6em;
+    }
+    .quiz-optout-block {
+      margin-top: 1em;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .quiz-optout-checkbox {
+      margin-right: 0.7em;
+      accent-color: #14b8a6;
+      width: 20px;
+      height: 20px;
+      margin-top: 3px;
+    }
+    .quiz-optout-label {
+      font-size: 0.97em;
+      color: #7c3aed;
+      font-family: Segoe UI, Arial, sans-serif;
+      line-height: 1.3em;
+      cursor: pointer;
+      margin: 0;
+    }
+    /* Focus accessibility */
+    .quiz-option:focus {
+      border-color: #7c3aed;
+      box-shadow: 0 0 0 4px #7c3aed99, 0 0 10px #14b8a6;
+    }
+    .quiz-error-msg {
+      color: #cb2026;
+      margin-top: 0.4em;
+      font-size: 0.98em;
+      display: none;
+    }
+    @media (max-width: 600px) {
+      .quiz-container { padding: 1.2em 0.5em 1em; }
+      .quiz-title { font-size: 1.1em; }
+    }
+  </style>
 </head>
 <body>
-    <div class="quiz-container">
-        <h1 class="quiz-title">Digital Income & Self-Mastery Path</h1>
-
-        <div class="quiz-progress">
-            <div class="quiz-progress-bar" id="progressBar"></div>
-        </div>
-
-        <!-- Question 1 -->
-        <div class="question-screen active" id="screen1">
-            <span class="question-number">Question 1 of 3</span>
-            <h2 class="question-text">What's your biggest challenge right now?</h2>
-            <button class="option-button" onclick="answer(1, 'mindset')">
-                <strong>Mindset & mental clarity</strong> — need to optimize focus and performance
-            </button>
-            <button class="option-button" onclick="answer(1, 'income')">
-                <strong>Generating income</strong> — need proven systems and strategies
-            </button>
-            <button class="option-button" onclick="answer(1, 'scaling')">
-                <strong>Scaling my business</strong> — ready for advanced training
-            </button>
-        </div>
-
-        <!-- Question 2 -->
-        <div class="question-screen" id="screen2">
-            <span class="question-number">Question 2 of 3</span>
-            <h2 class="question-text">What's your preferred learning approach?</h2>
-            <button class="option-button" onclick="answer(2, 'audio')">
-                <strong>Audio/meditation</strong> — daily sessions for mindset work
-            </button>
-            <button class="option-button" onclick="answer(2, 'courses')">
-                <strong>Step-by-step courses</strong> — structured training programs
-            </button>
-            <button class="option-button" onclick="answer(2, 'tools')">
-                <strong>Software tools</strong> — hands-on implementation
-            </button>
-        </div>
-
-        <!-- Question 3 -->
-        <div class="question-screen" id="screen3">
-            <span class="question-number">Question 3 of 3</span>
-            <h2 class="question-text">What's your investment level?</h2>
-            <button class="option-button" onclick="answer(3, 'budget')">
-                <strong>Under $50</strong> — looking for affordable high-impact tools
-            </button>
-            <button class="option-button" onclick="answer(3, 'midrange')">
-                <strong>$50-$100</strong> — willing to invest for proven results
-            </button>
-            <button class="option-button" onclick="answer(3, 'premium')">
-                <strong>$200+</strong> — ready for premium training and coaching
-            </button>
-        </div>
-
-        <!-- Email Capture -->
-        <div class="email-capture" id="emailCapture">
-            <h2>📧 Unlock Your Personalized Results</h2>
-            <form id="emailForm">
-                <div class="form-group">
-                    <label for="userName">Your Name</label>
-                    <input type="text" id="userName" name="name" placeholder="Enter your name" required>
-                </div>
-                <div class="form-group">
-                    <label for="userEmail">Your Email</label>
-                    <input type="email" id="userEmail" name="email" placeholder="Enter your email" required>
-                </div>
-
-                <div class="opt-out-section">
-                    <label>
-                        <input type="checkbox" id="optOut" name="optOut">
-                        <span>I Prefer Not To Provide My Name and Email. I Understand That I Will Be Missing Out On Any Future Updates and Products That Match With My Personal Goals etc.</span>
-                    </label>
-                </div>
-
-                <button type="submit" class="quiz-button">Show My Results</button>
-            </form>
-        </div>
-
-        <!-- Result: Mindset Focus -->
-        <div class="result-screen" id="result-mindset">
-            <h2 class="result-title">🧠 The Peak Performer</h2>
-            <p class="result-subtitle">Optimize your cognitive performance and wealth mindset for maximum productivity</p>
-
-            <div class="product-card">
-                <h3 class="product-name">The Genius Wave</h3>
-                <p class="product-description">Enhance focus, creativity, and mental clarity with 7-minute soundwave sessions. Science-backed cognitive performance optimization for creators.</p>
-                <a href="https://0413a809hxhonf86iknh7xxz83.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Unlock Your Focus</a>
-            </div>
-
-            <div class="product-card">
-                <h3 class="product-name">The Money Wave</h3>
-                <p class="product-description">Reprogram limiting money beliefs with neuroplasticity-based training. Combines financial mindset work with proven wealth-building strategies.</p>
-                <a href="https://d0ac5-vip5mjygda1cnt6-271c.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Transform Your Mindset</a>
-            </div>
-
-            <div class="bonus-section">
-                <h1 class="bonus-heading">ALSO Click Here To Get Your Free Copy of the "Creative Momentum" eBook, A $9.99 Value!</h1>
-                <a href="creative-momentum-download.html" class="ebook-button">
-                    <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/7f8234d5-bb4f-4476-b576-b5194512f882" alt="Creative Momentum eBook - Free Download">
-                </a>
-            </div>
-        </div>
-
-        <!-- Result: Income Building -->
-        <div class="result-screen" id="result-income">
-            <h2 class="result-title">📈 The Growth Hacker</h2>
-            <p class="result-subtitle">Build proven systems for traffic, conversions, and sustainable revenue</p>
-
-            <div class="product-card">
-                <h3 class="product-name">Recession Profit Secrets V3</h3>
-                <p class="product-description">Master affiliate marketing, funnel building, and traffic generation. Complete system for generating revenue in 30-90 days.</p>
-                <a href="https://312fazq9p5fplhalj5zo0-vle1.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Build Your System</a>
-            </div>
-
-            <div class="product-card">
-                <h3 class="product-name">Sqribble - 2024 | World's #1 eBook Creator</h3>
-                <p class="product-description">Create professional eBooks in 60 seconds. Perfect for building lead magnets and digital products. No design skills needed.</p>
-                <a href="https://257497vcjvdjrq3p-em7ohpt94.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Get Sqribble Now</a>
-            </div>
-
-            <div class="bonus-section">
-                <h1 class="bonus-heading">ALSO Click Here To Get Your Free Copy of the "Creative Momentum" eBook, A $9.99 Value!</h1>
-                <a href="creative-momentum-download.html" class="ebook-button">
-                    <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/7f8234d5-bb4f-4476-b576-b5194512f882" alt="Creative Momentum eBook - Free Download">
-                </a>
-            </div>
-        </div>
-
-        <!-- Result: Premium Scaling -->
-        <div class="result-screen" id="result-scaling">
-            <h2 class="result-title">👑 The Elite Entrepreneur</h2>
-            <p class="result-subtitle">Premium coaching and proven systems from verified experts</p>
-
-            <div class="product-card">
-                <h3 class="product-name">AI Marketers Club</h3>
-                <p class="product-description">John Crestani's flagship affiliate marketing system. Comprehensive training on scaling profitable campaigns using AI tools and automation.</p>
-                <a href="https://8739d2-ctyopue8hadd2al8r3n.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Join AI Marketers Club</a>
-            </div>
-
-            <div class="product-card">
-                <h3 class="product-name">Online Success Coaching</h3>
-                <p class="product-description">Elite coaching program for creating, launching, and scaling profitable digital products using AI automation and proven funnel systems.</p>
-                <a href="#" class="product-link" onclick="alert('This premium program requires vendor approval. Contact us to facilitate access.'); return false;">Request Approval</a>
-            </div>
-
-            <div class="bonus-section">
-                <h1 class="bonus-heading">ALSO Click Here To Get Your Free Copy of the "Creative Momentum" eBook, A $9.99 Value!</h1>
-                <a href="creative-momentum-download.html" class="ebook-button">
-                    <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/7f8234d5-bb4f-4476-b576-b5194512f882" alt="Creative Momentum eBook - Free Download">
-                </a>
-            </div>
-        </div>
+  <div class="quiz-container">
+    <div class="quiz-progress">
+      <div class="quiz-progress-bar" id="quizProgressBar"></div>
     </div>
-
-    <footer>
-        <p class="brand-tagline">AIAuthorAlchemist</p>
-        <p>Follow the Evolution</p>
-    </footer>
-
-    <script>
-        const answers = {};
-        let currentScreen = 1;
-        const totalScreens = 3;
-
-        function answer(questionNum, value) {
-            answers['q' + questionNum] = value;
-
-            // Update progress
-            const progress = (questionNum / totalScreens) * 100;
-            document.getElementById('progressBar').style.width = progress + '%';
-
-            if (questionNum < totalScreens) {
-                // Move to next question
-                document.getElementById('screen' + questionNum).classList.remove('active');
-                document.getElementById('screen' + (questionNum + 1)).classList.add('active');
-                currentScreen = questionNum + 1;
-            } else {
-                // Show email capture after last question
-                document.querySelectorAll('.question-screen').forEach(screen => {
-                    screen.classList.remove('active');
-                });
-                document.getElementById('emailCapture').classList.add('active');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
+    <h1 class="quiz-title">Which Digital Income &amp; Self-Mastery Path Fits You Best?</h1>
+    <div id="quizMainSection"></div>
+  </div>
+  <script>
+    // Quiz product links
+    const products = {
+      tierLow: [
+        {
+          name: "Hyperbolic Stretching",
+          url: "https://994359rfq-ngphc63g7ox4-5i4.hop.clickbank.net"
+        },
+        {
+          name: "The Genius Wave",
+          url: "https://6f2f55-gt9oetn91pfrn3-yp12.hop.clickbank.net"
+        },
+        {
+          name: "The Money Wave",
+          url: "https://2e8f48sasyeltgb6x7qm7zzz0x.hop.clickbank.net"
         }
+      ],
+      tierHigh: [
+        {
+          name: "Billionaire Brain Wave",
+          url: "https://a96dc-vgt4lmle358pwvhsjbcs.hop.clickbank.net"
+        },
+        {
+          name: "Forex Win Master",
+          url: "https://1b293307t-igmi6eq3s6pu3r96.hop.clickbank.net"
+        },
+        {
+          name: "Elon Code",
+          url: "https://d69796uin5giued5vgp-qbswci.hop.clickbank.net"
+        }
+      ]
+    };
 
-        // Handle opt-out checkbox
-        document.getElementById('optOut').addEventListener('change', function() {
-            const nameInput = document.getElementById('userName');
-            const emailInput = document.getElementById('userEmail');
+    // Main quiz flow
+    const quizTiers = [
+      {
+        tier: "tierLow",
+        questions: [
+          {
+            question: "Which describes your self-mastery goal best?",
+            options: [
+              "Flexibility and physical transformation",
+              "Mental power for creativity and focus",
+              "Attracting more wealth and abundance"
+            ]
+          },
+          {
+            question: "Which do you value most for personal growth?",
+            options: [
+              "Quick, visible physical results",
+              "Unlocking rapid cognitive power",
+              "A step-by-step formula for making money"
+            ]
+          },
+          {
+            question: "Pick the closest benefit you seek:",
+            options: [
+              "Be more energetic and in shape",
+              "Heightened intelligence and ideas",
+              "Break through income stagnation"
+            ]
+          }
+        ]
+      },
+      {
+        tier: "tierHigh",
+        questions: [
+          {
+            question: "What type of success are you aiming for?",
+            options: [
+              "Extreme Wealth Attraction",
+              "Master Worldwide Money Systems",
+              "Upgrade Your Mind for Peak Achievement"
+            ]
+          },
+          {
+            question: "Which daily activity appeals most?",
+            options: [
+              "Listening to audio tracks for abundance",
+              "Trading and financial mastery",
+              "Copy strategies of world-changing innovators"
+            ]
+          },
+          {
+            question: "What drives you most?",
+            options: [
+              "Passive, exponential wealth",
+              "Expert money moves",
+              "Game-changing breakthroughs"
+            ]
+          }
+        ]
+      }
+    ];
 
-            if (this.checked) {
-                nameInput.disabled = true;
-                emailInput.disabled = true;
-                nameInput.required = false;
-                emailInput.required = false;
-                nameInput.style.opacity = '0.4';
-                emailInput.style.opacity = '0.4';
-            } else {
-                nameInput.disabled = false;
-                emailInput.disabled = false;
-                nameInput.required = true;
-                emailInput.required = true;
-                nameInput.style.opacity = '1';
-                emailInput.style.opacity = '1';
-            }
-        });
+    // Tier selection based on budget
+    const budgetOptions = [
+      {
+        label: "Basically broke (less than $50)",
+        tier: "tierLow"
+      },
+      {
+        label: "$50–$100 to get started",
+        tier: "tierLow"
+      },
+      {
+        label: "Money isn't an issue ($100 or more)",
+        tier: "tierHigh"
+      }
+    ];
 
-        // Handle email form submission
-        document.getElementById('emailForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+    const quizMainSection = document.getElementById('quizMainSection');
+    const progressBar = document.getElementById('quizProgressBar');
 
-            const optOut = document.getElementById('optOut').checked;
+    let stage = 0; // 0 = budget, 1 = q1, 2 = q2, 3 = q3, 4 = email
+    let selections = [];
+    let userTier = null;
+    let currentQ = 0;
 
-            if (!optOut) {
-                const name = document.getElementById('userName').value;
-                const email = document.getElementById('userEmail').value;
-                console.log('User submitted:', { name, email });
-            } else {
-                console.log('User opted out');
-            }
+    function renderBudgetQuestion() {
+      progressBar.style.width = "0%";
+      quizMainSection.innerHTML = `
+        <div class="quiz-question">What's your current buying power for starting your digital income journey?</div>
+        <div class="quiz-options" id="budgetOptions">
+          ${budgetOptions.map((opt, i) =>
+            `<button class="quiz-option" type="button" data-idx="${i}" tabindex="0">${opt.label}</button>`
+          ).join("")}
+        </div>
+        <button class="quiz-next" id="budgetNext" disabled>Next</button>
+      `;
+      document.querySelectorAll('#budgetOptions .quiz-option').forEach(btn => {
+        btn.onclick = () => {
+          document.querySelectorAll('#budgetOptions .quiz-option').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          userTier = budgetOptions[btn.dataset.idx].tier;
+          selections[0] = btn.dataset.idx;
+          document.getElementById('budgetNext').disabled = false;
+          document.getElementById('budgetNext').classList.add('active');
+        };
+        btn.onkeydown = (ev) => { if (ev.key === "Enter") btn.click(); };
+      });
+      document.getElementById('budgetNext').onclick = () => {
+        if (!userTier) return;
+        stage = 1;
+        currentQ = 0;
+        renderTierQuestions();
+      };
+    }
 
-            // Hide email capture
-            document.getElementById('emailCapture').classList.remove('active');
+    function renderTierQuestions() {
+      const tierObj = quizTiers.find(t => t.tier === userTier);
+      const qList = tierObj.questions;
+      progressBar.style.width = `${stage/(qList.length+2)*100}%`;
+      quizMainSection.innerHTML = `
+        <div class="quiz-question">${qList[currentQ].question}</div>
+        <div class="quiz-options" id="tierOptions">
+          ${qList[currentQ].options.map((opt, i) =>
+            `<button class="quiz-option" type="button" data-idx="${i}" tabindex="0">${opt}</button>`
+          ).join("")}
+        </div>
+        <button class="quiz-next" id="tierNext" disabled>Next</button>
+      `;
+      document.querySelectorAll('#tierOptions .quiz-option').forEach(btn => {
+        btn.onclick = () => {
+          document.querySelectorAll('#tierOptions .quiz-option').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          selections[stage] = btn.dataset.idx;
+          document.getElementById('tierNext').disabled = false;
+          document.getElementById('tierNext').classList.add('active');
+        };
+        btn.onkeydown = (ev) => { if (ev.key === "Enter") btn.click(); };
+      });
+      document.getElementById('tierNext').onclick = () => {
+        currentQ++;
+        stage++;
+        if (currentQ < qList.length) {
+          renderTierQuestions();
+        } else {
+          stage++;
+          renderEmailStep();
+        }
+      };
+    }
 
-            // Determine result based on quiz answers
-            const challenge = answers.q1;
-            const investment = answers.q3;
+    function renderEmailStep() {
+      progressBar.style.width = "100%";
+      quizMainSection.innerHTML = `
+        <div class="quiz-email-step" id="emailStep">
+          <h3 style="color:#10b981;font-family:'Orbitron',Arial,sans-serif;">GOOD NEWS!!! Your Perfect Self Mastery and Digital Income Path Is Waiting For You Just ONE Click Away!</h3>
+          <div style="margin-bottom:0.7em;">Simply Enter Your Email Address Below To Find Out How You Can Get Started In Your Own Digital Income Journey!</div>
+          <input type="email" id="quizEmail" class="email-field" placeholder="Enter your email address">
+          <div class="quiz-privacy-note">We will never sell your info, and we PROMISE to not send you anything in the future that does not directly relate to your Digital Income Goals</div>
+          <div class="quiz-optout-block">
+            <input type="checkbox" id="quizOptout" class="quiz-optout-checkbox">
+            <label for="quizOptout" class="quiz-optout-label">I prefer not to provide my Email, I Understand that I will not be able to receive any of the possible future content that could be related to my Digital Income Journey.</label>
+          </div>
+          <div id="quizErrorMsg" class="quiz-error-msg">Please enter a valid email address, or check the opt-out box.</div>
+          <button type="button" class="quiz-submit" id="quizSubmitBtn" disabled>See My Best Path to Self Mastery and Creating Digital Income!</button>
+        </div>
+      `;
+      // Email logic
+      const emailInput = document.getElementById("quizEmail");
+      const optoutCheck = document.getElementById("quizOptout");
+      const submitBtn = document.getElementById("quizSubmitBtn");
+      const errorMsg = document.getElementById("quizErrorMsg");
 
-            let resultId;
-            if (challenge === 'mindset') {
-                resultId = 'result-mindset';
-            } else if (investment === 'premium' || challenge === 'scaling') {
-                resultId = 'result-scaling';
-            } else {
-                resultId = 'result-income';
-            }
+      function validateEmail(email) {
+        return /^\S+@\S+\.\S+$/.test(email);
+      }
+      function enableBtn() {
+        if (optoutCheck.checked || (emailInput.value && validateEmail(emailInput.value))) {
+          submitBtn.disabled = false;
+          submitBtn.classList.add('active');
+          errorMsg.style.display = 'none';
+        } else {
+          submitBtn.disabled = true;
+          submitBtn.classList.remove('active');
+        }
+      }
+      emailInput.addEventListener("input", () => {
+        if (optoutCheck.checked) optoutCheck.checked = false;
+        enableBtn();
+      });
+      optoutCheck.addEventListener("change", enableBtn);
 
-            // Show result
-            document.getElementById(resultId).classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    </script>
+      submitBtn.onclick = () => {
+        // Final redirect logic
+        if (!optoutCheck.checked && (!emailInput.value || !validateEmail(emailInput.value))) {
+          errorMsg.style.display = "block";
+          return;
+        }
+        const finalIdx = parseInt(selections[selections.length - 1]);
+        const tier = userTier === "tierLow" ? products.tierLow : products.tierHigh;
+        const product = tier[finalIdx];
+        window.location.href = product.url;
+      };
+    }
+
+    // Start quiz
+    renderBudgetQuestion();
+  </script>
 </body>
 </html>
