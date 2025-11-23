@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creator Performance & Monetization Quiz | AIAuthorAlchemist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-bg: #1a1a1a;
+            --color-surface: #242424;
+            --color-teal: #14b8a6;
+            --color-purple: #7c3aed;
+            --color-green: #22c55e;
+            --color-text: #c4c4c4;
+            --color-text-bright: #ffffff;
+            --font-header: 'Orbitron', sans-serif;
+            --font-body: 'Exo', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d1b3d 100%);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        h1 {
+            font-family: var(--font-header);
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--color-teal) 0%, var(--color-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            text-shadow: 0 0 30px rgba(20, 184, 166, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--color-text);
+            font-weight: 300;
+        }
+
+        .quiz-card {
+            background: rgba(36, 36, 36, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(20, 184, 166, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(20, 184, 166, 0.1);
+            animation: fadeIn 0.6s ease;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-teal) 0%, var(--color-purple) 100%);
+            width: 0%;
+            transition: width 0.4s ease;
+            box-shadow: 0 0 10px var(--color-teal);
+        }
+
+        .question-container {
+            display: none;
+        }
+
+        .question-container.active {
+            display: block;
+            animation: slideInRight 0.5s ease;
+        }
+
+        .question-text {
+            font-family: var(--font-header);
+            font-size: 1.5rem;
+            color: var(--color-text-bright);
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+
+        .question-number {
+            color: var(--color-teal);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .option {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(20, 184, 166, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            color: var(--color-text);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(20, 184, 166, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .option:hover {
+            border-color: var(--color-teal);
+            background: rgba(20, 184, 166, 0.1);
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(20, 184, 166, 0.2);
+        }
+
+        .option:hover::before {
+            left: 100%;
+        }
+
+        .option.selected {
+            background: rgba(20, 184, 166, 0.2);
+            border-color: var(--color-teal);
+            box-shadow: 0 0 20px rgba(20, 184, 166, 0.3);
+        }
+
+        .email-form {
+            display: none;
+        }
+
+        .email-form.active {
+            display: block;
+            animation: fadeIn 0.6s ease;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--color-teal);
+            margin-bottom: 8px;
+            font-family: var(--font-header);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(20, 184, 166, 0.3);
+            border-radius: 10px;
+            color: var(--color-text-bright);
+            font-size: 1rem;
+            font-family: var(--font-body);
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--color-teal);
+            background: rgba(20, 184, 166, 0.1);
+            box-shadow: 0 0 15px rgba(20, 184, 166, 0.2);
+        }
+
+        .result-container {
+            display: none;
+        }
+
+        .result-container.active {
+            display: block;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .result-title {
+            font-family: var(--font-header);
+            font-size: 2rem;
+            color: var(--color-teal);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .result-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--color-text);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(20, 184, 166, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            border-color: var(--color-teal);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(20, 184, 166, 0.2);
+        }
+
+        .product-name {
+            font-family: var(--font-header);
+            font-size: 1.3rem;
+            color: var(--color-text-bright);
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            color: var(--color-green);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .product-description {
+            color: var(--color-text);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--color-teal) 0%, var(--color-purple) 100%);
+            color: var(--color-text-bright);
+            border: none;
+            padding: 15px 40px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: var(--font-header);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 20px rgba(20, 184, 166, 0.3);
+            display: inline-block;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(20, 184, 166, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: none;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .btn-block {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .note {
+            background: rgba(124, 58, 237, 0.1);
+            border-left: 3px solid var(--color-purple);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--color-text);
+            margin-top: 20px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 20px;
+            color: var(--color-text);
+            font-size: 0.9rem;
+        }
+
+        .brand-tagline {
+            color: var(--color-teal);
+            font-family: var(--font-header);
+            font-weight: 700;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .quiz-card {
+                padding: 25px;
+            }
+            .question-text {
+                font-size: 1.2rem;
+            }
+            .option {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Creator Performance & Monetization Quiz</h1>
+            <p class="subtitle">Discover Your Perfect Growth Tools</p>
+        </header>
+
+        <div class="quiz-card">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress"></div>
+            </div>
+
+            <!-- Question 1: Buying Power -->
+            <div class="question-container active" id="q1">
+                <span class="question-number">Question 1 of 7</span>
+                <h2 class="question-text">What best describes your current investment comfort level for growing your creator business?</h2>
+                <div class="options">
+                    <div class="option" data-value="budget" onclick="selectAnswer(1, 'budget', this)">
+                        <strong>I'm bootstrapping</strong> — looking for high-impact tools under $50 that deliver real results
+                    </div>
+                    <div class="option" data-value="budget" onclick="selectAnswer(1, 'budget', this)">
+                        <strong>I can invest $50-100</strong> — if the system is proven and worth it
+                    </div>
+                    <div class="option" data-value="premium" onclick="selectAnswer(1, 'premium', this)">
+                        <strong>I'm ready to invest $200-1,600+</strong> — in premium training and coaching to scale faster
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 2: Primary Goal -->
+            <div class="question-container" id="q2">
+                <span class="question-number">Question 2 of 7</span>
+                <h2 class="question-text">What's your primary goal right now?</h2>
+                <div class="options">
+                    <div class="option" data-value="traffic" onclick="selectAnswer(2, 'traffic', this)">
+                        Drive more traffic to my offers
+                    </div>
+                    <div class="option" data-value="conversions" onclick="selectAnswer(2, 'conversions', this)">
+                        Improve conversions and revenue
+                    </div>
+                    <div class="option" data-value="products" onclick="selectAnswer(2, 'products', this)">
+                        Create digital products or lead magnets
+                    </div>
+                    <div class="option" data-value="scaling" onclick="selectAnswer(2, 'scaling', this)">
+                        Scale my existing business with systems
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 3: Experience Level -->
+            <div class="question-container" id="q3">
+                <span class="question-number">Question 3 of 7</span>
+                <h2 class="question-text">What's your current experience level in online business?</h2>
+                <div class="options">
+                    <div class="option" data-value="beginner" onclick="selectAnswer(3, 'beginner', this)">
+                        <strong>Just starting out</strong> — exploring different opportunities
+                    </div>
+                    <div class="option" data-value="intermediate" onclick="selectAnswer(3, 'intermediate', this)">
+                        <strong>Some experience</strong> — made a few sales but not consistent
+                    </div>
+                    <div class="option" data-value="advanced" onclick="selectAnswer(3, 'advanced', this)">
+                        <strong>Experienced</strong> — ready to scale to the next level
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 4: Time Commitment -->
+            <div class="question-container" id="q4">
+                <span class="question-number">Question 4 of 7</span>
+                <h2 class="question-text">How much time can you dedicate to growing your business?</h2>
+                <div class="options">
+                    <div class="option" data-value="parttime" onclick="selectAnswer(4, 'parttime', this)">
+                        <strong>Part-time hustle</strong> — 5-10 hours per week
+                    </div>
+                    <div class="option" data-value="fulltime" onclick="selectAnswer(4, 'fulltime', this)">
+                        <strong>Full-time focus</strong> — 20+ hours per week
+                    </div>
+                    <div class="option" data-value="automated" onclick="selectAnswer(4, 'automated', this)">
+                        <strong>Building systems</strong> — want passive/automated income
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 5: Learning Style -->
+            <div class="question-container" id="q5">
+                <span class="question-number">Question 5 of 7</span>
+                <h2 class="question-text">What's your preferred learning style?</h2>
+                <div class="options">
+                    <div class="option" data-value="courses" onclick="selectAnswer(5, 'courses', this)">
+                        <strong>Step-by-step courses</strong> — I like structured training
+                    </div>
+                    <div class="option" data-value="software" onclick="selectAnswer(5, 'software', this)">
+                        <strong>Software tools</strong> — give me the tools, I'll figure it out
+                    </div>
+                    <div class="option" data-value="coaching" onclick="selectAnswer(5, 'coaching', this)">
+                        <strong>Coaching & mentorship</strong> — I want expert guidance
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 6: Biggest Challenge -->
+            <div class="question-container" id="q6">
+                <span class="question-number">Question 6 of 7</span>
+                <h2 class="question-text">What's your biggest challenge right now?</h2>
+                <div class="options">
+                    <div class="option" data-value="notraffic" onclick="selectAnswer(6, 'notraffic', this)">
+                        Not enough traffic or visibility
+                    </div>
+                    <div class="option" data-value="noproducts" onclick="selectAnswer(6, 'noproducts', this)">
+                        Don't have products to sell yet
+                    </div>
+                    <div class="option" data-value="nosystems" onclick="selectAnswer(6, 'nosystems', this)">
+                        No proven systems or funnels
+                    </div>
+                    <div class="option" data-value="mindset" onclick="selectAnswer(6, 'mindset', this)">
+                        Mindset & mental clarity
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 7: Revenue Goal Timeline -->
+            <div class="question-container" id="q7">
+                <span class="question-number">Question 7 of 7</span>
+                <h2 class="question-text">What's your revenue goal timeframe?</h2>
+                <div class="options">
+                    <div class="option" data-value="30days" onclick="selectAnswer(7, '30days', this)">
+                        <strong>30 days</strong> — I need results fast
+                    </div>
+                    <div class="option" data-value="90days" onclick="selectAnswer(7, '90days', this)">
+                        <strong>90 days</strong> — building momentum steadily
+                    </div>
+                    <div class="option" data-value="longterm" onclick="selectAnswer(7, 'longterm', this)">
+                        <strong>6-12 months</strong> — focused on sustainable growth
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email Capture Form -->
+            <div class="email-form" id="emailForm">
+                <h2 class="question-text">Unlock Your Personalized Results</h2>
+                <p style="color: var(--color-text); margin-bottom: 30px;">Get your customized product recommendations sent straight to your inbox.</p>
+                <form onsubmit="submitEmail(event)">
+                    <div class="form-group">
+                        <label class="form-label">First Name</label>
+                        <input type="text" class="form-input" id="firstName" placeholder="Enter your first name">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-input" id="email" placeholder="your.email@example.com">
+                    </div>
+                    <button type="submit" class="btn btn-block">See My Results</button>
+                    
+                    <div style="margin-top: 25px; padding-top: 25px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                        <label style="display: flex; align-items: start; cursor: pointer; color: var(--color-text); font-size: 0.9rem; line-height: 1.5;">
+                            <input type="checkbox" id="optOut" style="margin-right: 10px; margin-top: 3px; cursor: pointer;" onchange="toggleOptOut()">
+                            <span>I prefer not to provide my name and email. I understand that I will be missing out on any future updates and products that match with my personal goals.</span>
+                        </label>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Result Pages -->
+            <div class="result-container" id="result-budget-beginner-products">
+                <h2 class="result-title">🚀 The Strategic Starter</h2>
+                <p class="result-subtitle">Perfect for beginners building their first digital products and revenue streams</p>
+
+                <div class="product-card">
+                    <h3 class="product-name">Sqribble - 2024 | World's #1 eBook Creator</h3>
+                    <p class="product-price">$31 + Advanced Features</p>
+                    <p class="product-description">Create professional eBooks in 60 seconds with drag-and-drop templates. Perfect for building lead magnets, digital products, and content upgrades. No design skills needed.</p>
+                    <a href="https://257497vcjvdjrq3p-em7ohpt94.hop.clickbank.net" class="btn" target="_blank" rel="noopener noreferrer">Get Sqribble Now</a>
+                </div>
+
+                <div class="product-card">
+                    <h3 class="product-name">Recession Profit Secrets V3</h3>
+                    <p class="product-price">$49</p>
+                    <p class="product-description">Practical e-business strategies for building recession-proof income. Learn affiliate marketing, digital products, and online business fundamentals step-by-step.</p>
+                    <a href="https://312fazq9p5fplhalj5zo0-vle1.hop.clickbank.net" class="btn" target="_blank" rel="noopener noreferrer">Start Learning</a>
+                </div>
+            </div>
+
+            <div class="result-container" id="result-budget-mindset">
+                <h2 class="result-title">🧠 The Peak Performer</h2>
+                <p class="result-subtitle">Optimize your cognitive performance and wealth mindset for maximum productivity</p>
+
+                <div class="product-card">
+                    <h3 class="product-name">The Genius Wave</h3>
+                    <p class="product-price">$49.94</p>
+                    <p class="product-description">Enhance focus, creativity, and mental clarity with 7-minute soundwave sessions. Science-backed cognitive performance optimization for creators who need peak mental energy.</p>
+                    <a href="https://0413a809hxhonf86iknh7xxz83.hop.clickbank.net" class="btn" target="_blank" rel="noopener noreferrer">Unlock Your Focus</a>
+                </div>
+
+                <div class="product-card">
+                    <h3 class="product-name">The Money Wave</h3>
+                    <p class="product-price">$51.00</p>
+                    <p class="product-description">Reprogram limiting money beliefs with neuroplasticity-based training. Combines financial mindset work with proven wealth-building strategies for entrepreneurs.</p>
+                    <a href="https://d0ac5-vip5mjygda1cnt6-271c.hop.clickbank.net" class="btn" target="_blank" rel="noopener noreferrer">Transform Your Mindset</a>
+                </div>
+            </div>
+
+            <div class="result-container" id="result-budget-traffic">
+                <h2 class="result-title">📈 The Growth Hacker</h2>
+                <p class="result-subtitle">Build proven systems for traffic, conversions, and sustainable revenue</p>
+
+                <div class="product-card">
+                    <h3 class="product-name">Recession Profit Secrets V3</h3>
+                    <p class="product-price">$49</p>
+                    <p class="product-description">Master affiliate marketing, funnel building, and traffic generation. Complete system for beginners to start generating revenue in 30-90 days.</p>
+                    <a href="https://312fazq9p5fplhalj5zo0-vle1.hop.clickbank.net" class="btn" target="_blank" rel="noopener noreferrer">Build Your System</a>
+                </div>
+
+                <div class="product-card">
+                    <h3 class="product-name">The Genius Wave</h3>
+                    <p class="product-price">$49.94</p>
+                    <p class="product-description">Stay mentally sharp while building your business. 7-minute daily sessions boost focus and creative problem-solving for entrepreneurs under pressure.</p>
+                    <a href="https://0413a809hxhonf86iknh7xxz83.hop.clickbank.net" class="btn" target="_blank" rel="noopener noreferrer">Optimize Performance</a>
+                </div>
+            </div>
+
+            <div class="result-container" id="result-premium-coaching">
+                <h2 class="result-title">👑 The Elite Entrepreneur</h2>
+                <p class="result-subtitle">Premium coaching and proven systems from 8× ClickBank Platinum sellers</p>
+
+                <div class="product-card">
+                    <h3 class="product-name">Online Success Coaching</h3>
+                    <p class="product-price">Premium Coaching Program</p>
+                    <p class="product-description">Elite coaching from John Thornhill & Randy Smith. Learn to create, launch, and scale profitable digital products using AI automation and proven funnel systems.</p>
+                    <a href="#" class="btn" onclick="alert('This premium program requires vendor approval. We will contact you via email to facilitate access.'); return false;">Request Approval</a>
+                    <div class="note">
+                        <strong>Approval Required:</strong> This is a selective coaching program. John Thornhill's team pre-approves participants to ensure quality and commitment. We'll facilitate your application via the email you provided.
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <h3 class="product-name">AI Marketers Club</h3>
+                    <p class="product-price">$821</p>
+                    <p class="product-description">John Crestani's flagship affiliate marketing system. Comprehensive training on scaling profitable campaigns using AI tools, automation, and paid traffic strategies.</p>
+                    <a href="https://8739d2-ctyopue8hadd2al8r3n.hop.clickbank.net" class="btn" target="_blank" rel="noopener noreferrer">Join AI Marketers Club</a>
+                </div>
+            </div>
+
+            <div class="result-container" id="result-premium-scaling">
+                <h2 class="result-title">🚀 The Automation Architect</h2>
+                <p class="result-subtitle">Scale faster with AI automation and proven affiliate marketing systems</p>
+
+                <div class="product-card">
+                    <h3 class="product-name">AI Marketers Club</h3>
+                    <p class="product-price">$821</p>
+                    <p class="product-description">Master affiliate marketing at scale with John Crestani's proven system. Learn paid traffic, AI automation, and funnel optimization from a verified expert.</p>
+                    <a href="https://8739d2-ctyopue8hadd2al8r3n.hop.clickbank.net" class="btn" target="_blank" rel="noopener noreferrer">Scale Your Income</a>
+                </div>
+
+                <div class="product-card">
+                    <h3 class="product-name">Sqribble - eBook Creator</h3>
+                    <p class="product-price">$31 + Advanced Features</p>
+                    <p class="product-description">Build lead magnets and digital products at scale. Create unlimited eBooks with professional templates to grow your email list and revenue streams.</p>
+                    <a href="https://257497vcjvdjrq3p-em7ohpt94.hop.clickbank.net" class="btn" target="_blank" rel="noopener noreferrer">Create Digital Products</a>
+                </div>
+            </div>
+
+            <div class="result-container" id="result-budget-comprehensive">
+                <h2 class="result-title">💼 The Complete Package</h2>
+                <p class="result-subtitle">Comprehensive toolkit for creators ready to build a real business</p>
+
+                <div class="product-card">
+                    <h3 class="product-name">Recession Profit Secrets V3</h3>
+                    <p class="product-price">$49</p>
+                    <p class="product-description">Foundation training for affiliate marketing and online business. Perfect starting point for learning proven revenue-generating strategies.</p>
+                    <a href="https://312fazq9p5fplhalj5zo0-vle1.hop.clickbank.net" class="btn" target="_blank" rel="noopener noreferrer">Start Your Journey</a>
+                </div>
+
+                <div class="product-card">
+                    <h3 class="product-name">Sqribble - eBook Creator</h3>
+                    <p class="product-price">$31 + Advanced Features</p>
+                    <p class="product-description">Create professional lead magnets to build your email list. Essential tool for content creators and digital entrepreneurs.</p>
+                    <a href="https://257497vcjvdjrq3p-em7ohpt94.hop.clickbank.net" class="btn" target="_blank" rel="noopener noreferrer">Build Your List</a>
+                </div>
+
+                <div class="product-card">
+                    <h3 class="product-name">The Genius Wave</h3>
+                    <p class="product-price">$49.94</p>
+                    <p class="product-description">Maintain peak mental performance while building your business. 7-minute daily cognitive optimization sessions.</p>
+                    <a href="https://0413a809hxhonf86iknh7xxz83.hop.clickbank.net" class="btn" target="_blank" rel="noopener noreferrer">Boost Your Focus</a>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p class="brand-tagline">AIAuthorAlchemist</p>
+            <p>Follow the Evolution</p>
+        </footer>
+    </div>
+
+    <script>
+        const quizData = {
+            tier: null,
+            answers: {}
+        };
+
+        let currentQuestion = 1;
+        const totalQuestions = 7;
+
+        function updateProgress() {
+            const progress = (currentQuestion / totalQuestions) * 100;
+            document.getElementById('progress').style.width = progress + '%';
+        }
+
+        function selectAnswer(questionNum, value, element) {
+            // Store answer
+            quizData.answers['q' + questionNum] = value;
+
+            // Handle Q1 routing
+            if (questionNum === 1) {
+                quizData.tier = value; // 'budget' or 'premium'
+            }
+
+            // Visual feedback
+            const options = element.parentElement.querySelectorAll('.option');
+            options.forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+
+            // Auto-advance after short delay
+            setTimeout(() => {
+                nextQuestion(questionNum);
+            }, 400);
+        }
+
+        function nextQuestion(current) {
+            const currentQ = document.getElementById('q' + current);
+            currentQ.classList.remove('active');
+
+            if (current < totalQuestions) {
+                currentQuestion = current + 1;
+                const nextQ = document.getElementById('q' + currentQuestion);
+                nextQ.classList.add('active');
+                updateProgress();
+            } else {
+                // Show email form
+                document.getElementById('emailForm').classList.add('active');
+                updateProgress();
+            }
+        }
+
+        function toggleOptOut() {
+            const optOut = document.getElementById('optOut');
+            const firstName = document.getElementById('firstName');
+            const email = document.getElementById('email');
+            
+            if (optOut.checked) {
+                firstName.required = false;
+                email.required = false;
+                firstName.disabled = true;
+                email.disabled = true;
+                firstName.style.opacity = '0.5';
+                email.style.opacity = '0.5';
+            } else {
+                firstName.required = true;
+                email.required = true;
+                firstName.disabled = false;
+                email.disabled = false;
+                firstName.style.opacity = '1';
+                email.style.opacity = '1';
+            }
+        }
+
+        function submitEmail(event) {
+            event.preventDefault();
+
+            const optOut = document.getElementById('optOut').checked;
+            const firstName = document.getElementById('firstName').value;
+            const email = document.getElementById('email').value;
+
+            if (!optOut && (!firstName || !email)) {
+                alert('Please enter your name and email, or check the opt-out box to proceed.');
+                return;
+            }
+
+            // Store user info (in production, send to backend/email service)
+            quizData.firstName = optOut ? 'Anonymous' : firstName;
+            quizData.email = optOut ? 'opted-out' : email;
+            quizData.optedOut = optOut;
+
+            // Hide email form
+            document.getElementById('emailForm').classList.remove('active');
+
+            // Show appropriate result
+            showResult();
+        }
+
+        function showResult() {
+            const tier = quizData.tier;
+            const goal = quizData.answers.q2;
+            const challenge = quizData.answers.q6;
+            const style = quizData.answers.q5;
+
+            let resultId;
+
+            if (tier === 'premium') {
+                // Premium tier results
+                if (style === 'coaching') {
+                    resultId = 'result-premium-coaching';
+                } else {
+                    resultId = 'result-premium-scaling';
+                }
+            } else {
+                // Budget tier results
+                if (goal === 'products' || challenge === 'noproducts') {
+                    resultId = 'result-budget-beginner-products';
+                } else if (challenge === 'mindset') {
+                    resultId = 'result-budget-mindset';
+                } else if (goal === 'traffic' || challenge === 'notraffic') {
+                    resultId = 'result-budget-traffic';
+                } else {
+                    resultId = 'result-budget-comprehensive';
+                }
+            }
+
+            document.getElementById(resultId).classList.add('active');
+
+            // Scroll to top of results
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Initialize
+        updateProgress();
+    </script>
+</body>
+</html>
