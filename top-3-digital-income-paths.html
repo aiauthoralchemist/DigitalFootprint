@@ -739,7 +739,35 @@
             let resultHTML = '';
 
             // Logic for determining primary + secondary products
-            if (opportunity === 'creative' || workstyle === 'creative_work') {
+            // Check investment FIRST to give it priority
+            if (opportunity === 'investment') {
+                // Investment & Long-Term Wealth Path
+                resultHTML = `
+                    <div class="result-container active">
+                        <h2 class="result-title">💎 The Wealth Builder</h2>
+                        <p class="result-description">Build lasting wealth through strategic investments and asset building</p>
+
+                        <div class="product-card primary">
+                            <h3 class="product-name">Profit Vault</h3>
+                            <p class="product-description">Discover the systematic domain investment strategy that generates passive income. Learn how to identify, acquire, and profit from premium domain names.</p>
+                            <a href="https://124392x9jxnotm5ss8yg2c5hg3.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Access the Vault</a>
+                        </div>
+
+                        <div class="product-card">
+                            <h3 class="product-name">WoodProfits</h3>
+                            <p class="product-description">Launch your own woodworking business for under $1,000. Turn your craftsmanship into a profitable physical product business.</p>
+                            <a href="https://42ef44y8j0ohrjzvugjhzfu76g.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Start Your Business</a>
+                        </div>
+
+                        <div class="bonus-section">
+                            <h1 class="bonus-heading">ALSO Click Here To Get Your Free Copy of the "Creative Momentum" eBook, A $9.99 Value!</h1>
+                            <a href="creative-momentum-download.html" class="ebook-button">
+                                <img src="Thumbnail.png" alt="Creative Momentum eBook">
+                            </a>
+                        </div>
+                    </div>
+                `;
+            } else if (opportunity === 'creative' || workstyle === 'creative_work') {
                 // Creative Content Path
                 resultHTML = `
                     <div class="result-container active">
@@ -810,33 +838,6 @@
                             <h3 class="product-name">Wealth Activator Code</h3>
                             <p class="product-description">Were you born with rich genes or poor genes? Discover how to activate your wealth DNA and attract abundance with proven neuroscience.</p>
                             <a href="https://717561slp-llxd3ugy8477yaxr.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Unlock Your Code</a>
-                        </div>
-
-                        <div class="bonus-section">
-                            <h1 class="bonus-heading">ALSO Click Here To Get Your Free Copy of the "Creative Momentum" eBook, A $9.99 Value!</h1>
-                            <a href="creative-momentum-download.html" class="ebook-button">
-                                <img src="Thumbnail.png" alt="Creative Momentum eBook">
-                            </a>
-                        </div>
-                    </div>
-                `;
-            } else {
-                // Investment & Long-Term Wealth Path
-                resultHTML = `
-                    <div class="result-container active">
-                        <h2 class="result-title">💎 The Wealth Builder</h2>
-                        <p class="result-description">Build lasting wealth through strategic investments and asset building</p>
-
-                        <div class="product-card primary">
-                            <h3 class="product-name">Profit Vault</h3>
-                            <p class="product-description">Discover the systematic domain investment strategy that generates passive income. Learn how to identify, acquire, and profit from premium domain names.</p>
-                            <a href="https://124392x9jxnotm5ss8yg2c5hg3.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Access the Vault</a>
-                        </div>
-
-                        <div class="product-card">
-                            <h3 class="product-name">WoodProfits</h3>
-                            <p class="product-description">Launch your own woodworking business for under $1,000. Turn your craftsmanship into a profitable physical product business.</p>
-                            <a href="https://42ef44y8j0ohrjzvugjhzfu76g.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Start Your Business</a>
                         </div>
 
                         <div class="bonus-section">
