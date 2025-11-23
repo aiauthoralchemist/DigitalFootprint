@@ -1,748 +1,1225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AIAuthorAlchemist - Transforming Stories Into Digital Gold</title>
-  <style>
-    /* Design System */
-    :root {
-      --color-white: rgba(255, 255, 255, 1);
-      --color-black: rgba(0, 0, 0, 1);
-      --color-cream-50: rgba(252, 252, 249, 1);
-      --color-cream-100: rgba(255, 255, 253, 1);
-      --color-gray-200: rgba(245, 245, 245, 1);
-      --color-gray-300: rgba(167, 169, 169, 1);
-      --color-gray-400: rgba(119, 124, 124, 1);
-      --color-slate-500: rgba(98, 108, 113, 1);
-      --color-brown-600: rgba(94, 82, 64, 1);
-      --color-charcoal-700: rgba(31, 33, 33, 1);
-      --color-charcoal-800: rgba(38, 40, 40, 1);
-      --color-slate-900: rgba(19, 52, 59, 1);
-      --color-teal-300: rgba(50, 184, 198, 1);
-      --color-teal-400: rgba(45, 166, 178, 1);
-      --color-teal-500: rgba(33, 128, 141, 1);
-      --color-teal-600: rgba(29, 116, 128, 1);
-      --color-teal-700: rgba(26, 104, 115, 1);
-      --color-teal-800: rgba(41, 150, 161, 1);
-      --color-red-400: rgba(255, 84, 89, 1);
-      --color-red-500: rgba(192, 21, 47, 1);
-      --color-orange-400: rgba(230, 129, 97, 1);
-      --color-orange-500: rgba(168, 75, 47, 1);
-      --color-brown-600-rgb: 94, 82, 64;
-      --color-teal-500-rgb: 33, 128, 141;
-      --color-slate-900-rgb: 19, 52, 59;
-      --color-slate-500-rgb: 98, 108, 113;
-      --color-red-500-rgb: 192, 21, 47;
-      --color-red-400-rgb: 255, 84, 89;
-      --color-orange-500-rgb: 168, 75, 47;
-      --color-orange-400-rgb: 230, 129, 97;
-      --color-background: var(--color-cream-50);
-      --color-surface: var(--color-cream-100);
-      --color-text: var(--color-slate-900);
-      --color-text-secondary: var(--color-slate-500);
-      --color-primary: var(--color-teal-500);
-      --color-primary-hover: var(--color-teal-600);
-      --color-primary-active: var(--color-teal-700);
-      --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
-      --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
-      --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
-      --color-border: rgba(var(--color-brown-600-rgb), 0.2);
-      --color-btn-primary-text: var(--color-cream-50);
-      --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
-      --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
-      --color-error: var(--color-red-500);
-      --color-success: var(--color-teal-500);
-      --color-warning: var(--color-orange-500);
-      --color-info: var(--color-slate-500);
-      --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
-      --color-select-caret: rgba(var(--color-slate-900-rgb), 0.8);
-      --focus-ring: 0 0 0 3px var(--color-focus-ring);
-      --focus-outline: 2px solid var(--color-primary);
-      --font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      --font-family-mono: "Berkeley Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      --font-size-xs: 11px;
-      --font-size-sm: 12px;
-      --font-size-base: 14px;
-      --font-size-md: 14px;
-      --font-size-lg: 16px;
-      --font-size-xl: 18px;
-      --font-size-2xl: 20px;
-      --font-size-3xl: 24px;
-      --font-size-4xl: 30px;
-      --font-weight-normal: 400;
-      --font-weight-medium: 500;
-      --font-weight-semibold: 550;
-      --font-weight-bold: 600;
-      --line-height-tight: 1.2;
-      --line-height-normal: 1.5;
-      --letter-spacing-tight: -0.01em;
-      --space-0: 0;
-      --space-1: 1px;
-      --space-2: 2px;
-      --space-4: 4px;
-      --space-6: 6px;
-      --space-8: 8px;
-      --space-10: 10px;
-      --space-12: 12px;
-      --space-16: 16px;
-      --space-20: 20px;
-      --space-24: 24px;
-      --space-32: 32px;
-      --radius-sm: 6px;
-      --radius-base: 8px;
-      --radius-md: 10px;
-      --radius-lg: 12px;
-      --radius-full: 9999px;
-      --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.02);
-      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
-      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
-      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
-      --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.03);
-      --duration-fast: 150ms;
-      --duration-normal: 250ms;
-      --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
-      --container-sm: 640px;
-      --container-md: 768px;
-      --container-lg: 1024px;
-      --container-xl: 1280px;
-      
-      /* Brand Colors */
-      --brand-primary: #5555DD;
-      --brand-secondary: #7B68EE;
-      --brand-accent: #FFD700;
-      --brand-bg: #FFFFFF;
-      --brand-text: #222222;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no">
+    <title>AIAuthorAlchemist - Transform Your Creative Vision</title>
+    
+    <!-- Design Specifications:
+    - Style: Futuristic sci-fi with sacred geometry
+    - Primary Colors: Teal (#14b8a6), Emerald (#10b981), Neon Green (#22c55e)
+    - Secondary Colors: Dark background (#121212), Deep purple accents
+    - Typography: Orbitron for headings, Exo for body text
+    - Visual Elements: Triple helix motifs, sacred geometry patterns, glowing effects
+    - Layout: Single-page scroll with smooth animations
+    -->
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Exo:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        :root {
+            --sb-track-color: transparent;
+            --sb-thumb-color: #14b8a6;
+            --sb-size: 8px;
+            
+            --color-teal: #14b8a6;
+            --color-emerald: #10b981;
+            --color-neon: #22c55e;
+            --color-dark: #121212;
+            --color-purple: #7c3aed;
+        }
 
-    @font-face {
-      font-family: 'FKGroteskNeue';
-      src: url('https://r2cdn.perplexity.ai/fonts/FKGroteskNeue.woff2') format('woff2');
-    }
+        ::-webkit-scrollbar {
+            width: var(--sb-size);
+            height: var(--sb-size);
+        }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+        ::-webkit-scrollbar-track {
+            background: var(--sb-track-color);
+            border-radius: 5px;
+        }
 
-    body {
-      font-family: var(--font-family-base);
-      background-color: var(--brand-bg);
-      color: var(--brand-text);
-      line-height: var(--line-height-normal);
-      -webkit-font-smoothing: antialiased;
-    }
+        ::-webkit-scrollbar-thumb {
+            background: var(--sb-thumb-color);
+            border-radius: 5px;
+        }
 
-    /* Navigation */
-    nav {
-      background: var(--brand-primary);
-      padding: var(--space-16) var(--space-24);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: var(--shadow-md);
-    }
+        @supports not selector(::-webkit-scrollbar) {
+            body {
+                scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+            }
+        }
 
-    .nav-container {
-      max-width: var(--container-xl);
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: var(--space-16);
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .nav-brand {
-      color: var(--color-white);
-      font-size: var(--font-size-2xl);
-      font-weight: var(--font-weight-bold);
-      letter-spacing: var(--letter-spacing-tight);
-    }
+        html {
+            scroll-behavior: smooth;
+            height: 100%;
+        }
 
-    .nav-menu {
-      display: flex;
-      gap: var(--space-8);
-      list-style: none;
-      flex-wrap: wrap;
-    }
+        body {
+            font-family: 'Exo', sans-serif;
+            background: #121212;
+            color: #ffffff;
+            overflow-x: hidden;
+            height: 100%;
+        }
 
-    .nav-link {
-      color: var(--color-white);
-      text-decoration: none;
-      padding: var(--space-8) var(--space-16);
-      border-radius: var(--radius-base);
-      font-weight: var(--font-weight-medium);
-      transition: background-color var(--duration-fast) var(--ease-standard);
-      cursor: pointer;
-    }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Orbitron', sans-serif;
+        }
 
-    .nav-link:hover {
-      background-color: rgba(255, 255, 255, 0.15);
-    }
+        /* Navigation Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(20, 184, 166, 0.2);
+            transition: all 0.3s ease;
+        }
 
-    .nav-link.active {
-      background-color: rgba(255, 255, 255, 0.25);
-    }
+        .navbar.scrolled {
+            background: rgba(18, 18, 18, 0.98);
+            box-shadow: 0 4px 20px rgba(20, 184, 166, 0.3);
+        }
 
-    /* Sections */
-    section {
-      display: none;
-      min-height: calc(100vh - 80px);
-      padding: var(--space-32) var(--space-24);
-    }
+        .nav-link {
+            position: relative;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
 
-    section.active {
-      display: block;
-    }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-teal), var(--color-emerald));
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+        }
 
-    .section-container {
-      max-width: var(--container-lg);
-      margin: 0 auto;
-    }
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 80%;
+        }
 
-    /* Home Section */
-    .hero {
-      text-align: center;
-      padding: 60px 0;
-    }
+        .nav-link.active {
+            color: var(--color-teal);
+        }
 
-    .hero-title {
-      font-size: 48px;
-      font-weight: var(--font-weight-bold);
-      color: var(--brand-primary);
-      margin-bottom: var(--space-16);
-      letter-spacing: var(--letter-spacing-tight);
-    }
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-teal), var(--color-emerald), var(--color-neon));
+            z-index: 1001;
+            transform-origin: left;
+            transition: transform 0.1s ease;
+        }
 
-    .hero-tagline {
-      font-size: var(--font-size-3xl);
-      color: var(--brand-accent);
-      margin-bottom: var(--space-24);
-      font-weight: var(--font-weight-semibold);
-    }
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--color-teal), var(--color-emerald));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 4px 15px rgba(20, 184, 166, 0.4);
+        }
 
-    .hero-description {
-      font-size: var(--font-size-xl);
-      color: var(--brand-text);
-      max-width: 700px;
-      margin: 0 auto var(--space-32) auto;
-      line-height: 1.6;
-    }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
 
-    .cta-button {
-      display: inline-block;
-      background: var(--brand-primary);
-      color: var(--color-white);
-      padding: var(--space-16) var(--space-32);
-      border-radius: var(--radius-base);
-      font-size: var(--font-size-lg);
-      font-weight: var(--font-weight-semibold);
-      text-decoration: none;
-      transition: all var(--duration-normal) var(--ease-standard);
-      border: none;
-      cursor: pointer;
-    }
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 25px rgba(20, 184, 166, 0.6);
+        }
 
-    .cta-button:hover {
-      background: var(--brand-secondary);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
-    }
+        /* Sacred Geometry Background */
+        .sacred-geometry {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
 
-    /* Section Headers */
-    .section-title {
-      font-size: var(--font-size-4xl);
-      font-weight: var(--font-weight-bold);
-      color: var(--brand-primary);
-      margin-bottom: var(--space-32);
-      text-align: center;
-    }
+        .geometry-circle {
+            position: absolute;
+            border: 1px solid rgba(20, 184, 166, 0.2);
+            border-radius: 50%;
+            animation: pulse 4s ease-in-out infinite;
+        }
 
-    /* Portfolio Section */
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: var(--space-24);
-      margin-top: var(--space-32);
-    }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.6; }
+        }
 
-    .portfolio-card {
-      background: var(--color-surface);
-      border: 1px solid var(--color-card-border);
-      border-radius: var(--radius-lg);
-      padding: var(--space-24);
-      box-shadow: var(--shadow-sm);
-      transition: all var(--duration-normal) var(--ease-standard);
-    }
+        /* Triple Helix Animation */
+        .helix-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
 
-    .portfolio-card:hover {
-      box-shadow: var(--shadow-md);
-      transform: translateY(-4px);
-    }
+        .helix-strand {
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, var(--color-teal), transparent);
+            animation: helix-rotate 10s linear infinite;
+        }
 
-    .portfolio-title {
-      font-size: var(--font-size-2xl);
-      font-weight: var(--font-weight-semibold);
-      color: var(--brand-primary);
-      margin-bottom: var(--space-8);
-    }
+        @keyframes helix-rotate {
+            0% { transform: translateX(-50%) rotateY(0deg); }
+            100% { transform: translateX(-50%) rotateY(360deg); }
+        }
 
-    .portfolio-type {
-      font-size: var(--font-size-sm);
-      color: var(--brand-secondary);
-      font-weight: var(--font-weight-medium);
-      margin-bottom: var(--space-12);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
+        /* Scroll Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
 
-    .portfolio-description {
-      font-size: var(--font-size-base);
-      color: var(--color-text-secondary);
-      line-height: 1.6;
-    }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-    /* Products Section */
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: var(--space-24);
-      margin-top: var(--space-32);
-    }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
 
-    .product-card {
-      background: var(--color-surface);
-      border: 1px solid var(--color-card-border);
-      border-radius: var(--radius-lg);
-      padding: var(--space-24);
-      box-shadow: var(--shadow-sm);
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-16);
-      transition: all var(--duration-normal) var(--ease-standard);
-    }
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
 
-    .product-card:hover {
-      box-shadow: var(--shadow-md);
-      transform: translateY(-4px);
-    }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+        }
 
-    .product-name {
-      font-size: var(--font-size-xl);
-      font-weight: var(--font-weight-semibold);
-      color: var(--brand-primary);
-    }
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
 
-    .product-description {
-      font-size: var(--font-size-base);
-      color: var(--color-text-secondary);
-      line-height: 1.6;
-      flex-grow: 1;
-    }
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.8s ease;
+        }
 
-    .product-link {
-      display: inline-block;
-      background: var(--brand-accent);
-      color: var(--brand-text);
-      padding: var(--space-12) var(--space-24);
-      border-radius: var(--radius-base);
-      text-decoration: none;
-      font-weight: var(--font-weight-semibold);
-      text-align: center;
-      transition: all var(--duration-normal) var(--ease-standard);
-    }
+        .reveal-scale.active {
+            opacity: 1;
+            transform: scale(1);
+        }
 
-    .product-link:hover {
-      background: var(--brand-secondary);
-      color: var(--color-white);
-    }
+        /* Stagger Animation */
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
 
-    /* Social Section */
-    .social-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: var(--space-24);
-      margin-top: var(--space-32);
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+        .stagger-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-    .social-link {
-      background: var(--color-surface);
-      border: 2px solid var(--brand-primary);
-      border-radius: var(--radius-lg);
-      padding: var(--space-24);
-      text-align: center;
-      text-decoration: none;
-      transition: all var(--duration-normal) var(--ease-standard);
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-12);
-      align-items: center;
-    }
+        /* Glowing Effects */
+        .glow-text {
+            text-shadow: 0 0 10px rgba(20, 184, 166, 0.5),
+                         0 0 20px rgba(20, 184, 166, 0.3),
+                         0 0 30px rgba(20, 184, 166, 0.2);
+        }
 
-    .social-link:hover {
-      background: var(--brand-primary);
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-    }
+        .glow-box {
+            box-shadow: 0 0 20px rgba(20, 184, 166, 0.3),
+                        0 0 40px rgba(20, 184, 166, 0.1);
+            transition: all 0.3s ease;
+        }
 
-    .social-platform {
-      font-size: var(--font-size-xl);
-      font-weight: var(--font-weight-bold);
-      color: var(--brand-primary);
-      transition: color var(--duration-fast) var(--ease-standard);
-    }
+        .glow-box:hover {
+            box-shadow: 0 0 30px rgba(20, 184, 166, 0.5),
+                        0 0 60px rgba(20, 184, 166, 0.3);
+            transform: translateY(-5px);
+        }
 
-    .social-link:hover .social-platform {
-      color: var(--color-white);
-    }
+        /* Section Dividers */
+        .section-divider {
+            height: 100px;
+            background: linear-gradient(180deg, transparent, rgba(20, 184, 166, 0.1), transparent);
+            position: relative;
+            overflow: hidden;
+        }
 
-    .social-handle {
-      font-size: var(--font-size-base);
-      color: var(--color-text-secondary);
-      transition: color var(--duration-fast) var(--ease-standard);
-    }
+        .divider-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(20, 184, 166, 0.1) 10px, rgba(20, 184, 166, 0.1) 20px);
+            animation: slide 20s linear infinite;
+        }
 
-    .social-link:hover .social-handle {
-      color: var(--color-white);
-    }
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(100px); }
+        }
 
-    /* Contact Section */
-    .contact-container {
-      max-width: 600px;
-      margin: 0 auto;
-    }
+        /* Button Styles */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-teal), var(--color-emerald));
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
+        }
 
-    .contact-intro {
-      text-align: center;
-      font-size: var(--font-size-lg);
-      color: var(--color-text-secondary);
-      margin-bottom: var(--space-32);
-    }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(20, 184, 166, 0.5);
+        }
 
-    .contact-form {
-      background: var(--color-surface);
-      border: 1px solid var(--color-card-border);
-      border-radius: var(--radius-lg);
-      padding: var(--space-32);
-      box-shadow: var(--shadow-sm);
-    }
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-teal);
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            border: 2px solid var(--color-teal);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
 
-    .form-group {
-      margin-bottom: var(--space-24);
-    }
+        .btn-secondary:hover {
+            background: var(--color-teal);
+            color: white;
+            transform: translateY(-3px);
+        }
 
-    .form-label {
-      display: block;
-      font-size: var(--font-size-base);
-      font-weight: var(--font-weight-semibold);
-      color: var(--brand-text);
-      margin-bottom: var(--space-8);
-    }
+        /* Card Styles */
+        .card {
+            background: rgba(30, 30, 30, 0.8);
+            border: 1px solid rgba(20, 184, 166, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
 
-    .form-control {
-      width: 100%;
-      padding: var(--space-12);
-      font-size: var(--font-size-base);
-      font-family: var(--font-family-base);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-base);
-      transition: border-color var(--duration-fast) var(--ease-standard);
-    }
+        .card:hover {
+            border-color: rgba(20, 184, 166, 0.6);
+            transform: translateY(-10px);
+        }
 
-    .form-control:focus {
-      outline: none;
-      border-color: var(--brand-primary);
-      box-shadow: var(--focus-ring);
-    }
+        /* Parallax Effect */
+        .parallax {
+            transition: transform 0.1s ease-out;
+        }
 
-    textarea.form-control {
-      min-height: 150px;
-      resize: vertical;
-    }
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: rgba(18, 18, 18, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            border-bottom: 1px solid rgba(20, 184, 166, 0.2);
+            z-index: 999;
+        }
 
-    .submit-button {
-      width: 100%;
-      background: var(--brand-primary);
-      color: var(--color-white);
-      padding: var(--space-16);
-      border: none;
-      border-radius: var(--radius-base);
-      font-size: var(--font-size-lg);
-      font-weight: var(--font-weight-semibold);
-      cursor: pointer;
-      transition: all var(--duration-normal) var(--ease-standard);
-    }
+        .mobile-menu.active {
+            display: block;
+        }
 
-    .submit-button:hover {
-      background: var(--brand-secondary);
-    }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
 
-    .form-message {
-      margin-top: var(--space-16);
-      padding: var(--space-12);
-      border-radius: var(--radius-base);
-      text-align: center;
-      font-weight: var(--font-weight-medium);
-      display: none;
-    }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--color-teal);
+            transition: all 0.3s ease;
+        }
 
-    .form-message.success {
-      background: rgba(33, 128, 141, 0.15);
-      color: var(--color-success);
-      border: 1px solid var(--color-success);
-    }
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+        }
 
-    .form-message.error {
-      background: rgba(192, 21, 47, 0.15);
-      color: var(--color-error);
-      border: 1px solid var(--color-error);
-    }
+        /* Form Styles */
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(30, 30, 30, 0.8);
+            border: 1px solid rgba(20, 184, 166, 0.3);
+            border-radius: 10px;
+            color: white;
+            font-family: 'Exo', sans-serif;
+            transition: all 0.3s ease;
+        }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .hero-title {
-        font-size: 36px;
-      }
+        .form-input:focus {
+            outline: none;
+            border-color: var(--color-teal);
+            box-shadow: 0 0 15px rgba(20, 184, 166, 0.3);
+        }
 
-      .hero-tagline {
-        font-size: var(--font-size-xl);
-      }
+        /* Social Links */
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(20, 184, 166, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: var(--color-teal);
+        }
 
-      .nav-container {
-        flex-direction: column;
-        align-items: center;
-      }
+        .social-link:hover {
+            background: var(--color-teal);
+            color: white;
+            transform: translateY(-3px);
+        }
 
-      .nav-menu {
-        justify-content: center;
-      }
+        /* Pricing Tiers */
+        .tier-card {
+            background: rgba(30, 30, 30, 0.8);
+            border: 2px solid rgba(20, 184, 166, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
 
-      .portfolio-grid,
-      .products-grid,
-      .social-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+        .tier-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-teal), var(--color-emerald));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .tier-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .tier-card:hover {
+            border-color: var(--color-teal);
+            transform: translateY(-10px);
+        }
+
+        .tier-card.featured {
+            border-color: var(--color-emerald);
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        /* Quiz Dropdown */
+        .quiz-dropdown {
+            position: relative;
+        }
+
+        .quiz-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(18, 18, 18, 0.98);
+            border: 1px solid rgba(20, 184, 166, 0.3);
+            border-radius: 10px;
+            padding: 0.5rem 0;
+            min-width: 250px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .quiz-dropdown:hover .quiz-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .quiz-menu a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-menu a:hover {
+            background: rgba(20, 184, 166, 0.2);
+            color: var(--color-teal);
+        }
+    </style>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav>
-    <div class="nav-container">
-      <div class="nav-brand">AIAuthorAlchemist</div>
-      <ul class="nav-menu">
-        <li><a class="nav-link active" data-section="home">Home</a></li>
-        <li><a class="nav-link" data-section="portfolio">Portfolio</a></li>
-        <li><a class="nav-link" data-section="products">Products</a></li>
-        <li><a class="nav-link" data-section="social">Social Links</a></li>
-        <li><a class="nav-link" data-section="contact">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
 
-  <!-- Home Section -->
-  <section id="home" class="active">
-    <div class="section-container">
-      <div class="hero">
-        <h1 class="hero-title">AIAuthorAlchemist</h1>
-        <p class="hero-tagline">Transforming Stories Into Digital Gold</p>
-        <p class="hero-description">
-          Creating AI-powered content, videos, and digital products for aspiring creators and entrepreneurs. We blend cutting-edge AI technology with creative storytelling to help you build your digital empire and monetize your passion.
-        </p>
-        <button class="cta-button" data-section="portfolio">Explore Our Work</button>
-      </div>
-    </div>
-  </section>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold glow-text">AIAuthorAlchemist</h1>
+                </div>
+                
+                <div class="desktop-nav flex items-center gap-8">
+                    <a href="#home" class="nav-link active">Home</a>
+                    <a href="#portfolio" class="nav-link">Portfolio</a>
+                    <a href="#products" class="nav-link">Products</a>
+                    <div class="quiz-dropdown">
+                        <a href="#" class="nav-link">Quizzes ▾</a>
+                        <div class="quiz-menu">
+                            <a href="creative-momentum-quiz.html">Creative Momentum Quiz</a>
+                            <a href="ai-tools-quiz.html">AI Tools Quiz</a>
+                            <a href="genre-matcher-quiz.html">Genre Matcher Quiz</a>
+                            <a href="workflow-optimizer-quiz.html">Workflow Optimizer Quiz</a>
+                        </div>
+                    </div>
+                    <a href="#coming-soon" class="nav-link">Coming Soon</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
 
-  <!-- Portfolio Section -->
-  <section id="portfolio">
-    <div class="section-container">
-      <h2 class="section-title">Our Portfolio</h2>
-      <div class="portfolio-grid">
-        <div class="portfolio-card">
-          <h3 class="portfolio-title">The Adventures of Arukaiel</h3>
-          <p class="portfolio-type">Sci-Fi Novel and eventual Saga</p>
-          <p class="portfolio-description">
-            First half or more written by Human. Follow along with and even Participate in the project of using AI to complete this Novel - TextBook, AudioBook and Cinematic Vids For Each Chapter and Overall Synopsis.
-          </p>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
         </div>
-        <div class="portfolio-card">
-          <h3 class="portfolio-title">The War of The Magi</h3>
-          <p class="portfolio-type">Sci-Fi/Historical-Fiction About WW2 With Magic</p>
-          <p class="portfolio-description">
-            Features Sorcerers, Demons, Monsters, Dragons, And Every other kind of Fantastical Beasts. Includes an Entire and Complete Language Created for the Novel. First half or more written by Human. The Journey and Process will be available to follow along and participate in Finishing the Novel Using AI - TextBook, AudioBook, and Cinematic Vids for Each Chapter and Overall Synopsis.
-          </p>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#home" class="block py-2 nav-link">Home</a>
+        <a href="#portfolio" class="block py-2 nav-link">Portfolio</a>
+        <a href="#products" class="block py-2 nav-link">Products</a>
+        <div class="py-2">
+            <div class="text-gray-400 mb-2">Quizzes:</div>
+            <a href="creative-momentum-quiz.html" class="block py-2 pl-4 text-sm nav-link">Creative Momentum Quiz</a>
+            <a href="ai-tools-quiz.html" class="block py-2 pl-4 text-sm nav-link">AI Tools Quiz</a>
+            <a href="genre-matcher-quiz.html" class="block py-2 pl-4 text-sm nav-link">Genre Matcher Quiz</a>
+            <a href="workflow-optimizer-quiz.html" class="block py-2 pl-4 text-sm nav-link">Workflow Optimizer Quiz</a>
         </div>
-      </div>
+        <a href="#coming-soon" class="block py-2 nav-link">Coming Soon</a>
+        <a href="#contact" class="block py-2 nav-link">Contact</a>
     </div>
-  </section>
 
-  <!-- Products Section -->
-  <section id="products">
-    <div class="section-container">
-      <h2 class="section-title">Products</h2>
-      <div class="products-grid">
-        <div class="product-card">
-          <h3 class="product-name">What's Your Perfect Money Making System Quiz</h3>
-          <a href="https://aiauthoralchemist.systeme.io/1b07c6cb-987e491f" class="product-link">Take The Quiz Now</a>
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen relative flex items-center justify-center overflow-hidden pt-16">
+        <div class="sacred-geometry">
+            <div class="geometry-circle" style="width: 300px; height: 300px; top: 10%; left: 10%;"></div>
+            <div class="geometry-circle" style="width: 500px; height: 500px; top: 30%; right: 10%; animation-delay: 1s;"></div>
+            <div class="geometry-circle" style="width: 400px; height: 400px; bottom: 10%; left: 30%; animation-delay: 2s;"></div>
         </div>
-        <div class="product-card">
-          <h3 class="product-name">Find Your Perfect AI Creator Toolkit</h3>
-          <a href="https://aiauthoralchemist.systeme.io/5d7e5117" class="product-link">Take The Quiz Now</a>
+
+        <div class="helix-container">
+            <div class="helix-strand" style="left: 30%;"></div>
+            <div class="helix-strand" style="left: 50%; animation-delay: 3.33s;"></div>
+            <div class="helix-strand" style="left: 70%; animation-delay: 6.66s;"></div>
         </div>
-        <div class="product-card">
-          <h3 class="product-name">Top 3 Digital Income Paths That Actually Work For YOU!</h3>
-          <a href="https://aiauthoralchemist.systeme.io/bef82370" class="product-link">Take The Quiz Now</a>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10 relative">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 glow-text reveal">
+                Transform Your Creative Vision
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 text-gray-300 reveal" style="transition-delay: 0.2s;">
+                Where AI meets artistry, and imagination becomes reality
+            </p>
+            <div class="flex flex-wrap gap-4 justify-center reveal" style="transition-delay: 0.4s;">
+                <a href="#portfolio" class="btn-primary">Explore Portfolio</a>
+                <a href="#products" class="btn-secondary">Discover Products</a>
+            </div>
+
+            <div class="flex gap-6 justify-center mt-12 reveal" style="transition-delay: 0.6s;">
+                <a href="https://twitter.com/aiauthoralchemist" target="_blank" class="social-link">
+                    <i data-lucide="twitter" width="20" height="20"></i>
+                </a>
+                <a href="https://instagram.com/aiauthoralchemist" target="_blank" class="social-link">
+                    <i data-lucide="instagram" width="20" height="20"></i>
+                </a>
+                <a href="https://linkedin.com/in/aiauthoralchemist" target="_blank" class="social-link">
+                    <i data-lucide="linkedin" width="20" height="20"></i>
+                </a>
+                <a href="https://youtube.com/@aiauthoralchemist" target="_blank" class="social-link">
+                    <i data-lucide="youtube" width="20" height="20"></i>
+                </a>
+            </div>
         </div>
-      </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider">
+        <div class="divider-pattern"></div>
     </div>
-  </section>
 
-  <!-- Social Links Section -->
-  <section id="social">
-    <div class="section-container">
-      <h2 class="section-title">Connect With Us</h2>
-      <div class="social-grid">
-        <a href="https://youtube.com/@AIAuthorAlchemist" class="social-link" target="_blank">
-          <div class="social-platform">YouTube</div>
-          <div class="social-handle">@AIAuthorAlchemist</div>
-        </a>
-        <a href="https://tiktok.com/@AIAuthorAlchemist" class="social-link" target="_blank">
-          <div class="social-platform">TikTok</div>
-          <div class="social-handle">@AIAuthorAlchemist</div>
-        </a>
-        <a href="https://instagram.com/AIAuthorAlchemist" class="social-link" target="_blank">
-          <div class="social-platform">Instagram</div>
-          <div class="social-handle">@AIAuthorAlchemist</div>
-        </a>
-        <a href="https://twitter.com/AIAuthorAlchemy" class="social-link" target="_blank">
-          <div class="social-platform">Twitter</div>
-          <div class="social-handle">@AIAuthorAlchemy</div>
-        </a>
-        <a href="mailto:contact@aiauthoralchemist.com" class="social-link">
-          <div class="social-platform">Email</div>
-          <div class="social-handle">contact@aiauthoralchemist.com</div>
-        </a>
-      </div>
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-4 glow-text reveal">Portfolio</h2>
+            <p class="text-center text-gray-400 mb-16 reveal" style="transition-delay: 0.2s;">
+                Explore my creative works and transformative projects
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Creative Momentum eBook -->
+                <div class="card glow-box stagger-item">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-emerald-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="book-open" width="32" height="32"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-2">Creative Momentum</h3>
+                            <p class="text-teal-400">eBook Guide</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-6">
+                        A comprehensive guide to maintaining creative flow and productivity. Learn proven strategies to overcome blocks, harness AI tools, and transform your creative process.
+                    </p>
+                    <div class="flex flex-wrap gap-3 mb-6">
+                        <span class="px-3 py-1 bg-teal-500/20 text-teal-400 rounded-full text-sm">Productivity</span>
+                        <span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-sm">AI Tools</span>
+                        <span class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-sm">Creativity</span>
+                    </div>
+                    <a href="#" class="btn-primary">Download Now</a>
+                </div>
+
+                <!-- Arukaiel Novel -->
+                <div class="card glow-box stagger-item" style="transition-delay: 0.2s;">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="sparkles" width="32" height="32"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-2">Arukaiel</h3>
+                            <p class="text-purple-400">Sci-Fi Novel</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-6">
+                        An epic journey through dimensions where technology and magic intertwine. Follow the protagonist as they navigate a universe where AI consciousness meets ancient mysticism.
+                    </p>
+                    <div class="flex flex-wrap gap-3 mb-6">
+                        <span class="px-3 py-1 bg-purple-500/20 text-purple-400 rounded-full text-sm">Sci-Fi</span>
+                        <span class="px-3 py-1 bg-pink-500/20 text-pink-400 rounded-full text-sm">Fantasy</span>
+                        <span class="px-3 py-1 bg-indigo-500/20 text-indigo-400 rounded-full text-sm">Adventure</span>
+                    </div>
+                    <a href="#" class="btn-primary">Read Preview</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider">
+        <div class="divider-pattern"></div>
     </div>
-  </section>
 
-  <!-- Contact Section -->
-  <section id="contact">
-    <div class="section-container">
-      <h2 class="section-title">Get In Touch</h2>
-      <div class="contact-container">
-        <p class="contact-intro">
-          Have a project in mind or want to learn more about our services? Drop us a message!
-        </p>
-        <form class="contact-form" id="contactForm">
-          <div class="form-group">
-            <label class="form-label" for="name">Name</label>
-            <input type="text" id="name" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="email">Email</label>
-            <input type="email" id="email" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="message">Message</label>
-            <textarea id="message" class="form-control" required></textarea>
-          </div>
-          <button type="submit" class="submit-button">Send Message</button>
-          <div class="form-message" id="formMessage"></div>
-        </form>
-      </div>
+    <!-- Products Section -->
+    <section id="products" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-4 glow-text reveal">Products & Tools</h2>
+            <p class="text-center text-gray-400 mb-16 reveal" style="transition-delay: 0.2s;">
+                Discover tools and resources to enhance your creative journey
+            </p>
+
+            <!-- Interactive Quizzes -->
+            <div class="mb-16">
+                <h3 class="text-3xl font-bold mb-8 text-center reveal-left">Interactive Quizzes</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <a href="creative-momentum-quiz.html" class="card glow-box stagger-item text-center no-underline">
+                        <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="zap" width="32" height="32"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Creative Momentum</h4>
+                        <p class="text-gray-400 text-sm">Discover your creative flow state</p>
+                    </a>
+
+                    <a href="ai-tools-quiz.html" class="card glow-box stagger-item text-center no-underline" style="transition-delay: 0.1s;">
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="cpu" width="32" height="32"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">AI Tools Matcher</h4>
+                        <p class="text-gray-400 text-sm">Find your perfect AI toolkit</p>
+                    </a>
+
+                    <a href="genre-matcher-quiz.html" class="card glow-box stagger-item text-center no-underline" style="transition-delay: 0.2s;">
+                        <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="book" width="32" height="32"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Genre Matcher</h4>
+                        <p class="text-gray-400 text-sm">Discover your writing genre</p>
+                    </a>
+
+                    <a href="workflow-optimizer-quiz.html" class="card glow-box stagger-item text-center no-underline" style="transition-delay: 0.3s;">
+                        <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="settings" width="32" height="32"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Workflow Optimizer</h4>
+                        <p class="text-gray-400 text-sm">Optimize your creative process</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Affiliate Products -->
+            <div>
+                <h3 class="text-3xl font-bold mb-8 text-center reveal-right">Recommended Tools</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="card glow-box stagger-item">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-teal-500 to-emerald-500 rounded-lg flex items-center justify-center">
+                                <i data-lucide="pen-tool" width="24" height="24"></i>
+                            </div>
+                            <h4 class="text-xl font-bold">AI Writing Assistant</h4>
+                        </div>
+                        <p class="text-gray-400 mb-4">
+                            Professional-grade AI tool for content creation and editing
+                        </p>
+                        <a href="#" class="btn-secondary">Learn More</a>
+                    </div>
+
+                    <div class="card glow-box stagger-item" style="transition-delay: 0.1s;">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
+                                <i data-lucide="image" width="24" height="24"></i>
+                            </div>
+                            <h4 class="text-xl font-bold">Visual Creator Pro</h4>
+                        </div>
+                        <p class="text-gray-400 mb-4">
+                            Generate stunning visuals for your creative projects
+                        </p>
+                        <a href="#" class="btn-secondary">Learn More</a>
+                    </div>
+
+                    <div class="card glow-box stagger-item" style="transition-delay: 0.2s;">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+                                <i data-lucide="brain" width="24" height="24"></i>
+                            </div>
+                            <h4 class="text-xl font-bold">Idea Generator</h4>
+                        </div>
+                        <p class="text-gray-400 mb-4">
+                            Never run out of creative ideas with AI-powered brainstorming
+                        </p>
+                        <a href="#" class="btn-secondary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider">
+        <div class="divider-pattern"></div>
     </div>
-  </section>
 
-  <script>
-    // Navigation functionality
-    const navLinks = document.querySelectorAll('.nav-link');
-    const sections = document.querySelectorAll('section');
-    const ctaButton = document.querySelector('.cta-button');
+    <!-- Coming Soon Section -->
+    <section id="coming-soon" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-4 glow-text reveal">Coming Soon</h2>
+            <p class="text-center text-gray-400 mb-16 reveal" style="transition-delay: 0.2s;">
+                Exciting projects and exclusive content on the horizon
+            </p>
 
-    function showSection(sectionId) {
-      // Hide all sections
-      sections.forEach(section => {
-        section.classList.remove('active');
-      });
+            <!-- Upcoming Projects -->
+            <div class="mb-16">
+                <h3 class="text-3xl font-bold mb-8 text-center reveal-scale">Upcoming Projects</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="card glow-box stagger-item">
+                        <div class="flex items-start gap-4 mb-4">
+                            <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-emerald-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="rocket" width="32" height="32"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-2xl font-bold mb-2">AI Masterclass Series</h4>
+                                <p class="text-teal-400">Q1 2025</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300">
+                            Comprehensive video course on leveraging AI for creative writing, content creation, and digital storytelling.
+                        </p>
+                    </div>
 
-      // Remove active class from all nav links
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-      });
+                    <div class="card glow-box stagger-item" style="transition-delay: 0.2s;">
+                        <div class="flex items-start gap-4 mb-4">
+                            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="users" width="32" height="32"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-2xl font-bold mb-2">Creator Community</h4>
+                                <p class="text-purple-400">Q2 2025</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300">
+                            Exclusive community platform for AI-powered creators to connect, collaborate, and grow together.
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-      // Show selected section
-      const targetSection = document.getElementById(sectionId);
-      if (targetSection) {
-        targetSection.classList.add('active');
-      }
+            <!-- Subscription Tiers -->
+            <div class="mb-16">
+                <h3 class="text-3xl font-bold mb-8 text-center reveal-scale">Subscription Tiers</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="tier-card stagger-item">
+                        <h4 class="text-2xl font-bold mb-2">Free Explorer</h4>
+                        <div class="text-4xl font-bold mb-4 glow-text">$0<span class="text-lg text-gray-400">/mo</span></div>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check" class="text-teal-400" width="20" height="20"></i>
+                                <span>Access to free quizzes</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check" class="text-teal-400" width="20" height="20"></i>
+                                <span>Monthly newsletter</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check" class="text-teal-400" width="20" height="20"></i>
+                                <span>Community access</span>
+                            </li>
+                        </ul>
+                        <button class="btn-secondary w-full">Get Started</button>
+                    </div>
 
-      // Add active class to corresponding nav link
-      const activeLink = document.querySelector(`[data-section="${sectionId}"]`);
-      if (activeLink && activeLink.classList.contains('nav-link')) {
-        activeLink.classList.add('active');
-      }
+                    <div class="tier-card featured stagger-item" style="transition-delay: 0.1s;">
+                        <div class="absolute top-0 right-0 bg-emerald-500 text-white px-4 py-1 rounded-bl-lg text-sm font-bold">
+                            POPULAR
+                        </div>
+                        <h4 class="text-2xl font-bold mb-2">Creative Pro</h4>
+                        <div class="text-4xl font-bold mb-4 glow-text">$19<span class="text-lg text-gray-400">/mo</span></div>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check" class="text-emerald-400" width="20" height="20"></i>
+                                <span>All Free features</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check" class="text-emerald-400" width="20" height="20"></i>
+                                <span>Premium eBooks & guides</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check" class="text-emerald-400" width="20" height="20"></i>
+                                <span>Exclusive webinars</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check" class="text-emerald-400" width="20" height="20"></i>
+                                <span>AI tool templates</span>
+                            </li>
+                        </ul>
+                        <button class="btn-primary w-full">Subscribe Now</button>
+                    </div>
 
-      // Scroll to top
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+                    <div class="tier-card stagger-item" style="transition-delay: 0.2s;">
+                        <h4 class="text-2xl font-bold mb-2">Master Alchemist</h4>
+                        <div class="text-4xl font-bold mb-4 glow-text">$49<span class="text-lg text-gray-400">/mo</span></div>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check" class="text-teal-400" width="20" height="20"></i>
+                                <span>All Pro features</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check" class="text-teal-400" width="20" height="20"></i>
+                                <span>1-on-1 coaching sessions</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check" class="text-teal-400" width="20" height="20"></i>
+                                <span>Custom AI workflows</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check" class="text-teal-400" width="20" height="20"></i>
+                                <span>Priority support</span>
+                            </li>
+                        </ul>
+                        <button class="btn-secondary w-full">Contact Us</button>
+                    </div>
+                </div>
+            </div>
 
-    // Add click event to nav links
-    navLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const sectionId = link.getAttribute('data-section');
-        showSection(sectionId);
-      });
-    });
+            <!-- Email Signup -->
+            <div class="max-w-2xl mx-auto">
+                <div class="card glow-box text-center reveal-scale">
+                    <h3 class="text-3xl font-bold mb-4">Stay Updated</h3>
+                    <p class="text-gray-400 mb-6">
+                        Join our newsletter to get early access to new projects, exclusive content, and special offers.
+                    </p>
+                    <form class="flex flex-col sm:flex-row gap-4">
+                        <input type="email" placeholder="Enter your email" class="form-input flex-1" required>
+                        <button type="submit" class="btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    // Add click event to CTA button
-    if (ctaButton) {
-      ctaButton.addEventListener('click', () => {
-        showSection('portfolio');
-      });
-    }
+    <!-- Section Divider -->
+    <div class="section-divider">
+        <div class="divider-pattern"></div>
+    </div>
 
-    // Contact form handling
-    const contactForm = document.getElementById('contactForm');
-    const formMessage = document.getElementById('formMessage');
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-4 glow-text reveal">Get In Touch</h2>
+            <p class="text-center text-gray-400 mb-16 reveal" style="transition-delay: 0.2s;">
+                Let's collaborate and create something extraordinary together
+            </p>
 
-    if (contactForm) {
-      contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="reveal-left">
+                    <h3 class="text-2xl font-bold mb-6">Send a Message</h3>
+                    <form class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Name</label>
+                            <input type="text" class="form-input" placeholder="Your name" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Email</label>
+                            <input type="email" class="form-input" placeholder="your@email.com" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Subject</label>
+                            <input type="text" class="form-input" placeholder="What's this about?" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Message</label>
+                            <textarea class="form-input" rows="5" placeholder="Your message..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary w-full">Send Message</button>
+                    </form>
+                </div>
 
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const message = document.getElementById('message').value;
+                <!-- Contact Info & Social -->
+                <div class="reveal-right">
+                    <h3 class="text-2xl font-bold mb-6">Connect With Me</h3>
+                    
+                    <div class="space-y-6 mb-8">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-teal-500 to-emerald-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="mail" width="24" height="24"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Email</h4>
+                                <p class="text-gray-400">contact@aiauthoralchemist.com</p>
+                            </div>
+                        </div>
 
-        // Simple validation
-        if (name && email && message) {
-          // Show success message
-          formMessage.textContent = 'Thank you for your message! We\'ll get back to you soon.';
-          formMessage.className = 'form-message success';
-          formMessage.style.display = 'block';
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="map-pin" width="24" height="24"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Location</h4>
+                                <p class="text-gray-400">Digital Realm, Worldwide</p>
+                            </div>
+                        </div>
+                    </div>
 
-          // Reset form
-          contactForm.reset();
+                    <h4 class="font-bold mb-4">Follow Me</h4>
+                    <div class="flex gap-4 mb-8">
+                        <a href="https://twitter.com/aiauthoralchemist" target="_blank" class="social-link">
+                            <i data-lucide="twitter" width="20" height="20"></i>
+                        </a>
+                        <a href="https://instagram.com/aiauthoralchemist" target="_blank" class="social-link">
+                            <i data-lucide="instagram" width="20" height="20"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/aiauthoralchemist" target="_blank" class="social-link">
+                            <i data-lucide="linkedin" width="20" height="20"></i>
+                        </a>
+                        <a href="https://youtube.com/@aiauthoralchemist" target="_blank" class="social-link">
+                            <i data-lucide="youtube" width="20" height="20"></i>
+                        </a>
+                        <a href="https://github.com/aiauthoralchemist" target="_blank" class="social-link">
+                            <i data-lucide="github" width="20" height="20"></i>
+                        </a>
+                    </div>
 
-          // Hide message after 5 seconds
-          setTimeout(() => {
-            formMessage.style.display = 'none';
-          }, 5000);
-        } else {
-          // Show error message
-          formMessage.textContent = 'Please fill in all fields.';
-          formMessage.className = 'form-message error';
-          formMessage.style.display = 'block';
+                    <div class="card glow-box">
+                        <h4 class="font-bold mb-2">About AIAuthorAlchemist</h4>
+                        <p class="text-gray-400">
+                            I'm a creative technologist passionate about the intersection of AI and storytelling. 
+                            Through my work, I help creators harness the power of artificial intelligence to 
+                            amplify their creative vision and bring extraordinary ideas to life.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-teal-500/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-400">
+                &copy; 2025 AIAuthorAlchemist. All rights reserved. Crafted with AI & creativity.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i data-lucide="arrow-up" width="24" height="24"></i>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Scroll Progress Bar
+        const scrollProgress = document.getElementById('scrollProgress');
+        window.addEventListener('scroll', () => {
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (window.scrollY / windowHeight) * 100;
+            scrollProgress.style.transform = `scaleX(${scrolled / 100})`;
+        });
+
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Active section highlighting
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        function highlightNavigation() {
+            const scrollY = window.pageYOffset;
+
+            sections.forEach(section => {
+                const sectionHeight = section.offsetHeight;
+                const sectionTop = section.offsetTop - 100;
+                const sectionId = section.getAttribute('id');
+
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
         }
-      });
-    }
-  </script>
+
+        window.addEventListener('scroll', highlightNavigation);
+
+        // Back to Top Button
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all reveal elements
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Stagger animation observer
+        const staggerObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('active');
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stagger-item').forEach(el => {
+            staggerObserver.observe(el);
+        });
+
+        // Parallax effect
+        const parallaxElements = document.querySelectorAll('.parallax');
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            parallaxElements.forEach(el => {
+                const speed = el.dataset.speed || 0.5;
+                el.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        const offsetTop = target.offsetTop - 70;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Form submission handling
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you for your message! We will get back to you soon.');
+                form.reset();
+            });
+        });
+
+        // Glowing effect intensification on scroll
+        window.addEventListener('scroll', () => {
+            const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            const intensity = Math.min(scrollPercentage / 100, 1);
+            
+            document.querySelectorAll('.glow-text').forEach(el => {
+                const baseGlow = 10;
+                const maxGlow = 30;
+                const currentGlow = baseGlow + (maxGlow - baseGlow) * intensity;
+                el.style.textShadow = `
+                    0 0 ${currentGlow}px rgba(20, 184, 166, ${0.5 + intensity * 0.3}),
+                    0 0 ${currentGlow * 2}px rgba(20, 184, 166, ${0.3 + intensity * 0.2}),
+                    0 0 ${currentGlow * 3}px rgba(20, 184, 166, ${0.2 + intensity * 0.1})
+                `;
+            });
+        });
+
+        // Sacred geometry animation
+        const geometryCircles = document.querySelectorAll('.geometry-circle');
+        let mouseX = 0;
+        let mouseY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateGeometry() {
+            geometryCircles.forEach((circle, index) => {
+                const rect = circle.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                
+                const deltaX = (mouseX - centerX) * 0.02;
+                const deltaY = (mouseY - centerY) * 0.02;
+                
+                circle.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+            });
+            
+            requestAnimationFrame(animateGeometry);
+        }
+
+        animateGeometry();
+    </script>
 </body>
 </html>
