@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creator Performance & Monetization Quiz | AIAuthorAlchemist</title>
+    <title>Creator Monetization & Performance Optimization Quiz | AIAuthorAlchemist</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -61,41 +61,37 @@
         header {
             text-align: center;
             margin-bottom: 40px;
-            animation: fadeInDown 0.8s ease;
+            animation: fadeInDown 0.8s ease-out;
         }
 
         h1 {
             font-family: var(--font-header);
-            font-size: 2.5rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--color-teal) 0%, var(--color-purple) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 2.5em;
+            color: var(--color-green);
+            text-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
             margin-bottom: 10px;
-            text-shadow: 0 0 30px rgba(20, 184, 166, 0.3);
+            letter-spacing: 2px;
         }
 
-        .subtitle {
-            font-size: 1.1rem;
-            color: var(--color-text);
+        .tagline {
+            color: var(--color-teal);
+            font-size: 1.1em;
             font-weight: 300;
         }
 
         .quiz-card {
-            background: rgba(36, 36, 36, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(20, 184, 166, 0.2);
+            background: rgba(36, 36, 36, 0.95);
             border-radius: 20px;
             padding: 40px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(20, 184, 166, 0.1);
-            animation: fadeIn 0.6s ease;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(20, 184, 166, 0.2);
+            border: 2px solid rgba(20, 184, 166, 0.3);
+            animation: fadeIn 1s ease-out;
         }
 
         .progress-bar {
             width: 100%;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.1);
+            height: 8px;
+            background: rgba(20, 184, 166, 0.2);
             border-radius: 10px;
             margin-bottom: 30px;
             overflow: hidden;
@@ -103,9 +99,9 @@
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, var(--color-teal) 0%, var(--color-purple) 100%);
+            background: linear-gradient(90deg, var(--color-teal), var(--color-green));
             width: 0%;
-            transition: width 0.4s ease;
+            transition: width 0.5s ease;
             box-shadow: 0 0 10px var(--color-teal);
         }
 
@@ -115,22 +111,22 @@
 
         .question-container.active {
             display: block;
-            animation: slideInRight 0.5s ease;
-        }
-
-        .question-text {
-            font-family: var(--font-header);
-            font-size: 1.5rem;
-            color: var(--color-text-bright);
-            margin-bottom: 30px;
-            line-height: 1.4;
+            animation: slideIn 0.5s ease-out;
         }
 
         .question-number {
             color: var(--color-teal);
-            font-size: 0.9rem;
-            margin-bottom: 10px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
             display: block;
+        }
+
+        h2 {
+            font-family: var(--font-header);
+            color: var(--color-text-bright);
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            line-height: 1.4;
         }
 
         .options {
@@ -140,14 +136,12 @@
         }
 
         .option {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(20, 184, 166, 0.05);
             border: 2px solid rgba(20, 184, 166, 0.3);
             border-radius: 12px;
             padding: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 1rem;
-            color: var(--color-text);
             position: relative;
             overflow: hidden;
         }
@@ -159,65 +153,128 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(20, 184, 166, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(20, 184, 166, 0.2), transparent);
             transition: left 0.5s ease;
         }
 
         .option:hover {
-            border-color: var(--color-teal);
             background: rgba(20, 184, 166, 0.1);
+            border-color: var(--color-teal);
             transform: translateX(5px);
-            box-shadow: 0 5px 20px rgba(20, 184, 166, 0.2);
+            box-shadow: 0 0 20px rgba(20, 184, 166, 0.3);
         }
 
         .option:hover::before {
             left: 100%;
         }
 
-        .option.selected {
-            background: rgba(20, 184, 166, 0.2);
-            border-color: var(--color-teal);
-            box-shadow: 0 0 20px rgba(20, 184, 166, 0.3);
+        .option-label {
+            font-family: var(--font-header);
+            color: var(--color-teal);
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 5px;
         }
 
-        .email-form {
+        .option-description {
+            color: var(--color-text);
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .email-capture {
             display: none;
         }
 
-        .email-form.active {
+        .email-capture.active {
             display: block;
-            animation: fadeIn 0.6s ease;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .email-capture h2 {
+            text-align: center;
+            color: var(--color-teal);
+            margin-bottom: 20px;
         }
 
         .form-group {
             margin-bottom: 20px;
         }
 
-        .form-label {
+        .form-group label {
             display: block;
-            font-size: 0.9rem;
-            color: var(--color-teal);
+            color: var(--color-text);
             margin-bottom: 8px;
-            font-family: var(--font-header);
+            font-size: 0.95em;
         }
 
-        .form-input {
+        .form-group input {
             width: 100%;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.05);
+            padding: 12px;
+            background: rgba(20, 184, 166, 0.05);
             border: 2px solid rgba(20, 184, 166, 0.3);
-            border-radius: 10px;
+            border-radius: 8px;
             color: var(--color-text-bright);
-            font-size: 1rem;
             font-family: var(--font-body);
+            font-size: 1em;
             transition: all 0.3s ease;
         }
 
-        .form-input:focus {
+        .form-group input:focus {
             outline: none;
             border-color: var(--color-teal);
             background: rgba(20, 184, 166, 0.1);
-            box-shadow: 0 0 15px rgba(20, 184, 166, 0.2);
+            box-shadow: 0 0 15px rgba(20, 184, 166, 0.3);
+        }
+
+        .form-group input:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .opt-out-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(20, 184, 166, 0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(20, 184, 166, 0.2);
+        }
+
+        .opt-out-section label {
+            display: flex;
+            align-items: flex-start;
+            cursor: pointer;
+            color: var(--color-text);
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        .opt-out-section input[type="checkbox"] {
+            margin-right: 10px;
+            margin-top: 2px;
+            accent-color: var(--color-teal);
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--color-teal), var(--color-green));
+            border: none;
+            border-radius: 12px;
+            color: var(--color-bg);
+            font-family: var(--font-header);
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 5px 20px rgba(20, 184, 166, 0.4);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(20, 184, 166, 0.6);
         }
 
         .result-container {
@@ -226,52 +283,53 @@
 
         .result-container.active {
             display: block;
-            animation: fadeIn 0.8s ease;
+            animation: fadeIn 0.8s ease-out;
         }
 
         .result-title {
             font-family: var(--font-header);
-            font-size: 2rem;
-            color: var(--color-teal);
-            margin-bottom: 15px;
+            font-size: 2em;
+            color: var(--color-green);
             text-align: center;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
         }
 
-        .result-subtitle {
+        .result-description {
             text-align: center;
-            font-size: 1.1rem;
             color: var(--color-text);
             margin-bottom: 40px;
+            font-size: 1.1em;
             line-height: 1.6;
         }
 
         .product-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(20, 184, 166, 0.05);
             border: 2px solid rgba(20, 184, 166, 0.3);
             border-radius: 15px;
             padding: 25px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             transition: all 0.3s ease;
         }
 
         .product-card:hover {
             border-color: var(--color-teal);
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(20, 184, 166, 0.2);
+            box-shadow: 0 10px 30px rgba(20, 184, 166, 0.3);
         }
 
         .product-name {
             font-family: var(--font-header);
-            font-size: 1.3rem;
-            color: var(--color-text-bright);
+            color: var(--color-teal);
+            font-size: 1.4em;
             margin-bottom: 10px;
         }
 
         .product-price {
             color: var(--color-green);
-            font-size: 1.1rem;
-            font-weight: 600;
+            font-size: 1.1em;
             margin-bottom: 15px;
+            font-weight: 600;
         }
 
         .product-description {
@@ -280,70 +338,101 @@
             margin-bottom: 20px;
         }
 
-        .btn {
-            background: linear-gradient(135deg, var(--color-teal) 0%, var(--color-purple) 100%);
+        .product-link {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--color-purple), #6d28d9);
             color: var(--color-text-bright);
-            border: none;
-            padding: 15px 40px;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
+            text-decoration: none;
+            border-radius: 8px;
             font-family: var(--font-header);
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
-            box-shadow: 0 5px 20px rgba(20, 184, 166, 0.3);
-            display: inline-block;
-            text-decoration: none;
-            text-align: center;
+            font-size: 0.9em;
         }
 
-        .btn:hover {
+        .product-link:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(20, 184, 166, 0.5);
+            box-shadow: 0 5px 20px rgba(124, 58, 237, 0.5);
         }
 
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            box-shadow: none;
+        .bonus-section {
+            margin-top: 50px;
+            padding-top: 40px;
+            border-top: 2px solid rgba(20, 184, 166, 0.3);
         }
 
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.15);
+        .bonus-heading {
+            font-family: var(--font-header);
+            font-size: 1.5em;
+            color: var(--color-green);
+            text-align: center;
+            margin-bottom: 30px;
+            line-height: 1.4;
+            text-shadow: 0 0 15px rgba(34, 197, 94, 0.5);
         }
 
-        .btn-block {
+        .ebook-button {
+            display: block;
             width: 100%;
-            margin-top: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 30px rgba(20, 184, 166, 0.3);
+            transition: all 0.4s ease;
+            border: 3px solid var(--color-teal);
+            position: relative;
         }
 
-        .note {
-            background: rgba(124, 58, 237, 0.1);
-            border-left: 3px solid var(--color-purple);
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            color: var(--color-text);
-            margin-top: 20px;
+        .ebook-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(20, 184, 166, 0.2) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .ebook-button:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 40px rgba(20, 184, 166, 0.5), inset 0 0 40px rgba(20, 184, 166, 0.15);
+            border-color: var(--color-green);
+        }
+
+        .ebook-button:hover::before {
+            opacity: 1;
+        }
+
+        .ebook-button img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .ebook-button:hover img {
+            transform: scale(1.05);
         }
 
         footer {
             text-align: center;
             margin-top: 60px;
             padding: 20px;
-            color: var(--color-text);
-            font-size: 0.9rem;
+            color: rgba(196, 196, 196, 0.6);
+            font-size: 0.9em;
         }
 
-        .brand-tagline {
+        .brand-footer {
             color: var(--color-teal);
             font-family: var(--font-header);
             font-weight: 700;
-        }
-
-        .hidden {
-            display: none !important;
+            margin-bottom: 5px;
         }
 
         @keyframes fadeIn {
@@ -358,7 +447,7 @@
         @keyframes fadeInDown {
             from {
                 opacity: 0;
-                transform: translateY(-20px);
+                transform: translateY(-30px);
             }
             to {
                 opacity: 1;
@@ -366,7 +455,7 @@
             }
         }
 
-        @keyframes slideInRight {
+        @keyframes slideIn {
             from {
                 opacity: 0;
                 transform: translateX(30px);
@@ -379,16 +468,19 @@
 
         @media (max-width: 768px) {
             h1 {
-                font-size: 2rem;
+                font-size: 2em;
             }
+
             .quiz-card {
                 padding: 25px;
             }
-            .question-text {
-                font-size: 1.2rem;
+
+            h2 {
+                font-size: 1.5em;
             }
-            .option {
-                padding: 15px;
+
+            .result-title {
+                font-size: 1.6em;
             }
         }
     </style>
@@ -396,431 +488,436 @@
 <body>
     <div class="container">
         <header>
-            <h1>Creator Performance & Monetization Quiz</h1>
-            <p class="subtitle">Discover Your Perfect Growth Tools</p>
+            <h1>Creator Monetization & Performance Optimization Quiz</h1>
+            <p class="tagline">Discover Your Perfect Growth Path</p>
         </header>
 
         <div class="quiz-card">
             <div class="progress-bar">
-                <div class="progress-fill" id="progress"></div>
+                <div class="progress-fill" id="progressBar"></div>
             </div>
 
-            <!-- Question 1: Buying Power -->
+            <!-- Question 1 -->
             <div class="question-container active" id="q1">
                 <span class="question-number">Question 1 of 7</span>
-                <h2 class="question-text">What best describes your current investment comfort level for growing your creator business?</h2>
+                <h2>What best describes your current investment comfort level for growing your creator business?</h2>
                 <div class="options">
-                    <div class="option" data-value="budget" onclick="selectAnswer(1, 'budget', this)">
-                        <strong>I'm bootstrapping</strong> — looking for high-impact tools under $50 that deliver real results
+                    <div class="option" onclick="selectAnswer(1, 'budget')">
+                        <span class="option-label">💰 Bootstrap Mode</span>
+                        <p class="option-description">I'm bootstrapping—looking for affordable wins under $50</p>
                     </div>
-                    <div class="option" data-value="budget" onclick="selectAnswer(1, 'budget', this)">
-                        <strong>I can invest $50-100</strong> — if the system is proven and worth it
+                    <div class="option" onclick="selectAnswer(1, 'mid')">
+                        <span class="option-label">📈 Strategic Investor</span>
+                        <p class="option-description">I can invest $50-$100 if it delivers real results</p>
                     </div>
-                    <div class="option" data-value="premium" onclick="selectAnswer(1, 'premium', this)">
-                        <strong>I'm ready to invest $200-1,600+</strong> — in premium training and coaching to scale faster
+                    <div class="option" onclick="selectAnswer(1, 'premium')">
+                        <span class="option-label">👑 Premium Player</span>
+                        <p class="option-description">Money isn't the issue—I want the best solution, period</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Question 2: Primary Goal -->
+            <!-- Question 2 -->
             <div class="question-container" id="q2">
                 <span class="question-number">Question 2 of 7</span>
-                <h2 class="question-text">What's your primary goal right now?</h2>
+                <h2>What's your main goal right now?</h2>
                 <div class="options">
-                    <div class="option" data-value="traffic" onclick="selectAnswer(2, 'traffic', this)">
-                        Drive more traffic to my offers
+                    <div class="option" onclick="selectAnswer(2, 'products')">
+                        <span class="option-label">📚 Create Products</span>
+                        <p class="option-description">Building digital products and content to sell</p>
                     </div>
-                    <div class="option" data-value="conversions" onclick="selectAnswer(2, 'conversions', this)">
-                        Improve conversions and revenue
+                    <div class="option" onclick="selectAnswer(2, 'traffic')">
+                        <span class="option-label">🚀 Drive Traffic</span>
+                        <p class="option-description">Getting more visibility and audience growth</p>
                     </div>
-                    <div class="option" data-value="products" onclick="selectAnswer(2, 'products', this)">
-                        Create digital products or lead magnets
+                    <div class="option" onclick="selectAnswer(2, 'mindset')">
+                        <span class="option-label">🧠 Optimize Performance</span>
+                        <p class="option-description">Mental clarity, focus, and peak productivity</p>
                     </div>
-                    <div class="option" data-value="scaling" onclick="selectAnswer(2, 'scaling', this)">
-                        Scale my existing business with systems
+                    <div class="option" onclick="selectAnswer(2, 'scale')">
+                        <span class="option-label">⚡ Scale Systems</span>
+                        <p class="option-description">Automating and scaling what already works</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Question 3: Experience Level -->
+            <!-- Question 3 -->
             <div class="question-container" id="q3">
                 <span class="question-number">Question 3 of 7</span>
-                <h2 class="question-text">What's your current experience level in online business?</h2>
+                <h2>What's your current experience level?</h2>
                 <div class="options">
-                    <div class="option" data-value="beginner" onclick="selectAnswer(3, 'beginner', this)">
-                        <strong>Just starting out</strong> — exploring different opportunities
+                    <div class="option" onclick="selectAnswer(3, 'beginner')">
+                        <span class="option-label">🌱 Just Starting</span>
+                        <p class="option-description">New to online business and digital products</p>
                     </div>
-                    <div class="option" data-value="intermediate" onclick="selectAnswer(3, 'intermediate', this)">
-                        <strong>Some experience</strong> — made a few sales but not consistent
+                    <div class="option" onclick="selectAnswer(3, 'intermediate')">
+                        <span class="option-label">📊 Building Momentum</span>
+                        <p class="option-description">Made some sales, ready to grow consistently</p>
                     </div>
-                    <div class="option" data-value="advanced" onclick="selectAnswer(3, 'advanced', this)">
-                        <strong>Experienced</strong> — ready to scale to the next level
+                    <div class="option" onclick="selectAnswer(3, 'advanced')">
+                        <span class="option-label">🎯 Scaling Up</span>
+                        <p class="option-description">Experienced and ready for the next level</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Question 4: Time Commitment -->
+            <!-- Question 4 -->
             <div class="question-container" id="q4">
                 <span class="question-number">Question 4 of 7</span>
-                <h2 class="question-text">How much time can you dedicate to growing your business?</h2>
+                <h2>How much time can you dedicate weekly?</h2>
                 <div class="options">
-                    <div class="option" data-value="parttime" onclick="selectAnswer(4, 'parttime', this)">
-                        <strong>Part-time hustle</strong> — 5-10 hours per week
+                    <div class="option" onclick="selectAnswer(4, 'parttime')">
+                        <span class="option-label">⏰ Part-Time Hustle</span>
+                        <p class="option-description">5-10 hours per week (side project)</p>
                     </div>
-                    <div class="option" data-value="fulltime" onclick="selectAnswer(4, 'fulltime', this)">
-                        <strong>Full-time focus</strong> — 20+ hours per week
+                    <div class="option" onclick="selectAnswer(4, 'fulltime')">
+                        <span class="option-label">💼 Full-Time Focus</span>
+                        <p class="option-description">20+ hours per week (main priority)</p>
                     </div>
-                    <div class="option" data-value="automated" onclick="selectAnswer(4, 'automated', this)">
-                        <strong>Building systems</strong> — want passive/automated income
+                    <div class="option" onclick="selectAnswer(4, 'flexible')">
+                        <span class="option-label">🔄 Flexible Schedule</span>
+                        <p class="option-description">Building systems for passive income</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Question 5: Learning Style -->
+            <!-- Question 5 -->
             <div class="question-container" id="q5">
                 <span class="question-number">Question 5 of 7</span>
-                <h2 class="question-text">What's your preferred learning style?</h2>
+                <h2>What's your biggest current challenge?</h2>
                 <div class="options">
-                    <div class="option" data-value="courses" onclick="selectAnswer(5, 'courses', this)">
-                        <strong>Step-by-step courses</strong> — I like structured training
+                    <div class="option" onclick="selectAnswer(5, 'notraffic')">
+                        <span class="option-label">👥 Getting Seen</span>
+                        <p class="option-description">Need more visibility and audience</p>
                     </div>
-                    <div class="option" data-value="software" onclick="selectAnswer(5, 'software', this)">
-                        <strong>Software tools</strong> — give me the tools, I'll figure it out
+                    <div class="option" onclick="selectAnswer(5, 'noproducts')">
+                        <span class="option-label">📦 Creating Offers</span>
+                        <p class="option-description">Don't have products/services to sell yet</p>
                     </div>
-                    <div class="option" data-value="coaching" onclick="selectAnswer(5, 'coaching', this)">
-                        <strong>Coaching & mentorship</strong> — I want expert guidance
+                    <div class="option" onclick="selectAnswer(5, 'nosystems')">
+                        <span class="option-label">⚙️ Lacking Systems</span>
+                        <p class="option-description">Everything feels manual and time-consuming</p>
+                    </div>
+                    <div class="option" onclick="selectAnswer(5, 'mindset')">
+                        <span class="option-label">🧩 Mental Blocks</span>
+                        <p class="option-description">Mindset, focus, or performance issues</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Question 6: Biggest Challenge -->
+            <!-- Question 6 -->
             <div class="question-container" id="q6">
                 <span class="question-number">Question 6 of 7</span>
-                <h2 class="question-text">What's your biggest challenge right now?</h2>
+                <h2>What learning style works best for you?</h2>
                 <div class="options">
-                    <div class="option" data-value="notraffic" onclick="selectAnswer(6, 'notraffic', this)">
-                        Not enough traffic or visibility
+                    <div class="option" onclick="selectAnswer(6, 'courses')">
+                        <span class="option-label">📚 Structured Courses</span>
+                        <p class="option-description">Step-by-step training programs</p>
                     </div>
-                    <div class="option" data-value="noproducts" onclick="selectAnswer(6, 'noproducts', this)">
-                        Don't have products to sell yet
+                    <div class="option" onclick="selectAnswer(6, 'tools')">
+                        <span class="option-label">🛠️ Software Tools</span>
+                        <p class="option-description">Done-for-you tools and automation</p>
                     </div>
-                    <div class="option" data-value="nosystems" onclick="selectAnswer(6, 'nosystems', this)">
-                        No proven systems or funnels
+                    <div class="option" onclick="selectAnswer(6, 'coaching')">
+                        <span class="option-label">🎓 Coaching & Community</span>
+                        <p class="option-description">Mentorship and expert guidance</p>
                     </div>
-                    <div class="option" data-value="mindset" onclick="selectAnswer(6, 'mindset', this)">
-                        Mindset & mental clarity
+                    <div class="option" onclick="selectAnswer(6, 'audio')">
+                        <span class="option-label">🎧 Audio/Meditation</span>
+                        <p class="option-description">Mindset work and daily practices</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Question 7: Revenue Goal Timeline -->
+            <!-- Question 7 -->
             <div class="question-container" id="q7">
                 <span class="question-number">Question 7 of 7</span>
-                <h2 class="question-text">What's your revenue goal timeframe?</h2>
+                <h2>What's your revenue goal timeframe?</h2>
                 <div class="options">
-                    <div class="option" data-value="30days" onclick="selectAnswer(7, '30days', this)">
-                        <strong>30 days</strong> — I need results fast
+                    <div class="option" onclick="selectAnswer(7, 'immediate')">
+                        <span class="option-label">⚡ 30-60 Days</span>
+                        <p class="option-description">Need results fast</p>
                     </div>
-                    <div class="option" data-value="90days" onclick="selectAnswer(7, '90days', this)">
-                        <strong>90 days</strong> — building momentum steadily
+                    <div class="option" onclick="selectAnswer(7, 'shortterm')">
+                        <span class="option-label">📅 90 Days</span>
+                        <p class="option-description">Building sustainable systems</p>
                     </div>
-                    <div class="option" data-value="longterm" onclick="selectAnswer(7, 'longterm', this)">
-                        <strong>6-12 months</strong> — focused on sustainable growth
-                    </div>
-                </div>
-            </div>
-
-            <!-- Email Capture Form -->
-            <div class="email-form" id="emailForm">
-                <h2 class="question-text">Unlock Your Personalized Results</h2>
-                <p style="color: var(--color-text); margin-bottom: 30px;">Get your customized product recommendations sent straight to your inbox.</p>
-                <form onsubmit="submitEmail(event)">
-                    <div class="form-group">
-                        <label class="form-label">First Name</label>
-                        <input type="text" class="form-input" id="firstName" placeholder="Enter your first name">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Email Address</label>
-                        <input type="email" class="form-input" id="email" placeholder="your.email@example.com">
-                    </div>
-                    <button type="submit" class="btn btn-block">See My Results</button>
-                    
-                    <div style="margin-top: 25px; padding-top: 25px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-                        <label style="display: flex; align-items: start; cursor: pointer; color: var(--color-text); font-size: 0.9rem; line-height: 1.5;">
-                            <input type="checkbox" id="optOut" style="margin-right: 10px; margin-top: 3px; cursor: pointer;" onchange="toggleOptOut()">
-                            <span>I prefer not to provide my name and email. I understand that I will be missing out on any future updates and products that match with my personal goals.</span>
-                        </label>
-                    </div>
-                </form>
-            </div>
-
-            <!-- Result Pages -->
-            <div class="result-container" id="result-budget-beginner-products">
-                <h2 class="result-title">🚀 The Strategic Starter</h2>
-                <p class="result-subtitle">Perfect for beginners building their first digital products and revenue streams</p>
-
-                <div class="product-card">
-                    <h3 class="product-name">Sqribble - 2024 | World's #1 eBook Creator</h3>
-                    <p class="product-price">$31 + Advanced Features</p>
-                    <p class="product-description">Create professional eBooks in 60 seconds with drag-and-drop templates. Perfect for building lead magnets, digital products, and content upgrades. No design skills needed.</p>
-                    <a href="https://257497vcjvdjrq3p-em7ohpt94.hop.clickbank.net" class="btn" target="_blank" rel="noopener noreferrer">Get Sqribble Now</a>
-                </div>
-
-                <div class="product-card">
-                    <h3 class="product-name">Recession Profit Secrets V3</h3>
-                    <p class="product-price">$49</p>
-                    <p class="product-description">Practical e-business strategies for building recession-proof income. Learn affiliate marketing, digital products, and online business fundamentals step-by-step.</p>
-                    <a href="https://312fazq9p5fplhalj5zo0-vle1.hop.clickbank.net" class="btn" target="_blank" rel="noopener noreferrer">Start Learning</a>
-                </div>
-            </div>
-
-            <div class="result-container" id="result-budget-mindset">
-                <h2 class="result-title">🧠 The Peak Performer</h2>
-                <p class="result-subtitle">Optimize your cognitive performance and wealth mindset for maximum productivity</p>
-
-                <div class="product-card">
-                    <h3 class="product-name">The Genius Wave</h3>
-                    <p class="product-price">$49.94</p>
-                    <p class="product-description">Enhance focus, creativity, and mental clarity with 7-minute soundwave sessions. Science-backed cognitive performance optimization for creators who need peak mental energy.</p>
-                    <a href="https://0413a809hxhonf86iknh7xxz83.hop.clickbank.net" class="btn" target="_blank" rel="noopener noreferrer">Unlock Your Focus</a>
-                </div>
-
-                <div class="product-card">
-                    <h3 class="product-name">The Money Wave</h3>
-                    <p class="product-price">$51.00</p>
-                    <p class="product-description">Reprogram limiting money beliefs with neuroplasticity-based training. Combines financial mindset work with proven wealth-building strategies for entrepreneurs.</p>
-                    <a href="https://d0ac5-vip5mjygda1cnt6-271c.hop.clickbank.net" class="btn" target="_blank" rel="noopener noreferrer">Transform Your Mindset</a>
-                </div>
-            </div>
-
-            <div class="result-container" id="result-budget-traffic">
-                <h2 class="result-title">📈 The Growth Hacker</h2>
-                <p class="result-subtitle">Build proven systems for traffic, conversions, and sustainable revenue</p>
-
-                <div class="product-card">
-                    <h3 class="product-name">Recession Profit Secrets V3</h3>
-                    <p class="product-price">$49</p>
-                    <p class="product-description">Master affiliate marketing, funnel building, and traffic generation. Complete system for beginners to start generating revenue in 30-90 days.</p>
-                    <a href="https://312fazq9p5fplhalj5zo0-vle1.hop.clickbank.net" class="btn" target="_blank" rel="noopener noreferrer">Build Your System</a>
-                </div>
-
-                <div class="product-card">
-                    <h3 class="product-name">The Genius Wave</h3>
-                    <p class="product-price">$49.94</p>
-                    <p class="product-description">Stay mentally sharp while building your business. 7-minute daily sessions boost focus and creative problem-solving for entrepreneurs under pressure.</p>
-                    <a href="https://0413a809hxhonf86iknh7xxz83.hop.clickbank.net" class="btn" target="_blank" rel="noopener noreferrer">Optimize Performance</a>
-                </div>
-            </div>
-
-            <div class="result-container" id="result-premium-coaching">
-                <h2 class="result-title">👑 The Elite Entrepreneur</h2>
-                <p class="result-subtitle">Premium coaching and proven systems from 8× ClickBank Platinum sellers</p>
-
-                <div class="product-card">
-                    <h3 class="product-name">Online Success Coaching</h3>
-                    <p class="product-price">Premium Coaching Program</p>
-                    <p class="product-description">Elite coaching from John Thornhill & Randy Smith. Learn to create, launch, and scale profitable digital products using AI automation and proven funnel systems.</p>
-                    <a href="#" class="btn" onclick="alert('This premium program requires vendor approval. We will contact you via email to facilitate access.'); return false;">Request Approval</a>
-                    <div class="note">
-                        <strong>Approval Required:</strong> This is a selective coaching program. John Thornhill's team pre-approves participants to ensure quality and commitment. We'll facilitate your application via the email you provided.
+                    <div class="option" onclick="selectAnswer(7, 'longterm')">
+                        <span class="option-label">🎯 6-12 Months</span>
+                        <p class="option-description">Playing the long game</p>
                     </div>
                 </div>
-
-                <div class="product-card">
-                    <h3 class="product-name">AI Marketers Club</h3>
-                    <p class="product-price">$821</p>
-                    <p class="product-description">John Crestani's flagship affiliate marketing system. Comprehensive training on scaling profitable campaigns using AI tools, automation, and paid traffic strategies.</p>
-                    <a href="https://8739d2-ctyopue8hadd2al8r3n.hop.clickbank.net" class="btn" target="_blank" rel="noopener noreferrer">Join AI Marketers Club</a>
-                </div>
             </div>
 
-            <div class="result-container" id="result-premium-scaling">
-                <h2 class="result-title">🚀 The Automation Architect</h2>
-                <p class="result-subtitle">Scale faster with AI automation and proven affiliate marketing systems</p>
-
-                <div class="product-card">
-                    <h3 class="product-name">AI Marketers Club</h3>
-                    <p class="product-price">$821</p>
-                    <p class="product-description">Master affiliate marketing at scale with John Crestani's proven system. Learn paid traffic, AI automation, and funnel optimization from a verified expert.</p>
-                    <a href="https://8739d2-ctyopue8hadd2al8r3n.hop.clickbank.net" class="btn" target="_blank" rel="noopener noreferrer">Scale Your Income</a>
+            <!-- Email Capture -->
+            <div class="email-capture" id="emailCapture">
+                <h2>📧 Unlock Your Personalized Results</h2>
+                <div class="form-group">
+                    <label for="userName">Your Name</label>
+                    <input type="text" id="userName" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="userEmail">Your Email</label>
+                    <input type="email" id="userEmail" name="email" placeholder="Enter your email" required>
                 </div>
 
-                <div class="product-card">
-                    <h3 class="product-name">Sqribble - eBook Creator</h3>
-                    <p class="product-price">$31 + Advanced Features</p>
-                    <p class="product-description">Build lead magnets and digital products at scale. Create unlimited eBooks with professional templates to grow your email list and revenue streams.</p>
-                    <a href="https://257497vcjvdjrq3p-em7ohpt94.hop.clickbank.net" class="btn" target="_blank" rel="noopener noreferrer">Create Digital Products</a>
+                <div class="opt-out-section">
+                    <label>
+                        <input type="checkbox" id="optOut" name="optOut">
+                        <span>I Prefer Not To Provide My Name and Email. I Understand That I Will Be Missing Out On Any Future Updates and Products That Match With My Personal Goals etc.</span>
+                    </label>
                 </div>
+
+                <button class="submit-btn" onclick="showResults()">Show My Results</button>
             </div>
 
-            <div class="result-container" id="result-budget-comprehensive">
-                <h2 class="result-title">💼 The Complete Package</h2>
-                <p class="result-subtitle">Comprehensive toolkit for creators ready to build a real business</p>
-
-                <div class="product-card">
-                    <h3 class="product-name">Recession Profit Secrets V3</h3>
-                    <p class="product-price">$49</p>
-                    <p class="product-description">Foundation training for affiliate marketing and online business. Perfect starting point for learning proven revenue-generating strategies.</p>
-                    <a href="https://312fazq9p5fplhalj5zo0-vle1.hop.clickbank.net" class="btn" target="_blank" rel="noopener noreferrer">Start Your Journey</a>
-                </div>
-
-                <div class="product-card">
-                    <h3 class="product-name">Sqribble - eBook Creator</h3>
-                    <p class="product-price">$31 + Advanced Features</p>
-                    <p class="product-description">Create professional lead magnets to build your email list. Essential tool for content creators and digital entrepreneurs.</p>
-                    <a href="https://257497vcjvdjrq3p-em7ohpt94.hop.clickbank.net" class="btn" target="_blank" rel="noopener noreferrer">Build Your List</a>
-                </div>
-
-                <div class="product-card">
-                    <h3 class="product-name">The Genius Wave</h3>
-                    <p class="product-price">$49.94</p>
-                    <p class="product-description">Maintain peak mental performance while building your business. 7-minute daily cognitive optimization sessions.</p>
-                    <a href="https://0413a809hxhonf86iknh7xxz83.hop.clickbank.net" class="btn" target="_blank" rel="noopener noreferrer">Boost Your Focus</a>
-                </div>
-            </div>
+            <!-- Results will be dynamically inserted here -->
+            <div id="resultsContainer"></div>
         </div>
 
         <footer>
-            <p class="brand-tagline">AIAuthorAlchemist</p>
+            <p class="brand-footer">AIAuthorAlchemist</p>
             <p>Follow the Evolution</p>
         </footer>
     </div>
 
     <script>
-        const quizData = {
-            tier: null,
-            answers: {}
-        };
-
+        const answers = {};
         let currentQuestion = 1;
         const totalQuestions = 7;
 
-        function updateProgress() {
-            const progress = (currentQuestion / totalQuestions) * 100;
-            document.getElementById('progress').style.width = progress + '%';
-        }
-
-        function selectAnswer(questionNum, value, element) {
-            // Store answer
-            quizData.answers['q' + questionNum] = value;
-
-            // Handle Q1 routing
-            if (questionNum === 1) {
-                quizData.tier = value; // 'budget' or 'premium'
-            }
-
-            // Visual feedback
-            const options = element.parentElement.querySelectorAll('.option');
-            options.forEach(opt => opt.classList.remove('selected'));
-            element.classList.add('selected');
-
-            // Auto-advance after short delay
-            setTimeout(() => {
-                nextQuestion(questionNum);
-            }, 400);
-        }
-
-        function nextQuestion(current) {
-            const currentQ = document.getElementById('q' + current);
-            currentQ.classList.remove('active');
-
-            if (current < totalQuestions) {
-                currentQuestion = current + 1;
-                const nextQ = document.getElementById('q' + currentQuestion);
-                nextQ.classList.add('active');
-                updateProgress();
-            } else {
-                // Show email form
-                document.getElementById('emailForm').classList.add('active');
-                updateProgress();
-            }
-        }
-
-        function toggleOptOut() {
-            const optOut = document.getElementById('optOut');
-            const firstName = document.getElementById('firstName');
-            const email = document.getElementById('email');
+        function selectAnswer(questionNum, value) {
+            answers[`q${questionNum}`] = value;
             
-            if (optOut.checked) {
-                firstName.required = false;
-                email.required = false;
-                firstName.disabled = true;
-                email.disabled = true;
-                firstName.style.opacity = '0.5';
-                email.style.opacity = '0.5';
+            // Update progress
+            const progress = (questionNum / totalQuestions) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+
+            if (questionNum < totalQuestions) {
+                // Move to next question
+                document.getElementById(`q${questionNum}`).classList.remove('active');
+                document.getElementById(`q${questionNum + 1}`).classList.add('active');
+                currentQuestion = questionNum + 1;
             } else {
-                firstName.required = true;
-                email.required = true;
-                firstName.disabled = false;
-                email.disabled = false;
-                firstName.style.opacity = '1';
-                email.style.opacity = '1';
-            }
-        }
-
-        function submitEmail(event) {
-            event.preventDefault();
-
-            const optOut = document.getElementById('optOut').checked;
-            const firstName = document.getElementById('firstName').value;
-            const email = document.getElementById('email').value;
-
-            if (!optOut && (!firstName || !email)) {
-                alert('Please enter your name and email, or check the opt-out box to proceed.');
-                return;
+                // Show email capture
+                document.getElementById(`q${questionNum}`).classList.remove('active');
+                document.getElementById('emailCapture').classList.add('active');
             }
 
-            // Store user info (in production, send to backend/email service)
-            quizData.firstName = optOut ? 'Anonymous' : firstName;
-            quizData.email = optOut ? 'opted-out' : email;
-            quizData.optedOut = optOut;
-
-            // Hide email form
-            document.getElementById('emailForm').classList.remove('active');
-
-            // Show appropriate result
-            showResult();
-        }
-
-        function showResult() {
-            const tier = quizData.tier;
-            const goal = quizData.answers.q2;
-            const challenge = quizData.answers.q6;
-            const style = quizData.answers.q5;
-
-            let resultId;
-
-            if (tier === 'premium') {
-                // Premium tier results
-                if (style === 'coaching') {
-                    resultId = 'result-premium-coaching';
-                } else {
-                    resultId = 'result-premium-scaling';
-                }
-            } else {
-                // Budget tier results
-                if (goal === 'products' || challenge === 'noproducts') {
-                    resultId = 'result-budget-beginner-products';
-                } else if (challenge === 'mindset') {
-                    resultId = 'result-budget-mindset';
-                } else if (goal === 'traffic' || challenge === 'notraffic') {
-                    resultId = 'result-budget-traffic';
-                } else {
-                    resultId = 'result-budget-comprehensive';
-                }
-            }
-
-            document.getElementById(resultId).classList.add('active');
-
-            // Open creative-momentum-download.html in new tab
-            window.open('creative-momentum-download.html', '_blank');
-
-            // Scroll to top of results
+            // Smooth scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Initialize
-        updateProgress();
+        // Handle opt-out checkbox
+        document.getElementById('optOut').addEventListener('change', function() {
+            const nameInput = document.getElementById('userName');
+            const emailInput = document.getElementById('userEmail');
+
+            if (this.checked) {
+                nameInput.disabled = true;
+                emailInput.disabled = true;
+                nameInput.required = false;
+                emailInput.required = false;
+                nameInput.style.opacity = '0.4';
+                emailInput.style.opacity = '0.4';
+            } else {
+                nameInput.disabled = false;
+                emailInput.disabled = false;
+                nameInput.required = true;
+                emailInput.required = true;
+                nameInput.style.opacity = '1';
+                emailInput.style.opacity = '1';
+            }
+        });
+
+        function showResults() {
+            const optOut = document.getElementById('optOut').checked;
+
+            if (!optOut) {
+                const name = document.getElementById('userName').value.trim();
+                const email = document.getElementById('userEmail').value.trim();
+                
+                if (!name || !email) {
+                    alert('Please enter your name and email, or check the opt-out box.');
+                    return;
+                }
+                
+                console.log('User submitted:', { name, email });
+            } else {
+                console.log('User opted out');
+            }
+
+            // Hide email capture
+            document.getElementById('emailCapture').classList.remove('active');
+
+            // Determine result based on answers
+            const tier = answers.q1; // budget, mid, or premium
+            const goal = answers.q2; // products, traffic, mindset, scale
+            const challenge = answers.q5; // notraffic, noproducts, nosystems, mindset
+            const learning = answers.q6; // courses, tools, coaching, audio
+
+            let resultHTML = '';
+
+            // Budget Tier Results
+            if (tier === 'budget' || tier === 'mid') {
+                if (challenge === 'mindset' || learning === 'audio') {
+                    // Mindset Focus
+                    resultHTML = `
+                        <div class="result-container active">
+                            <h2 class="result-title">🧠 The Peak Performer</h2>
+                            <p class="result-description">Optimize your cognitive performance and wealth mindset for maximum productivity</p>
+
+                            <div class="product-card">
+                                <h3 class="product-name">The Genius Wave</h3>
+                                <p class="product-price">$49.94</p>
+                                <p class="product-description">Enhance focus, creativity, and mental clarity with 7-minute soundwave sessions. Science-backed cognitive performance optimization for creators who need peak mental energy.</p>
+                                <a href="https://0413a809hxhonf86iknh7xxz83.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Unlock Your Focus</a>
+                            </div>
+
+                            <div class="product-card">
+                                <h3 class="product-name">The Money Wave</h3>
+                                <p class="product-price">$51.00</p>
+                                <p class="product-description">Reprogram limiting money beliefs with neuroplasticity-based training. Combines financial mindset work with proven wealth-building strategies for entrepreneurs.</p>
+                                <a href="https://d0ac5-vip5mjygda1cnt6-271c.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Transform Your Mindset</a>
+                            </div>
+
+                            <div class="bonus-section">
+                                <h1 class="bonus-heading">ALSO Click Here To Get Your Free Copy of the "Creative Momentum" eBook, A $9.99 Value!</h1>
+                                <a href="creative-momentum-download.html" class="ebook-button">
+                                    <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/7f8234d5-bb4f-4476-b576-b5194512f882" alt="Creative Momentum eBook - Free Download">
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                } else if (goal === 'products' || challenge === 'noproducts' || learning === 'tools') {
+                    // Product Creation Focus
+                    resultHTML = `
+                        <div class="result-container active">
+                            <h2 class="result-title">📚 The Product Creator</h2>
+                            <p class="result-description">Perfect for building digital products and content creation systems</p>
+
+                            <div class="product-card">
+                                <h3 class="product-name">Sqribble - 2024 | World's #1 eBook Creator</h3>
+                                <p class="product-price">$31 + Advanced Features</p>
+                                <p class="product-description">Create professional eBooks in 60 seconds with drag-and-drop templates. Perfect for building lead magnets, digital products, and content upgrades. No design skills needed.</p>
+                                <a href="https://257497vcjvdjrq3p-em7ohpt94.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Get Sqribble Now</a>
+                            </div>
+
+                            <div class="product-card">
+                                <h3 class="product-name">Recession Profit Secrets V3</h3>
+                                <p class="product-price">$49</p>
+                                <p class="product-description">Practical e-business strategies for building recession-proof income. Learn affiliate marketing, digital products, and online business fundamentals step-by-step.</p>
+                                <a href="https://312fazq9p5fplhalj5zo0-vle1.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Start Learning</a>
+                            </div>
+
+                            <div class="bonus-section">
+                                <h1 class="bonus-heading">ALSO Click Here To Get Your Free Copy of the "Creative Momentum" eBook, A $9.99 Value!</h1>
+                                <a href="creative-momentum-download.html" class="ebook-button">
+                                    <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/7f8234d5-bb4f-4476-b576-b5194512f882" alt="Creative Momentum eBook - Free Download">
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    // Traffic/Systems Focus
+                    resultHTML = `
+                        <div class="result-container active">
+                            <h2 class="result-title">📈 The Growth Hacker</h2>
+                            <p class="result-description">Build proven systems for traffic, conversions, and sustainable revenue</p>
+
+                            <div class="product-card">
+                                <h3 class="product-name">Recession Profit Secrets V3</h3>
+                                <p class="product-price">$49</p>
+                                <p class="product-description">Master affiliate marketing, funnel building, and traffic generation. Complete system for generating revenue in 30-90 days.</p>
+                                <a href="https://312fazq9p5fplhalj5zo0-vle1.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Build Your System</a>
+                            </div>
+
+                            <div class="product-card">
+                                <h3 class="product-name">The Genius Wave</h3>
+                                <p class="product-price">$49.94</p>
+                                <p class="product-description">Enhance focus, creativity, and mental clarity with 7-minute soundwave sessions. Stay sharp while building your business.</p>
+                                <a href="https://0413a809hxhonf86iknh7xxz83.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Unlock Your Focus</a>
+                            </div>
+
+                            <div class="bonus-section">
+                                <h1 class="bonus-heading">ALSO Click Here To Get Your Free Copy of the "Creative Momentum" eBook, A $9.99 Value!</h1>
+                                <a href="creative-momentum-download.html" class="ebook-button">
+                                    <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/7f8234d5-bb4f-4476-b576-b5194512f882" alt="Creative Momentum eBook - Free Download">
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                }
+            } 
+            // Premium Tier Results
+            else {
+                if (goal === 'scale' || challenge === 'nosystems' || learning === 'tools') {
+                    // Scaling/Automation Focus
+                    resultHTML = `
+                        <div class="result-container active">
+                            <h2 class="result-title">⚡ The Automation Architect</h2>
+                            <p class="result-description">Premium tools and systems for scaling digital product businesses</p>
+
+                            <div class="product-card">
+                                <h3 class="product-name">Online Success Coaching</h3>
+                                <p class="product-price">Premium Coaching Program</p>
+                                <p class="product-description">Elite coaching program for creating, launching, and scaling profitable digital products using AI automation and proven funnel systems from 8× ClickBank Platinum sellers.</p>
+                                <a href="#" class="product-link" onclick="alert('This premium program requires vendor approval. Contact us to facilitate access.'); return false;">Request Approval</a>
+                            </div>
+
+                            <div class="product-card">
+                                <h3 class="product-name">Sqribble - 2024 | World's #1 eBook Creator</h3>
+                                <p class="product-price">$31 + Advanced Features</p>
+                                <p class="product-description">Scale content creation with professional eBook automation. Build unlimited lead magnets and digital products in seconds.</p>
+                                <a href="https://257497vcjvdjrq3p-em7ohpt94.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Get Sqribble Now</a>
+                            </div>
+
+                            <div class="bonus-section">
+                                <h1 class="bonus-heading">ALSO Click Here To Get Your Free Copy of the "Creative Momentum" eBook, A $9.99 Value!</h1>
+                                <a href="creative-momentum-download.html" class="ebook-button">
+                                    <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/7f8234d5-bb4f-4476-b576-b5194512f882" alt="Creative Momentum eBook - Free Download">
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    // Premium Coaching Focus
+                    resultHTML = `
+                        <div class="result-container active">
+                            <h2 class="result-title">👑 The Elite Entrepreneur</h2>
+                            <p class="result-description">Premium coaching and proven systems from verified experts</p>
+
+                            <div class="product-card">
+                                <h3 class="product-name">AI Marketers Club</h3>
+                                <p class="product-price">Premium Training System</p>
+                                <p class="product-description">John Crestani's flagship affiliate marketing system. Comprehensive training on scaling profitable campaigns using AI tools and automation. From 8× ClickBank Platinum seller.</p>
+                                <a href="https://8739d2-ctyopue8hadd2al8r3n.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Join AI Marketers Club</a>
+                            </div>
+
+                            <div class="product-card">
+                                <h3 class="product-name">Online Success Coaching</h3>
+                                <p class="product-price">Premium Coaching Program</p>
+                                <p class="product-description">Elite coaching program for creating, launching, and scaling profitable digital products using AI automation and proven funnel systems.</p>
+                                <a href="#" class="product-link" onclick="alert('This premium program requires vendor approval. Contact us to facilitate access.'); return false;">Request Approval</a>
+                            </div>
+
+                            <div class="bonus-section">
+                                <h1 class="bonus-heading">ALSO Click Here To Get Your Free Copy of the "Creative Momentum" eBook, A $9.99 Value!</h1>
+                                <a href="creative-momentum-download.html" class="ebook-button">
+                                    <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/7f8234d5-bb4f-4476-b576-b5194512f882" alt="Creative Momentum eBook - Free Download">
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+
+            // Insert result HTML
+            document.getElementById('resultsContainer').innerHTML = resultHTML;
+
+            // Scroll to results
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
     </script>
 </body>
 </html>
