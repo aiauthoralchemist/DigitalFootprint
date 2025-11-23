@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Which Digital Income & Self-Mastery Path Fits You Best?</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Exo:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
@@ -97,6 +96,96 @@
             box-shadow: 0 0 14px #14b8a650;
             transform: translateX(5px);
         }
+        .email-capture {
+            display: none;
+            padding: 2em 1.5em;
+            background: linear-gradient(95deg, #232439 0%, #181928 100%);
+            border-radius: 14px;
+            box-shadow: 0 2px 14px #14b8a62d;
+            border: 2px solid #14b8a6;
+            margin-top: 2em;
+        }
+        .email-capture.active {
+            display: block;
+            animation: fadeIn 0.55s ease;
+        }
+        .email-capture h2 {
+            font-family: 'Orbitron', Arial, sans-serif;
+            color: #14b8a6;
+            margin-bottom: 1em;
+            text-align: center;
+            font-size: 1.3em;
+        }
+        .form-group {
+            margin-bottom: 1em;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5em;
+            color: #c4c4c4;
+            font-size: 0.95em;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"] {
+            width: 100%;
+            padding: 0.8em;
+            background: #1a1d2e;
+            border: 2px solid #14b8a655;
+            border-radius: 8px;
+            color: #ececec;
+            font-family: 'Exo', Arial, sans-serif;
+            font-size: 1em;
+            transition: border-color 0.2s ease;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #14b8a6;
+        }
+        .form-group input:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        .opt-out-section {
+            margin: 1.5em 0;
+            padding: 1em;
+            background: rgba(26, 29, 46, 0.5);
+            border-radius: 8px;
+            border: 1px solid #14b8a633;
+        }
+        .opt-out-section label {
+            display: flex;
+            align-items: flex-start;
+            cursor: pointer;
+            color: #c4c4c4;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        .opt-out-section input[type="checkbox"] {
+            margin-right: 0.8em;
+            margin-top: 0.2em;
+            accent-color: #14b8a6;
+            cursor: pointer;
+        }
+        .quiz-button {
+            width: 100%;
+            padding: 0.95em;
+            font-family: 'Orbitron', Arial, sans-serif;
+            font-size: 1em;
+            color: #121212;
+            background: linear-gradient(135deg, #14b8a6 0%, #10b981 100%);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.24s ease;
+            box-shadow: 0 0 17px #14b8a670, 0 4px 13px #00000050;
+            text-transform: uppercase;
+            letter-spacing: 1.3px;
+        }
+        .quiz-button:hover {
+            background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);
+            box-shadow: 0 0 25px #14b8a6bb, 0 6px 18px #00000060;
+            transform: translateY(-2px);
+        }
         .result-screen {
             display: none;
         }
@@ -105,12 +194,8 @@
             animation: fadeIn 0.6s ease;
         }
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         .result-title {
             font-family: 'Orbitron', Arial, sans-serif;
@@ -170,6 +255,61 @@
             background: linear-gradient(135deg, #6d28d9 0%, #7c3aed 100%);
             box-shadow: 0 0 19px #7c3aedaa;
             transform: translateY(-2px);
+        }
+        .bonus-section {
+            margin-top: 3em;
+            padding-top: 2em;
+            border-top: 2px solid #14b8a633;
+        }
+        .bonus-heading {
+            font-family: 'Orbitron', Arial, sans-serif;
+            font-size: 1.4em;
+            color: #22c55e;
+            text-align: center;
+            margin-bottom: 1.5em;
+            line-height: 1.4;
+            text-shadow: 0 0 15px #22c55e88;
+        }
+        .ebook-button {
+            display: block;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px #00000060, 0 0 25px #14b8a640;
+            transition: all 0.3s ease;
+            border: 3px solid #14b8a6;
+            position: relative;
+        }
+        .ebook-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(20, 184, 166, 0.2) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        .ebook-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px #00000080, 0 0 35px #14b8a670, inset 0 0 30px rgba(20, 184, 166, 0.15);
+            border-color: #22c55e;
+        }
+        .ebook-button:hover::before {
+            opacity: 1;
+        }
+        .ebook-button img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .ebook-button:hover img {
+            transform: scale(1.03);
         }
         footer {
             text-align: center;
@@ -238,6 +378,30 @@
             </button>
         </div>
 
+        <!-- Email Capture -->
+        <div class="email-capture" id="emailCapture">
+            <h2>📧 Unlock Your Personalized Results</h2>
+            <form id="emailForm">
+                <div class="form-group">
+                    <label for="userName">Your Name</label>
+                    <input type="text" id="userName" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="userEmail">Your Email</label>
+                    <input type="email" id="userEmail" name="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="opt-out-section">
+                    <label>
+                        <input type="checkbox" id="optOut" name="optOut">
+                        <span>I Prefer Not To Provide My Name and Email. I Understand That I Will Be Missing Out On Any Future Updates and Products That Match With My Personal Goals etc.</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="quiz-button">Show My Results</button>
+            </form>
+        </div>
+
         <!-- Result: Mindset Focus -->
         <div class="result-screen" id="result-mindset">
             <h2 class="result-title">🧠 The Peak Performer</h2>
@@ -253,6 +417,13 @@
                 <h3 class="product-name">The Money Wave</h3>
                 <p class="product-description">Reprogram limiting money beliefs with neuroplasticity-based training. Combines financial mindset work with proven wealth-building strategies.</p>
                 <a href="https://d0ac5-vip5mjygda1cnt6-271c.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Transform Your Mindset</a>
+            </div>
+
+            <div class="bonus-section">
+                <h1 class="bonus-heading">ALSO Click Here To Get Your Free Copy of the "Creative Momentum" eBook, A $9.99 Value!</h1>
+                <a href="creative-momentum-download.html" class="ebook-button">
+                    <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/7f8234d5-bb4f-4476-b576-b5194512f882" alt="Creative Momentum eBook - Free Download">
+                </a>
             </div>
         </div>
 
@@ -272,6 +443,13 @@
                 <p class="product-description">Create professional eBooks in 60 seconds. Perfect for building lead magnets and digital products. No design skills needed.</p>
                 <a href="https://257497vcjvdjrq3p-em7ohpt94.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Get Sqribble Now</a>
             </div>
+
+            <div class="bonus-section">
+                <h1 class="bonus-heading">ALSO Click Here To Get Your Free Copy of the "Creative Momentum" eBook, A $9.99 Value!</h1>
+                <a href="creative-momentum-download.html" class="ebook-button">
+                    <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/7f8234d5-bb4f-4476-b576-b5194512f882" alt="Creative Momentum eBook - Free Download">
+                </a>
+            </div>
         </div>
 
         <!-- Result: Premium Scaling -->
@@ -289,6 +467,13 @@
                 <h3 class="product-name">Online Success Coaching</h3>
                 <p class="product-description">Elite coaching program for creating, launching, and scaling profitable digital products using AI automation and proven funnel systems.</p>
                 <a href="#" class="product-link" onclick="alert('This premium program requires vendor approval. Contact us to facilitate access.'); return false;">Request Approval</a>
+            </div>
+
+            <div class="bonus-section">
+                <h1 class="bonus-heading">ALSO Click Here To Get Your Free Copy of the "Creative Momentum" eBook, A $9.99 Value!</h1>
+                <a href="creative-momentum-download.html" class="ebook-button">
+                    <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/7f8234d5-bb4f-4476-b576-b5194512f882" alt="Creative Momentum eBook - Free Download">
+                </a>
             </div>
         </div>
     </div>
@@ -316,17 +501,59 @@
                 document.getElementById('screen' + (questionNum + 1)).classList.add('active');
                 currentScreen = questionNum + 1;
             } else {
-                // Show result
-                showResult();
+                // Show email capture after last question
+                document.querySelectorAll('.question-screen').forEach(screen => {
+                    screen.classList.remove('active');
+                });
+                document.getElementById('emailCapture').classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         }
 
-        function showResult() {
+        // Handle opt-out checkbox
+        document.getElementById('optOut').addEventListener('change', function() {
+            const nameInput = document.getElementById('userName');
+            const emailInput = document.getElementById('userEmail');
+
+            if (this.checked) {
+                nameInput.disabled = true;
+                emailInput.disabled = true;
+                nameInput.required = false;
+                emailInput.required = false;
+                nameInput.style.opacity = '0.4';
+                emailInput.style.opacity = '0.4';
+            } else {
+                nameInput.disabled = false;
+                emailInput.disabled = false;
+                nameInput.required = true;
+                emailInput.required = true;
+                nameInput.style.opacity = '1';
+                emailInput.style.opacity = '1';
+            }
+        });
+
+        // Handle email form submission
+        document.getElementById('emailForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const optOut = document.getElementById('optOut').checked;
+
+            if (!optOut) {
+                const name = document.getElementById('userName').value;
+                const email = document.getElementById('userEmail').value;
+                console.log('User submitted:', { name, email });
+            } else {
+                console.log('User opted out');
+            }
+
+            // Hide email capture
+            document.getElementById('emailCapture').classList.remove('active');
+
+            // Determine result based on quiz answers
             const challenge = answers.q1;
             const investment = answers.q3;
 
             let resultId;
-
             if (challenge === 'mindset') {
                 resultId = 'result-mindset';
             } else if (investment === 'premium' || challenge === 'scaling') {
@@ -335,20 +562,10 @@
                 resultId = 'result-income';
             }
 
-            // Hide all question screens
-            document.querySelectorAll('.question-screen').forEach(screen => {
-                screen.classList.remove('active');
-            });
-
             // Show result
             document.getElementById(resultId).classList.add('active');
-
-            // Open creative-momentum-download.html in new tab
-            window.open('creative-momentum-download.html', '_blank');
-
-            // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        });
     </script>
 </body>
 </html>
