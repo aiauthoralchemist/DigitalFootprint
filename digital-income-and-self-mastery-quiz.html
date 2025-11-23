@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Which Digital Income & Self-Mastery Path Fits You Best?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Exo:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #121212;
+      font-family: 'Exo', Arial, sans-serif;
+      color: #ececec;
+    }
+    .quiz-container {
+      max-width: 530px;
+      margin: 2.5em auto 4em;
+      padding: 2.5em 2em 2em;
+      background: linear-gradient(120deg, #121212 0%, #232439 65%, #1a2024 100%);
+      border-radius: 1.3em;
+      box-shadow: 0 0 22px 4px #14b8a670, 0 0 70px 7px #10b98133;
+      border: 2px solid #14b8a6;
+      position: relative;
+    }
+    .quiz-title {
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-size: 1.65em;
+      color: #22c55e;
+      text-shadow: 0 0 19px #22c55e, 0 0 38px #14b8a6;
+      margin-bottom: 1.3em;
+      text-align: center;
+    }
+    .quiz-progress {
+      height: 12px;
+      background: #232323;
+      border-radius: 6px;
+      margin-bottom: 1.2em;
+      overflow: hidden;
+      box-shadow: 0 0 11px #14b8a6bb;
+    }
+    .quiz-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #14b8a6 0%, #10b981 100%);
+      box-shadow: 0 0 20px #14b8a6, 0 0 15px #10b981;
+      width: 0%;
+      border-radius: 6px;
+      transition: width 0.4s cubic-bezier(0.66,0,0.31,1.12);
+    }
+    .quiz-question {
+      font-size: 1.3em;
+      font-weight: 600;
+      color: #22c55e;
+      font-family: 'Orbitron', Arial, sans-serif;
+      margin-bottom: 1.2em;
+      text-align: center;
+      text-shadow: 0 0 18px #22c55e66;
+    }
+    .quiz-options {
+      margin-bottom: 2em;
+    }
+    .quiz-option {
+      display: block;
+      background: #191c20;
+      color: #ececec;
+      border-radius: 0.7em;
+      border: 2px solid transparent;
+      padding: 0.95em 1em;
+      font-size: 1.07em;
+      margin: 0.6em 0;
+      cursor: pointer;
+      box-shadow: 0 0 11px #0007;
+      transition: background 0.18s, border-color 0.18s, box-shadow 0.22s;
+      font-family: 'Exo', Arial, sans-serif;
+      outline: none;
+      position: relative;
+    }
+    .quiz-option.selected,
+    .quiz-option:hover {
+      border-color: #14b8a6;
+      background: #232439;
+      box-shadow: 0 0 0 3px #14b8a670, 0 0 15px #10b98155;
+      color: #22c55e;
+    }
+    .quiz-option.selected {
+      border-color: #22c55e;
+      box-shadow: 0 0 9px 2px #22c55e, 0 0 22px 5px #14b8a6bb;
+      background: #232439 linear-gradient(90deg, #22c55e13, #14b8a615 90%);
+    }
+    .quiz-next, .quiz-submit {
+      display: block;
+      margin: 1.5em auto 0.5em;
+      padding: 0.9em 2.9em;
+      font-size: 1.18em;
+      font-family: 'Orbitron', Arial, sans-serif;
+      border-radius: 1.3em;
+      border: none;
+      background: #232439;
+      color: #14b8a6;
+      box-shadow: 0 0 8px #14b8a6;
+      transition: box-shadow 0.2s, background 0.2s, color 0.2s;
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+    .quiz-next.active, .quiz-next:enabled, .quiz-submit.active, .quiz-submit:enabled {
+      background: linear-gradient(90deg, #14b8a6 0%, #22c55e 100%);
+      color: #fff;
+      opacity: 1;
+      box-shadow: 0 0 18px 2px #22c55e, 0 0 32px 3px #14b8a6cc;
+      cursor: pointer;
+    }
+    .quiz-email-step {
+      background: #232439;
+      border-radius: 1em;
+      padding: 1.1em;
+      margin-top: 1em;
+      box-shadow: 0 0 30px #14b8a644;
+      text-align: center;
+      color: #ececec;
+    }
+    .quiz-email-step input[type="email"] {
+      width: 80%;
+      padding: 0.65em;
+      border-radius: 8px;
+      border: 2px solid #14b8a6;
+      margin-bottom: 0.7em;
+      font-size: 1em;
+      font-family: 'Exo', Arial, sans-serif;
+    }
+    .quiz-privacy-note {
+      font-size: 0.97em;
+      color: #22c55e;
+      font-style: italic;
+      margin-bottom: 0.6em;
+    }
+    .quiz-optout-block {
+      margin-top: 1em;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .quiz-optout-checkbox {
+      margin-right: 0.7em;
+      accent-color: #14b8a6;
+      width: 20px;
+      height: 20px;
+      margin-top: 3px;
+    }
+    .quiz-optout-label {
+      font-size: 0.97em;
+      color: #7c3aed;
+      font-family: Segoe UI, Arial, sans-serif;
+      line-height: 1.3em;
+      cursor: pointer;
+      margin: 0;
+    }
+    /* Focus accessibility */
+    .quiz-option:focus {
+      border-color: #7c3aed;
+      box-shadow: 0 0 0 4px #7c3aed99, 0 0 10px #14b8a6;
+    }
+    .quiz-error-msg {
+      color: #cb2026;
+      margin-top: 0.4em;
+      font-size: 0.98em;
+      display: none;
+    }
+    @media (max-width: 600px) {
+      .quiz-container { padding: 1.2em 0.5em 1em; }
+      .quiz-title { font-size: 1.1em; }
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <div class="quiz-progress">
+      <div class="quiz-progress-bar" id="quizProgressBar"></div>
+    </div>
+    <h1 class="quiz-title">Which Digital Income &amp; Self-Mastery Path Fits You Best?</h1>
+    <div id="quizMainSection"></div>
+  </div>
+  <script>
+    // Quiz product links
+    const products = {
+      tierLow: [
+        {
+          name: "Hyperbolic Stretching",
+          url: "https://994359rfq-ngphc63g7ox4-5i4.hop.clickbank.net"
+        },
+        {
+          name: "The Genius Wave",
+          url: "https://6f2f55-gt9oetn91pfrn3-yp12.hop.clickbank.net"
+        },
+        {
+          name: "The Money Wave",
+          url: "https://2e8f48sasyeltgb6x7qm7zzz0x.hop.clickbank.net"
+        }
+      ],
+      tierHigh: [
+        {
+          name: "Billionaire Brain Wave",
+          url: "https://a96dc-vgt4lmle358pwvhsjbcs.hop.clickbank.net"
+        },
+        {
+          name: "Forex Win Master",
+          url: "https://1b293307t-igmi6eq3s6pu3r96.hop.clickbank.net"
+        },
+        {
+          name: "Elon Code",
+          url: "https://d69796uin5giued5vgp-qbswci.hop.clickbank.net"
+        }
+      ]
+    };
+
+    // Main quiz flow
+    const quizTiers = [
+      {
+        tier: "tierLow",
+        questions: [
+          {
+            question: "Which describes your self-mastery goal best?",
+            options: [
+              "Flexibility and physical transformation",
+              "Mental power for creativity and focus",
+              "Attracting more wealth and abundance"
+            ]
+          },
+          {
+            question: "Which do you value most for personal growth?",
+            options: [
+              "Quick, visible physical results",
+              "Unlocking rapid cognitive power",
+              "A step-by-step formula for making money"
+            ]
+          },
+          {
+            question: "Pick the closest benefit you seek:",
+            options: [
+              "Be more energetic and in shape",
+              "Heightened intelligence and ideas",
+              "Break through income stagnation"
+            ]
+          }
+        ]
+      },
+      {
+        tier: "tierHigh",
+        questions: [
+          {
+            question: "What type of success are you aiming for?",
+            options: [
+              "Extreme Wealth Attraction",
+              "Master Worldwide Money Systems",
+              "Upgrade Your Mind for Peak Achievement"
+            ]
+          },
+          {
+            question: "Which daily activity appeals most?",
+            options: [
+              "Listening to audio tracks for abundance",
+              "Trading and financial mastery",
+              "Copy strategies of world-changing innovators"
+            ]
+          },
+          {
+            question: "What drives you most?",
+            options: [
+              "Passive, exponential wealth",
+              "Expert money moves",
+              "Game-changing breakthroughs"
+            ]
+          }
+        ]
+      }
+    ];
+
+    // Tier selection based on budget
+    const budgetOptions = [
+      {
+        label: "Basically broke (less than $50)",
+        tier: "tierLow"
+      },
+      {
+        label: "$50–$100 to get started",
+        tier: "tierLow"
+      },
+      {
+        label: "Money isn't an issue ($100 or more)",
+        tier: "tierHigh"
+      }
+    ];
+
+    const quizMainSection = document.getElementById('quizMainSection');
+    const progressBar = document.getElementById('quizProgressBar');
+
+    let stage = 0; // 0 = budget, 1 = q1, 2 = q2, 3 = q3, 4 = email
+    let selections = [];
+    let userTier = null;
+    let currentQ = 0;
+
+    function renderBudgetQuestion() {
+      progressBar.style.width = "0%";
+      quizMainSection.innerHTML = `
+        <div class="quiz-question">What's your current buying power for starting your digital income journey?</div>
+        <div class="quiz-options" id="budgetOptions">
+          ${budgetOptions.map((opt, i) =>
+            `<button class="quiz-option" type="button" data-idx="${i}" tabindex="0">${opt.label}</button>`
+          ).join("")}
+        </div>
+        <button class="quiz-next" id="budgetNext" disabled>Next</button>
+      `;
+      document.querySelectorAll('#budgetOptions .quiz-option').forEach(btn => {
+        btn.onclick = () => {
+          document.querySelectorAll('#budgetOptions .quiz-option').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          userTier = budgetOptions[btn.dataset.idx].tier;
+          selections[0] = btn.dataset.idx;
+          document.getElementById('budgetNext').disabled = false;
+          document.getElementById('budgetNext').classList.add('active');
+        };
+        btn.onkeydown = (ev) => { if (ev.key === "Enter") btn.click(); };
+      });
+      document.getElementById('budgetNext').onclick = () => {
+        if (!userTier) return;
+        stage = 1;
+        currentQ = 0;
+        renderTierQuestions();
+      };
+    }
+
+    function renderTierQuestions() {
+      const tierObj = quizTiers.find(t => t.tier === userTier);
+      const qList = tierObj.questions;
+      progressBar.style.width = `${stage/(qList.length+2)*100}%`;
+      quizMainSection.innerHTML = `
+        <div class="quiz-question">${qList[currentQ].question}</div>
+        <div class="quiz-options" id="tierOptions">
+          ${qList[currentQ].options.map((opt, i) =>
+            `<button class="quiz-option" type="button" data-idx="${i}" tabindex="0">${opt}</button>`
+          ).join("")}
+        </div>
+        <button class="quiz-next" id="tierNext" disabled>Next</button>
+      `;
+      document.querySelectorAll('#tierOptions .quiz-option').forEach(btn => {
+        btn.onclick = () => {
+          document.querySelectorAll('#tierOptions .quiz-option').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          selections[stage] = btn.dataset.idx;
+          document.getElementById('tierNext').disabled = false;
+          document.getElementById('tierNext').classList.add('active');
+        };
+        btn.onkeydown = (ev) => { if (ev.key === "Enter") btn.click(); };
+      });
+      document.getElementById('tierNext').onclick = () => {
+        currentQ++;
+        stage++;
+        if (currentQ < qList.length) {
+          renderTierQuestions();
+        } else {
+          stage++;
+          renderEmailStep();
+        }
+      };
+    }
+
+    function renderEmailStep() {
+      progressBar.style.width = "100%";
+      quizMainSection.innerHTML = `
+        <div class="quiz-email-step" id="emailStep">
+          <h3 style="color:#10b981;font-family:'Orbitron',Arial,sans-serif;">GOOD NEWS!!! Your Perfect Self Mastery and Digital Income Path Is Waiting For You Just ONE Click Away!</h3>
+          <div style="margin-bottom:0.7em;">Simply Enter Your Email Address Below To Find Out How You Can Get Started In Your Own Digital Income Journey!</div>
+          <input type="email" id="quizEmail" class="email-field" placeholder="Enter your email address">
+          <div class="quiz-privacy-note">We will never sell your info, and we PROMISE to not send you anything in the future that does not directly relate to your Digital Income Goals</div>
+          <div class="quiz-optout-block">
+            <input type="checkbox" id="quizOptout" class="quiz-optout-checkbox">
+            <label for="quizOptout" class="quiz-optout-label">I prefer not to provide my Email, I Understand that I will not be able to receive any of the possible future content that could be related to my Digital Income Journey.</label>
+          </div>
+          <div id="quizErrorMsg" class="quiz-error-msg">Please enter a valid email address, or check the opt-out box.</div>
+          <button type="button" class="quiz-submit" id="quizSubmitBtn" disabled>See My Best Path to Self Mastery and Creating Digital Income!</button>
+        </div>
+      `;
+      // Email logic
+      const emailInput = document.getElementById("quizEmail");
+      const optoutCheck = document.getElementById("quizOptout");
+      const submitBtn = document.getElementById("quizSubmitBtn");
+      const errorMsg = document.getElementById("quizErrorMsg");
+
+      function validateEmail(email) {
+        return /^\S+@\S+\.\S+$/.test(email);
+      }
+      function enableBtn() {
+        if (optoutCheck.checked || (emailInput.value && validateEmail(emailInput.value))) {
+          submitBtn.disabled = false;
+          submitBtn.classList.add('active');
+          errorMsg.style.display = 'none';
+        } else {
+          submitBtn.disabled = true;
+          submitBtn.classList.remove('active');
+        }
+      }
+      emailInput.addEventListener("input", () => {
+        if (optoutCheck.checked) optoutCheck.checked = false;
+        enableBtn();
+      });
+      optoutCheck.addEventListener("change", enableBtn);
+
+      submitBtn.onclick = () => {
+        // Final redirect logic
+        if (!optoutCheck.checked && (!emailInput.value || !validateEmail(emailInput.value))) {
+          errorMsg.style.display = "block";
+          return;
+        }
+        const finalIdx = parseInt(selections[selections.length - 1]);
+        const tier = userTier === "tierLow" ? products.tierLow : products.tierHigh;
+        const product = tier[finalIdx];
+        window.location.href = product.url;
+      };
+    }
+
+    // Start quiz
+    renderBudgetQuestion();
+  </script>
+</body>
+</html>
