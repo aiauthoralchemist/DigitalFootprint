@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no">
+    <title>Creative Momentum - The 3-Phase System to Actually Finish What You Start - AIAuthorAlchemist</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Exo:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        :root {
+            --sb-track-color: transparent;
+            --sb-thumb-color: #14b8a6;
+            --sb-size: 8px;
+            --color-teal: #14b8a6;
+            --color-emerald: #10b981;
+            --color-neon: #22c55e;
+        }
+
+        ::-webkit-scrollbar {
+            width: var(--sb-size);
+            height: var(--sb-size);
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--sb-track-color);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--sb-thumb-color);
+            border-radius: 5px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Exo', sans-serif;
+            background: #121212;
+            color: #ffffff;
+            height: 100%;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .glow-text {
+            text-shadow: 0 0 10px rgba(20, 184, 166, 0.5),
+                         0 0 20px rgba(20, 184, 166, 0.3);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-teal), var(--color-emerald));
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(20, 184, 166, 0.5);
+        }
+
+        .card {
+            background: rgba(30, 30, 30, 0.8);
+            border: 1px solid rgba(20, 184, 166, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .sacred-geometry {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .geometry-circle {
+            position: absolute;
+            border: 1px solid rgba(20, 184, 166, 0.2);
+            border-radius: 50%;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.6; }
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen relative flex items-center justify-center p-4">
+        <div class="sacred-geometry">
+            <div class="geometry-circle" style="width: 300px; height: 300px; top: 10%; left: 10%;"></div>
+            <div class="geometry-circle" style="width: 500px; height: 500px; top: 30%; right: 10%; animation-delay: 1s;"></div>
+            <div class="geometry-circle" style="width: 400px; height: 400px; bottom: 10%; left: 30%; animation-delay: 2s;"></div>
+        </div>
+
+        <div class="max-w-2xl w-full z-10">
+            <div class="card text-center">
+                <div class="w-20 h-20 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i data-lucide="settings" width="40" height="40"></i>
+                </div>
+                
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 glow-text">Creative Momentum</h1>
+                <p class="text-xl text-gray-300 mb-8">
+                    The 3-Phase System to Actually Finish What You Start
+                </p>
+                
+                <div class="bg-orange-500/10 border border-orange-500/30 rounded-lg p-6 mb-8">
+                    <p class="text-lg">
+                        Click Here to Download Your Copy of Creative Momentum NOW - and Start Finishing What You Start Today!
+                    </p>
+                </div>
+
+                <a href="Creative Momentum - 3 Phase System To Actually Finish What You Start.pdf" class="btn-primary">
+                    <i data-lucide="arrow-left" width="20" height="20" style="display: inline; margin-right: 8px;"></i>
+                    DOWNLOAD
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
