@@ -310,6 +310,29 @@
             padding: 25px;
             margin-bottom: 25px;
             transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .product-card.primary {
+            border: 3px solid var(--color-teal);
+            box-shadow: 0 0 30px rgba(20, 184, 166, 0.4);
+            padding: 30px;
+            background: rgba(20, 184, 166, 0.08);
+        }
+
+        .product-card.primary::before {
+            content: '⭐ RECOMMENDED';
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--color-teal), var(--color-green));
+            color: var(--color-bg);
+            padding: 4px 15px;
+            border-radius: 20px;
+            font-family: var(--font-header);
+            font-size: 0.75em;
+            letter-spacing: 1px;
+            box-shadow: 0 3px 10px rgba(20, 184, 166, 0.5);
         }
 
         .product-card:hover {
@@ -323,6 +346,11 @@
             color: var(--color-teal);
             font-size: 1.4em;
             margin-bottom: 10px;
+        }
+
+        .product-card.primary .product-name {
+            font-size: 1.6em;
+            color: var(--color-green);
         }
 
         .product-price {
@@ -350,6 +378,12 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             font-size: 0.9em;
+        }
+
+        .product-card.primary .product-link {
+            background: linear-gradient(135deg, var(--color-teal), var(--color-green));
+            padding: 14px 35px;
+            font-size: 1em;
         }
 
         .product-link:hover {
@@ -767,7 +801,7 @@
                             <h2 class="result-title">🧠 The Peak Performer</h2>
                             <p class="result-description">Optimize your cognitive performance and wealth mindset for maximum productivity</p>
 
-                            <div class="product-card">
+                            <div class="product-card primary">
                                 <h3 class="product-name">The Genius Wave</h3>
                                 <p class="product-price">$49.94</p>
                                 <p class="product-description">Enhance focus, creativity, and mental clarity with 7-minute soundwave sessions. Science-backed cognitive performance optimization for creators who need peak mental energy.</p>
@@ -784,7 +818,7 @@
                             <div class="bonus-section">
                                 <h1 class="bonus-heading">ALSO Click Here To Get Your Free Copy of the "Creative Momentum" eBook, A $9.99 Value!</h1>
                                 <a href="creative-momentum-download.html" class="ebook-button">
-                                    <img src="Thumbnail.png" alt="Creative Momentum eBook - Free Download">
+                                    <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/7f8234d5-bb4f-4476-b576-b5194512f882" alt="Creative Momentum eBook - Free Download">
                                 </a>
                             </div>
                         </div>
@@ -796,7 +830,7 @@
                             <h2 class="result-title">📚 The Product Creator</h2>
                             <p class="result-description">Perfect for building digital products and content creation systems</p>
 
-                            <div class="product-card">
+                            <div class="product-card primary">
                                 <h3 class="product-name">Sqribble - 2024 | World's #1 eBook Creator</h3>
                                 <p class="product-price">$31 + Advanced Features</p>
                                 <p class="product-description">Create professional eBooks in 60 seconds with drag-and-drop templates. Perfect for building lead magnets, digital products, and content upgrades. No design skills needed.</p>
@@ -813,7 +847,7 @@
                             <div class="bonus-section">
                                 <h1 class="bonus-heading">ALSO Click Here To Get Your Free Copy of the "Creative Momentum" eBook, A $9.99 Value!</h1>
                                 <a href="creative-momentum-download.html" class="ebook-button">
-                                    <img src="Thumbnail.png" alt="Creative Momentum eBook - Free Download">
+                                    <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/7f8234d5-bb4f-4476-b576-b5194512f882" alt="Creative Momentum eBook - Free Download">
                                 </a>
                             </div>
                         </div>
@@ -825,7 +859,7 @@
                             <h2 class="result-title">📈 The Growth Hacker</h2>
                             <p class="result-description">Build proven systems for traffic, conversions, and sustainable revenue</p>
 
-                            <div class="product-card">
+                            <div class="product-card primary">
                                 <h3 class="product-name">Recession Profit Secrets V3</h3>
                                 <p class="product-price">$49</p>
                                 <p class="product-description">Master affiliate marketing, funnel building, and traffic generation. Complete system for generating revenue in 30-90 days.</p>
@@ -842,7 +876,7 @@
                             <div class="bonus-section">
                                 <h1 class="bonus-heading">ALSO Click Here To Get Your Free Copy of the "Creative Momentum" eBook, A $9.99 Value!</h1>
                                 <a href="creative-momentum-download.html" class="ebook-button">
-                                    <img src="Thumbnail.png" alt="Creative Momentum eBook - Free Download">
+                                    <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/7f8234d5-bb4f-4476-b576-b5194512f882" alt="Creative Momentum eBook - Free Download">
                                 </a>
                             </div>
                         </div>
@@ -858,11 +892,11 @@
                             <h2 class="result-title">⚡ The Automation Architect</h2>
                             <p class="result-description">Premium tools and systems for scaling digital product businesses</p>
 
-                            <div class="product-card">
+                            <div class="product-card primary">
                                 <h3 class="product-name">Online Success Coaching</h3>
                                 <p class="product-price">Premium Coaching Program</p>
                                 <p class="product-description">Elite coaching program for creating, launching, and scaling profitable digital products using AI automation and proven funnel systems from 8× ClickBank Platinum sellers.</p>
-                                <a href="#" class="product-link" onclick="alert('This premium program requires vendor approval. Contact us to facilitate access.'); return false;">Request Approval</a>
+                                <a href="https://0b040xwefvliwi-9-2-zdcpgib.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Get Started Now</a>
                             </div>
 
                             <div class="product-card">
@@ -875,7 +909,7 @@
                             <div class="bonus-section">
                                 <h1 class="bonus-heading">ALSO Click Here To Get Your Free Copy of the "Creative Momentum" eBook, A $9.99 Value!</h1>
                                 <a href="creative-momentum-download.html" class="ebook-button">
-                                    <img src="Thumbnail.png" alt="Creative Momentum eBook - Free Download">
+                                    <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/7f8234d5-bb4f-4476-b576-b5194512f882" alt="Creative Momentum eBook - Free Download">
                                 </a>
                             </div>
                         </div>
@@ -887,6 +921,13 @@
                             <h2 class="result-title">👑 The Elite Entrepreneur</h2>
                             <p class="result-description">Premium coaching and proven systems from verified experts</p>
 
+                            <div class="product-card primary">
+                                <h3 class="product-name">Online Success Coaching</h3>
+                                <p class="product-price">Premium Coaching Program</p>
+                                <p class="product-description">Elite coaching program for creating, launching, and scaling profitable digital products using AI automation and proven funnel systems from 8× ClickBank Platinum sellers.</p>
+                                <a href="https://0b040xwefvliwi-9-2-zdcpgib.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Get Started Now</a>
+                            </div>
+
                             <div class="product-card">
                                 <h3 class="product-name">AI Marketers Club</h3>
                                 <p class="product-price">Premium Training System</p>
@@ -894,17 +935,10 @@
                                 <a href="https://8739d2-ctyopue8hadd2al8r3n.hop.clickbank.net" class="product-link" target="_blank" rel="noopener noreferrer">Join AI Marketers Club</a>
                             </div>
 
-                            <div class="product-card">
-                                <h3 class="product-name">Online Success Coaching</h3>
-                                <p class="product-price">Premium Coaching Program</p>
-                                <p class="product-description">Elite coaching program for creating, launching, and scaling profitable digital products using AI automation and proven funnel systems.</p>
-                                <a href="#" class="product-link" onclick="alert('This premium program requires vendor approval. Contact us to facilitate access.'); return false;">Request Approval</a>
-                            </div>
-
                             <div class="bonus-section">
                                 <h1 class="bonus-heading">ALSO Click Here To Get Your Free Copy of the "Creative Momentum" eBook, A $9.99 Value!</h1>
                                 <a href="creative-momentum-download.html" class="ebook-button">
-                                    <img src="Thumbnail.png" alt="Creative Momentum eBook - Free Download">
+                                    <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/7f8234d5-bb4f-4476-b576-b5194512f882" alt="Creative Momentum eBook - Free Download">
                                 </a>
                             </div>
                         </div>
